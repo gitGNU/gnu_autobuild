@@ -1,5 +1,9 @@
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
+	* Makefile: Fix.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
 	* abindex: Add.
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
