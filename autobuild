@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.55 $';
+    my ($rev) = '$Revision: 1.56 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -129,7 +129,7 @@ foreach $arg (@ARGV) {
     } elsif (-f $arg) {
 	push @files, $arg;
     } else {
-	warn "Skipping unknown file: $arg";
+	warn "Skipping unknown file file: $arg";
 	next;
     }
 
