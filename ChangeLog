@@ -1,5 +1,46 @@
 2004-07-08  Simon Josefsson <simon@josefsson.org>
 
+	* NEWS: Version 1.4.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* abindex, autobuild, configure.ac: Bump version.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: No need for logs/.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild: Use log from examples/ instead.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Typo.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Don't use tar-pax (failed on OSF 5.1).
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* examples/Makefile.am,
+	examples/autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=latte,timestamp=20040607-0220,status=ok,log.html,
+	examples/autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.html,
+	examples/autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt,
+	examples/example.html, examples/libidn.txt: Remove output, too long
+	filenames.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Fix examples.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
 	* configure.ac: Use tar-pax (too long filenames in examples/).
 
 2004-07-08  Simon Josefsson <simon@josefsson.org>
@@ -156,7 +197,7 @@
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
-	* tst-autobuild, logs/autobuild.log: Add.
+	* tst-autobuild: Add.
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
