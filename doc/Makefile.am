@@ -26,7 +26,7 @@ AM_MAKEINFOHTMLFLAGS = --no-split --number-sections --css-include=texinfo.css
 
 # Man pages.
 
-dist_man_MANS = autobuild.1 htmlize.1
+dist_man_MANS = autobuild.1 htmlize.1 abput.1
 MAINTAINERCLEANFILES = $(dist_man_MANS)
 
 autobuild.1: $(top_srcdir)/autobuild $(top_srcdir)/configure.ac
@@ -38,3 +38,8 @@ htmlize.1: $(top_srcdir)/htmlize $(top_srcdir)/configure.ac
 	$(HELP2MAN) --no-info \
 		--name="Convert file to fancy HTML markup" \
 		--output=$@ $(top_srcdir)/htmlize
+
+abput.1: $(top_srcdir)/abput $(top_srcdir)/configure.ac
+	$(HELP2MAN) --no-info \
+		--name="Upload files to build platforms" \
+		--output=$@ $(top_srcdir)/abput
