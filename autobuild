@@ -137,8 +137,8 @@ while (<>) {
     $Timestamp = $1 if m,autobuild timestamp... (.*),;
 
     # GNU Autoconf host/build output.
-    $Hosttype = $1 if !$Hosttype && m,checking host system type... ([a-z0-9-.]+),;
-    $Buildtype = $1 if !$Buildtype && m,checking build system type... ([a-z0-9-.]+),;
+    $Hosttype = $1 if !$Hosttype && m,checking host system type... ([a-z0-9_-.]+),;
+    $Buildtype = $1 if !$Buildtype && m,checking build system type... ([a-z0-9_-.]+),;
 
     # Automake self test output.
     $Status = "ok" if !$Status && m,All [0-9]+ tests passed,;
