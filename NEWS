@@ -2,6 +2,10 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
+* Version 3.1 (unreleased)
+
+** Bug fixes.
+
 * Version 3.0 (released 2004-07-31)
 
 ** New commands used to upload files to compile hosts.
