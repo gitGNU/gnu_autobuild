@@ -143,7 +143,7 @@ foreach $project (sort keys %Projects) {
     print "<h2>Project '$project'</h2>\n";
 
     print "<p>Revisions: ";
-    foreach $revision (reverse sort keys %{$Revisions{$project}}) {
+    foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<a href=\"#$project-$revision\">$revision</a>, ";
     }
 
@@ -157,7 +157,7 @@ foreach $project (sort keys %Projects) {
 	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
     }
 
-    foreach $revision (reverse sort keys %{$Revisions{$project}}) {
+    foreach $revision (reverse sort  { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<hr>\n";
 	print "<a name=\"$project-$revision\"><h3>Summary for $project $revision</h3></a>\n";
 	print "\n";
@@ -216,7 +216,7 @@ foreach $project (sort keys %Projects) {
 	print "\n";
     }
 
-    foreach $hosttype (reverse sort keys %{$Hosttypes{$project}}) {
+    foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	print "<hr>\n";
 	print "<a name=\"$project-$hosttype\"><h3>Summary for $project on $hosttype</h3></a>\n";
 	print "\n";
@@ -270,7 +270,7 @@ foreach $project (sort keys %Projects) {
 	print "\n";
     }
 
-    foreach $hostname (reverse sort keys %{$Hostnames{$project}}) {
+    foreach $hostname (sort keys %{$Hostnames{$project}}) {
 	print "<hr>\n";
 	print "<a name=\"$project-$hostname\"><h3>Summary for $project built on $hostname</h3></a>\n";
 	print "\n";
