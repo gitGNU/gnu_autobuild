@@ -4,6 +4,10 @@ See the end for copying conditions.
 
 * Version 1.2 (unreleased)
 
+** autobuild: Values specified on the command line are now used for all
+files read, when multiple filenames are supplied on command line,
+instead of just for the first file as was the case before.
+
 * Version 1.1 (released 2004-07-07)
 
 ** Fixed minor bugs discovered while writing tutorial web page.
