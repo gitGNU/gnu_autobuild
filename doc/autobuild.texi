@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.17 2004-07-14 13:59:48 jas Exp $
+@comment $Id: autobuild.texi,v 1.18 2004-07-14 14:21:51 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -298,7 +298,7 @@ For use when autobuild fail to guess the values properly:
 @pindex htmlize
 @cindex invoking @command{htmlize}
 
-@section synopsis
+@section Synopsis
 Add markup to file and save as HTML.
 
 @example
