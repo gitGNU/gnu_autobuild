@@ -1,3 +1,52 @@
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 2.1.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Better debugging.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Less verbose font-lock.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Update htmlize doc.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am, doc/htmlfontify.texi: Add htmlfontify.texi.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, hfy-cmap.el, hfy-emacs20.el, htmlfontify.el,
+	htmlize.el: Use htmlfontify.el instead of htmlize.el.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Doc fix.  Support --emacs.  Check that INFILE exists.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Support --force, --update and -h.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, NEWS: Bump version.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi, NEWS: Fix.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Typo.
+
 2004-07-09  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 2.0.
