@@ -1,2 +1,4 @@
 autobuild-log*.txt
+autobuild-*.tar.gz
+autobuild-*.tar.gz.sig
 autobuild.1
