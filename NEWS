@@ -6,6 +6,8 @@ See the end for copying conditions.
 
 ** Autobuild.m4 macro project name/version printing improvement.
 
+** Manual now explain abput and abbuild.
+
 * Version 3.2 (released 2004-08-08)
 
 ** Improved regexp's for guessing project name, revision, etc.

@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.18 2004-07-14 14:21:51 jas Exp $
+@comment $Id: autobuild.texi,v 1.19 2004-08-26 19:24:46 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -40,8 +40,9 @@ Software Foundation raise funds for GNU development.''
 
 @titlepage
 @title Autobuild
+@subtitle Automate building software and generate build status summary
 @subtitle for version @value{VERSION}, @value{UPDATED}
-@author Simon Josefsson (@email{bug-autobuild@@josefsson.org})
+@author Simon Josefsson
 @page
 @vskip 0pt plus 1filll
 @insertcopying
@@ -59,7 +60,9 @@ Software Foundation raise funds for GNU development.''
 @menu
 * Introduction::
 * Tutorial::
-* Integrating autobuild.m4 in your project::
+* Integrating autobuild.m4 In Your Project::
+* Build Robot::
+* Scripting The Build Robot::
 * Invoking autobuild::
 * Invoking htmlize::
 * Copying This Manual::
@@ -76,6 +79,11 @@ output include project name, version, build host types (cross compile
 aware), compiler host name, date of build, and indication of success
 or failure.  The output is indexed in many ways to simplify browsing.
 
+Autobuild can also help you automate building your project on many
+systems concurrently.  Users with accounts on the SourceForge compile
+farms will be able to invoke a parallel build of their software, and
+produce a summary of the build status, after reading this manual.
+
 The quickest way to get an understanding of what Autobuild can do for
 you, is to look at some example output.  For now, we recommend looking
 at how Autobuild is used in the GNU Libidn project, see
@@ -85,8 +93,8 @@ at how Autobuild is used in the GNU Libidn project, see
 @chapter Tutorial
 
 The first step is to collect build logs of your package.  Autobuild
-does not help you do this.  A very simple way to do this is as
-follows:
+can help you do this, but you can also do it easily yourself, as
+follows.
 
 @example
 jas@@latte:~/src/libidn-0.5.0$ ./configure > ~/libidn.txt
@@ -168,8 +176,8 @@ files, and a Makefile that will execute the above commands.  In that
 directory, you can remove the distributed @file{example.html} and type
 @kbd{make example.html} to regenerate it.
 
-@node Integrating autobuild.m4 in your project
-@chapter Integrating autobuild.m4 in your project
+@node Integrating autobuild.m4 In Your Project
+@chapter Integrating @file{autobuild.m4} In Your Project
 
 A normal build log from an Autoconf/Automake based project do normally
 not include the project name, revision, time stamp of build or host
@@ -220,6 +228,165 @@ This would result in an additional message:
 configure: autobuild mode... whatever
 ...
 @end example
+
+@node Build Robot
+@chapter Build Robot
+
+Collecting build logs manually, especially when more platforms are
+involved, is tedious.  Autobuild can help you with this.
+
+The details of how to send the source code to all build systems, and
+how to invoke the actual software build on all systems, depend on your
+environment.  To help separate these details, Autobuild have two
+commands, @command{abput} and @command{abbuild}, that act as generic
+front ends.  The @command{abput} tool is responsible for uploading
+your source code to the build systems.  The @command{abbuild} tool is
+responsible for logging on to each system and build the software.  The
+reason these two steps are separated is that the @command{abput} step
+can be time consuming, and it is typically invoked less frequently
+than the @command{abbuild} step.  Here's a typical scenario:
+
+@example
+$ abput --system sourceforge yourproject-4.2.tar.gz
+...
+$ abbuild sourceforge yourproject-4.2.tar.gz alpha-linux1
+...
+@end example
+
+The @command{abput} tool is invoked by specifying the @code{--system}
+parameter naming each back end, and the file name to upload.  The file
+name is typically the output from Automake @command{make dist}, i.e.,
+@file{yourproject-4.2.tar.gz}.  The tool will then invoke a back end,
+@command{abput-@var{system}}, with the file name as parameter, for
+each of the provided systems.  The back end could use @acronym{FTP},
+Secure Shell @acronym{SCP}, @command{cp} to NFS-mounted file systems,
+etc.  As you can imagine, the @command{abput} tool is a simple shell
+script, but you can make @command{abput-@var{system}} however complex
+you need.
+
+Likewise, the @command{abbuild} tool is a simple front end for the
+back end scripts, @command{abbuild-@var{system}}, that are responsible
+for building your project on the host given as a parameter.  It will
+typically use @command{telnet} or Secure Shell (@acronym{ssh}) to log
+on to a system, and then unpack the source code and invoke
+@command{./configure && make check} or similar.
+
+The intention is that you will implement the details of uploading the
+software package to your various build systems in a script
+@command{abput-@var{somename}}, and the details of building the
+project on those systems in a script @command{abput-@var{somename}}.
+
+@section SourceForge Compile Farm Back End
+
+Autobuild ships with one set of example scripts,
+@command{abput-sourceforge} and @command{abbuild-sourceforge}, which
+are written to upload files and build projects on the SourceForge
+Compile Farms (see @url{http://www.sf.net/} for more information).  As
+SourceForge utilize @acronym{ssh} with public key authentication,
+there is little configuration needed.  In fact, the only thing you
+will need to tell the Autobuild SourceForge back end is your
+SourceForge user name, in case it is different from your login user
+name.
+
+If you have an account @code{joe42} on the SourceForge compile farms,
+here is how you would use Autobuild to build your hypothetical package
+@code{yourproject}.
+
+@example
+~/src/yourproject$ make dist
+...
+~/src/yourproject$ abput -s sourceforge \
+                   yourproject-4.2.tar.gz
+yourproject-4.2.tar.gz     100% 2556KB  79.9KB/s   00:32
+~/src/yourproject$ ABSFUSER=joe42 abbuild \
+                   yourproject-4.2.tar.gz \
+                   sourceforge x86-linux2
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+checking target system type... i686-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+configure: autobuild project... yourproject
+configure: autobuild revision... 4.2
+configure: autobuild hostname... x86-linux2.cf.sourceforge.net
+configure: autobuild timestamp... 20040826-115252
+...
+PASS: simple
+PASS: anonself
+==================
+All 2 tests passed
+==================
+...
+~/src/yourproject$
+@end example
+
+Supplying the @code{ABSFUSER} environment variable can be removed, if
+you set it in the shell script file @file{~/.ab-sf} which is sourced
+by @command{abbuild-sourceforge}.
+
+@example
+$ echo ABSFUSER=joe42 > ~/.ab-sf
+@end example
+
+@node Scripting The Build Robot
+@chapter Scripting The Build Robot
+
+The tools @command{abput} and @command{abbuild} helped you build your
+project, but you would still need to invoke those commands for each
+host in all your systems.  The natural next step is to write a script
+to do this for you.  One isn't included with Autobuild, but the
+following is what the author uses.  Let it serve as inspiration.
+
+@example
+#!/bin/bash
+BASE=~/src/logs
+HOSTS="alpha-linux1 amd64-linux1 ppc-osx2 \
+       shell sparc-solaris1 sparc-solaris2 \
+       x86-linux2 x86-openbsd1 x86-solaris1"
+FILE=$1
+
+test x$FILE == x && echo "Usage: $0 FILE" && exit 1
+
+for HOST in $HOSTS; do
+  OUT=$BASE/$FILE-$HOST-output
+
+  if test -f $OUT; then
+    echo Working $host... remove $OUT to start again
+  else
+    abbuild $FILE sourceforge $HOST > $OUT 2>&1 &
+  fi
+done
+@end example
+
+As you can see, it will launch many @command{abbuild} processes in
+parallel, one for each host on the SourceForge system.  All output are
+redirected into files named after the project name, version and host,
+below the directory @file{~/src/logs}.  Incidentally, that directory
+contain a @acronym{CVS} repository of such files, which is checked out
+on a web server, to make the build logs accessible for interested
+parties.
+
+Once the build processes has been started, you can get an overview of
+the process by invoking @command{automake} and viewing the output in a
+@acronym{HTML} browser.
+
+@example
+~/src/logs$ autobuild yourproject-*-output > yourproject.html
+@end example
+
+The final touch can be given by converting the build logs to
+@acronym{HTML}, and then let the index page link to them.  The
+@acronym{HTML}ized build logs are easier to read.
+
+@example
+~/src/logs$ for i in yourproject-*-output; do \
+            htmlize -u $i; done
+~/src/logs$ autobuild yourproject-*-output.html > yourproject.html
+@end example
+
+That's all folks!
 
 @node Invoking autobuild
 @chapter Invoking autobuild
