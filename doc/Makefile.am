@@ -26,7 +26,7 @@ AM_MAKEINFOHTMLFLAGS = --no-split --number-sections --css-include=texinfo.css
 
 # Man pages.
 
-dist_man_MANS = autobuild.1 htmlize.1 abput.1 abput-sourceforge.1
+dist_man_MANS = autobuild.1 htmlize.1 abput.1 abput-sourceforge.1 abbuild.1
 MAINTAINERCLEANFILES = $(dist_man_MANS)
 
 autobuild.1: $(top_srcdir)/autobuild $(top_srcdir)/configure.ac
@@ -48,3 +48,8 @@ abput-sourceforge.1: $(top_srcdir)/abput-sourceforge $(top_srcdir)/configure.ac
 	$(HELP2MAN) --no-info \
 		--name="Upload files to SourceForge compile farm" \
 		--output=$@ $(top_srcdir)/abput-sourceforge
+
+abbuild.1: $(top_srcdir)/abbuild $(top_srcdir)/configure.ac
+	$(HELP2MAN) --no-info \
+		--name="Build file on compile farm" \
+		--output=$@ $(top_srcdir)/abbuild
