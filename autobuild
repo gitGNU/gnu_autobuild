@@ -152,6 +152,9 @@ while (<>) {
     $Hostname = $1 if !$Hostname && m,Trying (.*)\.\.\.,;
     $Hostname = $1 if !$Hostname && m,Connected to (.*)\.,;
 
+    # SSH string.
+    $Hostname = $1 if !$Hostname && m,Connection to (.*) closed.,;
+
     # If output mention a tar.gz archive.
     $Project = $1 if !$Project && m,/([a-z]+)-[0-9.]+.tar.gz,;
     $Revision = $1 if !$Revision && m,/[a-z]+-([0-9.]+).tar.gz,;
