@@ -1,5 +1,25 @@
 2004-07-07  Simon Josefsson <simon@josefsson.org>
 
+	* NEWS: Add.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, autobuild, abindex: Bump version.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Remove.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix last commit.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix Revision verbose printing.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
 	* Makefile.am: Fix release target.
 
 2004-07-07  Simon Josefsson <simon@josefsson.org>
