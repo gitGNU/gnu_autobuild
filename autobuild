@@ -125,7 +125,7 @@ while (<>) {
     $Revision = $1 if !$Revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
 
     # Telnet string.
-    $Hostname = $1 if !$Hostname && m,Connected to \(.*\).,;
+    $Hostname = $1 if !$Hostname && m,Connected to (.*)\.,;
 
     # If output mention a tar.gz archive.
     $Project = $1 if !$Project && m,/([a-z]+)-[0-9.]+.tar.gz,;
