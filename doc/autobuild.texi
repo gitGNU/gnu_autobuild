@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.12 2004-07-09 00:48:10 jas Exp $
+@comment $Id: autobuild.texi,v 1.13 2004-07-09 11:11:45 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -246,50 +246,50 @@ Mandatory arguments to long options are mandatory for short options
 too.
 
 @verbatim
-       --abort
-              Abort  if any of the following values cannot be guessed: project
-              name, revision, host type, and build type.
+    --abort
+           Abort  if any of the following values cannot be guessed: project
+           name, revision, host type, and build type.
 
-       -n, --dry-run
-              Just parse, don’t print output.
+    -n, --dry-run
+           Just parse, don’t print output.
 
-       -v, --verbose
-              Explain what is being done.
+    -v, --verbose
+           Explain what is being done.
 
-   For use when autobuild fail to guess the values properly:
-       -p, --project=STRING
-              Specify project name.
+For use when autobuild fail to guess the values properly:
+    -p, --project=STRING
+           Specify project name.
 
-       --revision=STRING
-              Specify project revision.
+    --revision=STRING
+           Specify project revision.
 
-       --mode=STRING
-              Specify build mode (typically ’default’).
+    --mode=STRING
+           Specify build mode (typically ’default’).
 
-       --hosttype=STRING
-              Specify host type (e.g., i686‐pc‐linux‐gnu).
+    --hosttype=STRING
+           Specify host type (e.g., i686‐pc‐linux‐gnu).
 
-       --buildtype=STRING
-              Specify build type  (e.g.,  m68k‐uclinux‐elf).   Different  from
-              hosttype for cross compiles.
+    --buildtype=STRING
+           Specify build type  (e.g.,  m68k‐uclinux‐elf).   Different  from
+           hosttype for cross compiles.
 
-       --hostname=STRING
-              Specify name of host log was created on.
+    --hostname=STRING
+           Specify name of host log was created on.
 
-       --timestamp=STRING
-              Specify  when  build  was  made.  Any date format will work, but
-              ’YYYY‐MM‐DDTHH:MM:SS’ is recommended.
+    --timestamp=STRING
+           Specify  when  build  was  made.  Any date format will work, but
+           ’YYYY‐MM‐DDTHH:MM:SS’ is recommended.
 
-       --status=STRING
-              Outcome of build.  Any string will work, but "ok" and "fail" are
-              recommended for the two basic outcomes.
+    --status=STRING
+           Outcome of build.  Any string will work, but "ok" and "fail" are
+           recommended for the two basic outcomes.
 
-       Other options:
+    Other options:
 
-       --help Display this help and exit.
+    --help Display this help and exit.
 
-       --version
-              Output version information and exit.
+    --version
+           Output version information and exit.
 @end verbatim
 
 @node Invoking htmlize
