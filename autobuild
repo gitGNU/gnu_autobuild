@@ -56,7 +56,7 @@ if ($PrintHelp) {
     print "                          With the exception of build mode.\n";
     print "  -n, --dry-run           Just parse, don't write file.\n";
     print "      --html              Create HTML output instead of text.\n";
-    print "                          requires that htmlize.el is installed.\n";
+    print "                          Need Emacs and htmlize.el.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "  -p, --project=STRING    Specify project name.\n";
