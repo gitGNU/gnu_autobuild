@@ -23,9 +23,10 @@ use strict;
 use Getopt::Long;
 
 # Parse command line parameters.
-my $Verbose = 0;
-my ($PrintHelp, $PrintVersion) = 0;
-my ($Abort, $DryRun, $Html) = 0;
+my $Verbose;
+my ($PrintHelp, $PrintVersion);
+my ($Abort, $DryRun, $Html);
+my ($OutDir) = ".";
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
@@ -33,6 +34,7 @@ GetOptions ('help|usage|h' => \$PrintHelp,
 	    'html'         => \$Html,
 	    'abort|a'      => \$Abort,
 	    'dry-run|n'    => \$DryRun,
+	    'outdir|o=s'   => \$OutDir,
 	    'p|project=s'  => \$Project,
 	    'revision=s'   => \$Revision,
 	    'mode=s'       => \$Mode,
@@ -57,6 +59,7 @@ if ($PrintHelp) {
     print "  -n, --dry-run           Just parse, don't write file.\n";
     print "      --html              Create HTML output instead of text.\n";
     print "                          Need Emacs and htmlize.el.\n";
+    print "  -o, --outdir=DIR        Create files in specified directory.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "  -p, --project=STRING    Specify project name.\n";
@@ -101,7 +104,7 @@ if ($Verbose) {
 }
 
 # Declarations.
-my ($tmpfile) = ".autobuild.$$";
+my ($tmpfile) = "$OutDir/.autobuild.$$";
 
 # Always clean up in case of failure.
 sub END { unlink $tmpfile; }
@@ -128,6 +131,7 @@ while (<>) {
     $Revision = $1 if !$Revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
 
     # Telnet string.
+    $Hostname = $1 if !$Hostname && m,Trying (.*)\.\.\.,;
     $Hostname = $1 if !$Hostname && m,Connected to (.*)\.,;
 
     # If output mention a tar.gz archive.
@@ -166,7 +170,7 @@ die "Could not guess all required values".($Verbose ? "" :
 
 exit 0 if $DryRun;
 
-my ($outbase, $outfile) = "autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp";
+my ($outbase, $outfile) = "$OutDir/autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp";
 
 if ($Html) {
     $outfile = $outbase . ".html";
