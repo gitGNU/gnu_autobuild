@@ -8,6 +8,9 @@ all:
 install:
 	install -D -c $(NAME) "$(PREFIX)/sbin/cks-dns"
 
+clean:
+	rm -f *~ *.bak
+
 # Maintainer targets below.
 
 .PHONY: ChangeLog
