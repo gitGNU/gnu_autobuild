@@ -23,6 +23,8 @@ AM_INIT_AUTOMAKE
 
 AM_MISSING_PROG(HELP2MAN, help2man, $missing_dir)
 
+AB_INIT
+
 AC_CONFIG_FILES(Makefile)
 
 AC_OUTPUT
