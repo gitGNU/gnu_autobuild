@@ -7,11 +7,9 @@ all:
 
 autobuild.1: autobuild
 	help2man --name="Generate build logs" ./autobuild > autobuild.1
-	cvs commit -m "Generated." autobuild.1
 
 abindex.1: abindex
 	help2man --name="Create HTML index to build logs" ./abindex > abindex.1
-	cvs commit -m "Generated." abindex.1
 
 .PHONY: install
 install: autobuild.1 abindex.1
