@@ -186,30 +186,30 @@ foreach $arg (@ARGV) {
 	if (!$Abort) {
 	    $project = "unknown" if !$project;
 	    $revision = "0" if $revision eq "";
-	    $hostname = "unknown" if !$hostname;
 	    $hosttype = "unknown" if !$hosttype;
 	    $buildtype = "unknown" if !$buildtype;
-	    $timestamp = "unknown" if !$timestamp;
 	}
+	$hostname = "unknown" if !$hostname;
 	$mode = "default" if !$mode;
 	$status = "fail" if !$status;
+	$timestamp = "unknown" if !$timestamp;
 
 	if ($Verbose) {
 	    print STDERR "$file:\n";
-	    print STDERR " Project: $project\n" if $project;
-	    print STDERR " Revision: $revision\n" if $revision ne "";
-	    print STDERR " Mode: $mode\n" if $mode;
-	    print STDERR " Hosttype: $hosttype\n" if $hosttype;
-	    print STDERR " Buildtype: $buildtype\n" if $buildtype;
-	    print STDERR " Hostname: $hostname\n" if $hostname;
-	    print STDERR " Timestamp: $timestamp\n" if $timestamp;
-	    print STDERR " Status: $status\n" if $status;
+	    print STDERR " Project: $project\n";
+	    print STDERR " Revision: $revision\n";
+	    print STDERR " Mode: $mode\n";
+	    print STDERR " Hosttype: $hosttype\n";
+	    print STDERR " Buildtype: $buildtype\n";
+	    print STDERR " Hostname: $hostname\n";
+	    print STDERR " Timestamp: $timestamp\n";
+	    print STDERR " Status: $status\n";
 	}
 
 	die "Could not guess all required values" .
 	    ($Verbose ? "" : " (use -v to print values)")."\n"
-	    if $Abort && (!$project || !$revision || !$hostname || !$hosttype
-			  || !$buildtype || !$timestamp || !$status);
+	    if $Abort && (!$project || $revision eq "" ||
+			  !$hosttype || !$buildtype || !$status);
 
 	push @Files, $file;
 
