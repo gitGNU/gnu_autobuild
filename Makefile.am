@@ -38,7 +38,6 @@ abindex.1: abindex $(top_srcdir)/configure.ac
 
 # Maintainer targets below.
 
-.PHONY: ChangeLog
 ChangeLog:
 	rm -f ChangeLog
 	cvs2cl --FSF --fsf --usermap .cvsusers -I ChangeLog -I .cvs
