@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.53 $';
+    my ($rev) = '$Revision: 1.54 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -171,8 +171,8 @@ foreach $arg (@ARGV) {
 	    $status = "almost" if !$status && m,[0-9]+ of [0-9]+ tests failed,;
 
 	    # Works for GNU make.
-	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z-]+)-[0-9.]+/.*(<[^>]+>)?',;
-	    $revision = $2 if !$revision && m,Entering directory `(<[^>]+>)?.*/[a-z-]+-([0-9.]+)/.*(<[^>]+>)?',;
+	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z-]+)-[0-9.a-z-]+/.*(<[^>]+>)?',;
+	    $revision = $2 if !$revision && m,Entering directory `(<[^>]+>)?.*/[a-z-]+-([0-9.a-z-]+)/.*(<[^>]+>)?',;
 
 	    # Telnet string.
 	    $hostname = $1 if !$hostname && m,Trying (.*)\.\.\.,;
@@ -187,16 +187,16 @@ foreach $arg (@ARGV) {
 
 	    # If you invoke set standing in the directory of the project...
 	    # Happens to work for 'abbuild-sourceforge', but looks error prone.
-	    $project = $2 if !$project && m,PWD=(<[^>]+>)?.*/([a-z0-9-]+)-[0-9.]+,;
-	    $revision = $2 if !$revision && m,PWD=(<[^>]+>)?.*/[a-z0-9-]+-([0-9.]+),;
+	    $project = $2 if !$project && m,PWD=(<[^>]+>)?.*/([a-z0-9-]+)-[0-9.a-z-]+,;
+	    $revision = $2 if !$revision && m,PWD=(<[^>]+>)?.*/[a-z0-9-]+-([0-9.a-z-]+),;
 
 	    # Errors from tar...
-	    $project = $2 if !$project && m,tar(<[^>]+>)?: ([a-z0-9-]+)-[0-9.]+/,;
-	    $revision = $2 if !$revision && m,tar(<[^>]+>)?: [a-z0-9-]+-([0-9.]+)/,;
+	    $project = $2 if !$project && m,tar(<[^>]+>)?: ([a-z0-9-]+)-[0-9.a-z-]+/,;
+	    $revision = $2 if !$revision && m,tar(<[^>]+>)?: [a-z0-9-]+-([0-9.a-z-]+)/,;
 
 	    # File name .../*.tar.gz...
-	    $project = $1 if !$project && m,/([a-z0-9-]+)-[0-9.]+.tar.gz,;
-	    $revision = $1 if !$revision && m,/[a-z0-9-]+-([0-9.]+).tar.gz,;
+	    $project = $1 if !$project && m,/([a-z0-9-]+)-[0-9.a-z-]+.tar.gz,;
+	    $revision = $1 if !$revision && m,/[a-z0-9-]+-([0-9.a-z-]+).tar.gz,;
 	}
 
 	close FH;
