@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.6 2004-07-08 15:49:24 jas Exp $
+@comment $Id: autobuild.texi,v 1.7 2004-07-08 15:52:20 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -167,7 +167,7 @@ three are based on the same build, so it will not be very exciting.
 
 See the @file{examples/} sub-directory in the Autobuild source code
 distribution, it execute the above commands.  In that directory, you
-can remove the distributed @file{example.html} and type @cmd{make
+can remove the distributed @file{example.html} and type @kbd{make
 example.html} to regenerate it.
 
 @node Integrating autobuild.m4 in your project
