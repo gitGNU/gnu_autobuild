@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.47 $';
+    my ($rev) = '$Revision: 1.48 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -182,8 +182,8 @@ foreach $arg (@ARGV) {
 	    $hostname = $1 if !$hostname && m,Connection to (.*) closed.,;
 
 	    # If output mention a tar.gz archive.
-	    $project = $1 if !$project && m,/([a-z]+)-[0-9.]+.tar.gz,;
-	    $revision = $1 if !$revision && m,/[a-z]+-([0-9.]+).tar.gz,;
+	    $project = $1 if !$project && m,/([a-z-]+)-[0-9.a-z-]+.tar.gz,;
+	    $revision = $1 if !$revision && m,/[a-z-]+-([0-9.a-z-]+).tar.gz,;
 	}
 
 	close FH;
