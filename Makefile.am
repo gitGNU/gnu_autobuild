@@ -26,7 +26,8 @@ m4data_DATA = autobuild.m4
 
 dist_lisp_DATA = htmlfontify.el hfy-cmap.el hfy-emacs20.el
 
-dist_bin_SCRIPTS = autobuild htmlize abput abput-sourceforge abbuild
+dist_bin_SCRIPTS = autobuild htmlize abput abput-sourceforge \
+	abbuild abbuild-sourceforge
 
 TESTS = tst-autobuild tst-simple
 dist_check_SCRIPTS = $(TESTS)
