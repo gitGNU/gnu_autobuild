@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.9 2004-07-08 21:27:13 jas Exp $
+@comment $Id: autobuild.texi,v 1.10 2004-07-09 00:16:31 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -35,7 +35,7 @@ Software Foundation raise funds for GNU development.''
 @dircategory GNU utilities
 @direntry
 * autobuild: (autobuild)Invoking autobuild.	Process build logs.
-* abindex: (autobuild)Invoking abindex.		Create indexes for build logs.
+* htmlize: (autobuild)Invoking htmlize.		Add markup to text files.
 @end direntry
 
 @titlepage
@@ -61,7 +61,7 @@ Software Foundation raise funds for GNU development.''
 * Tutorial::
 * Integrating autobuild.m4 in your project::
 * Invoking autobuild::
-* Invoking abindex::
+* Invoking htmlize::
 * Copying This Manual::
 * Index::
 @end menu
@@ -302,50 +302,24 @@ too.
               Output version information and exit.
 @end verbatim
 
-@node Invoking abindex
-@chapter Invoking abindex
+@node Invoking htmlize
+@chapter Invoking htmlize
 
-@pindex abindex
-@cindex invoking @command{abindex}
+@pindex htmlize
+@cindex invoking @command{htmlize}
 
 @section synopsis
-Create HTML index to build logs.
+Add markup to file and save as HTML.
 
 @example
-abindex [OPTION]... FILE...
+htmlize INFILE [OUTFILE [EMACS-MODE]]
 @end example
 
 @section Description
 
-Create HTML index to Autobuild generated build logs.  Each file is
-assumed to be named on the Autobuild format.  If an argument is a
-directory, all files in that directory is parsed.
-
-@xref{Tutorial}, for more discussion.
-
-Mandatory arguments to long options are mandatory for short options
-too.
-
-@verbatim
-       --abort
-              Abort when encountering bad filenames.
-
-       -n, --dry-run
-              Just parse, don’t write file.
-
-       -o, --outdir=DIR
-              Create files in specified directory.
-
-       Other options:
-
-       -v, --verbose
-              Explain what is being done.
-
-       --help Display this help and exit.
-
-       --version
-              Output version information and exit.
-@end verbatim
+Starts emacs, load the INFILE file into a buffer, change to EMACS-MODE
+(by default, compilation-mode), then invoke @code{htmlize.el}, saving
+the output into OUTFILE.
 
 @node Copying This Manual
 @appendix Copying This Manual
