@@ -3,10 +3,11 @@ Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
 Autobuild is a package that process output from building software,
-primarily focused on packages using Autoconf and Automake, and
-generate HTML summaries.  The output include project name, version,
-build host types, build host name, indication of success or failure.
-The output is indexed in many ways to simplify browsing.
+primarily focused on packages using Autoconf and Automake, and then
+generate a HTML summary file, containing links to each build log.  The
+output include project name, version, build host types (cross compile
+aware), compiler host name, date of build, and indication of success
+or failure.  The output is indexed in many ways to simplify browsing.
 
 ----------------------------------------------------------------------
 Copying and distribution of this file, with or without modification,
