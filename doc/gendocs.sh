@@ -1,7 +1,7 @@
 #!/bin/sh
 # gendocs.sh -- generate a GNU manual in many formats.  This script is
 #   mentioned in maintain.texi.  See the help message below for usage details.
-# $Id: gendocs.sh,v 1.10 2004/04/11 17:56:47 karl Exp $
+# $Id: gendocs.sh,v 1.12 2004/05/17 12:57:58 karl Exp $
 # 
 # Copyright (C) 2003, 2004 Free Software Foundation, Inc.
 #
@@ -39,7 +39,7 @@ templateurl="http://savannah.gnu.org/cgi-bin/viewcvs/texinfo/texinfo/util/gendoc
 : ${GENDOCS_TEMPLATE_DIR="."}
 unset CDPATH
 
-rcs_revision='$Revision: 1.10 $'
+rcs_revision='$Revision: 1.12 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="gendocs.sh $rcs_version
@@ -149,8 +149,8 @@ echo Generating output formats for $srcfile
 echo Generating info files...
 ${MAKEINFO} -o $PACKAGE.info $srcfile
 mkdir -p $outdir/
-tar czf $outdir/$PACKAGE-info.tar.gz $PACKAGE.info*
-info_tgz_size="`calcsize $outdir/$PACKAGE-info.tar.gz`"
+tar czf $outdir/$PACKAGE.info.tar.gz $PACKAGE.info*
+info_tgz_size="`calcsize $outdir/$PACKAGE.info.tar.gz`"
 # do not mv the info files, there's no point in having them available
 # separately on the web.
 
@@ -183,26 +183,20 @@ mv $PACKAGE.txt $outdir/
 
 echo Generating monolithic html...
 rm -rf $PACKAGE.html  # in case a directory is left over
-${MAKEINFO} --no-split --html $html $srcfile
+${MAKEINFO} --no-split --html -o $PACKAGE.html $html $srcfile
 html_mono_size="`calcsize $PACKAGE.html`"
 gzip -f -9 -c $PACKAGE.html >$outdir/$PACKAGE.html.gz
 html_mono_gz_size="`calcsize $outdir/$PACKAGE.html.gz`"
 mv $PACKAGE.html $outdir/
 
 echo Generating html by node...
-${MAKEINFO} --html $html $srcfile
-if test -d $PACKAGE; then
-  split_html_dir=$PACKAGE
-elif test -d $PACKAGE.html; then
-  split_html_dir=$PACKAGE.html
-else 
-  echo "$0: can't find split html dir for $srcfile." >&2
-fi
+${MAKEINFO} --html -o $PACKAGE.html $html $srcfile
+split_html_dir=$PACKAGE.html
 (
   cd ${split_html_dir} || exit 1
-  tar -czf ../$outdir/${PACKAGE}_html_node.tar.gz -- *.html
+  tar -czf ../$outdir/${PACKAGE}.html_node.tar.gz -- *.html
 )
-html_node_tgz_size="`calcsize $outdir/${PACKAGE}_html_node.tar.gz`"
+html_node_tgz_size="`calcsize $outdir/${PACKAGE}.html_node.tar.gz`"
 rm -f $outdir/html_node/*.html
 mkdir -p $outdir/html_node/
 mv ${split_html_dir}/*.html $outdir/html_node/
@@ -226,9 +220,9 @@ if test -n "$docbook"; then
   ${DOCBOOK2HTML} -o $split_html_db_dir ${outdir}/$PACKAGE-db.xml
   (
     cd ${split_html_db_dir} || exit 1
-    tar -czf ../$outdir/${PACKAGE}_html_node_db.tar.gz -- *.html
+    tar -czf ../$outdir/${PACKAGE}.html_node_db.tar.gz -- *.html
   )
-  html_node_db_tgz_size="`calcsize $outdir/${PACKAGE}_html_node_db.tar.gz`"
+  html_node_db_tgz_size="`calcsize $outdir/${PACKAGE}.html_node_db.tar.gz`"
   rm -f $outdir/html_node_db/*.html
   mkdir -p $outdir/html_node_db
   mv ${split_html_db_dir}/*.html $outdir/html_node_db/
