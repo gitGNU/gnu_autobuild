@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.16 2004-07-09 13:03:39 jas Exp $
+@comment $Id: autobuild.texi,v 1.17 2004-07-14 13:59:48 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -230,7 +230,7 @@ configure: autobuild mode... whatever
 @section Synopsis
 
 @example
-autobuild [OPTION]... FILE...
+autobuild [@var{OPTION}]... @var{FILE}...
 @end example
 
 @section Description
@@ -302,22 +302,51 @@ For use when autobuild fail to guess the values properly:
 Add markup to file and save as HTML.
 
 @example
-htmlize [OPTION]... INFILE [OUTFILE [EMACS-MODE]]
+htmlize [@var{OPTION}]... @var{INFILE} [@var{OUTFILE} [@var{EMACS-MODE}]]
 @end example
 
 @section Description
 
-Launch GNU Emacs, loading INFILE into a buffer, then changing to
-EMACS-MODE (by default, @code{compilation-mode}), then invoke
-@code{htmlize.el} on the buffer, saving the output into OUTFILE.
+Launch Emacs and load @var{INFILE} into a buffer, then invoke a major
+mode for font locking, and render the fontified buffer as HTML, saving
+the result into @var{OUTFILE}.
 
-Note that @file{htmlize.el} is not part of GNU Emacs, so you must
-install it separately.  A copy is included in Autobuild.
+Emacs must have @file{htmlfontify.el} installed in its @code{load-path}.
+
+If @var{OUTFILE} is not specified, it will use @var{INFILE} appended
+with .html.
+
+If @var{EMACS-MODE} is not specified, @code{compilation-mode} will be
+used.
 
 @verbatim
 Options:
-  --help      display this help and exit successfully.
-  --version   display version information and exit successfully.
+  --emacs COMMAND
+         Use specified command to invoke emacs, e.g. "emacs21".
+
+  --mode MODE
+         Fontify  file  using specified Emacs mode, defaults to
+         "compilation-mode".  E.g., "sh-mode".
+
+  -f, --force
+         Overwrite OUTFILE if it exists, instead  of  exiting  unsuccess-
+         fully with an error message.
+
+  -u, --update
+         Only  write  to  OUTFILE  when  OUTFILE  does not exist, or when
+         INFILE is more recent than OUTFILE.
+
+  -h, --help
+         Display this help and exit successfully.
+
+  --version
+         Display version information and exit successfully.
+
+Environment variables:
+  EMACS  The Emacs editor command.
+
+Simple example:
+  htmlize mybuildlog.txt mybuildlog.html
 @end verbatim
 
 @node Copying This Manual
