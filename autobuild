@@ -25,11 +25,13 @@ use Getopt::Long;
 # Parse command line parameters.
 my $Verbose = 0;
 my ($PrintHelp, $PrintVersion) = 0;
+my ($Html) = 0;
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
-	    'verbose'      => \$Verbose,
-	    'project=s'    => \$Project,
+	    'verbose|v'    => \$Verbose,
+	    'html'         => \$Html,
+	    'p|project=s'  => \$Project,
 	    'revision=s'   => \$Revision,
 	    'mode=s'       => \$Mode,
 	    'Hosttype=s'   => \$Hosttype,
@@ -43,13 +45,31 @@ if ($PrintHelp) {
     print "\n";
     print "Read and parse build logs to find project name, revision, build mode,\n";
     print "build host type, build type (for cross compile builds), hostname, and\n";
-    print "timestamp, then produce a HTML file (named depending on the extracted\n";
+    print "timestamp, then produce a file (named depending on the extracted\n";
     print "parameters) with the build log.\n";
     print "\n";
     print "Mandatory arguments to long options are mandatory for short options too.\n";
-    print "  -v, --verbose      explain what is being done.\n";
-    print "      --help         display this help and exit\n";
-    print "      --version      output version information and exit\n";
+    print "\n";
+    print "      --html              Create HTML output instead of text.\n";
+    print "                          requires that htmlize.el is installed.\n";
+    print "\n";
+    print "For use when autobuild fail to guess the values properly:\n";
+    print "  -p, --project=STRING    Specify project name.\n";
+    print "      --revision=STRING   Specify project revision.\n";
+    print "      --mode=STRING       Specify build mode (typically 'default').\n";
+    print "      --hosttype=STRING   Specify host type (e.g., i686-pc-linux-gnu).\n";
+    print "      --buildtype=STRING  Specify build type (e.g., m68k-uclinux-elf).\n";
+    print "                          Different from hosttype for cross compiles.\n";
+    print "      --hostname=STRING   Specify name of host log was created on.\n";
+    print "      --timestamp=STRING  Specify when build was made.\n";
+    print "                          Any date format will work, but\n";
+    print "                          'YYYY-MM-DDTHH:MM:SS' is recommended.\n";
+    print "\n";
+    print "Other options:\n";
+    print "\n";
+    print "  -v, --verbose           Explain what is being done.\n";
+    print "      --help              Display this help and exit.\n";
+    print "      --version           Output version information and exit.\n";
     print "\n";
     print "Report bugs to <bug-autobuild\@josefsson.org>.\n";
     exit 0;
@@ -129,8 +149,13 @@ if ($Verbose) {
 
 close OUT;
 
-my ($outfile) = "autobuild-log,project:$Project,revision:$Revision,mode:$Mode,hosttype:$Hosttype,buildtype:$Buildtype,hostname:$Hostname,timestamp=$Timestamp.txt";
+my ($outbase, $outfile) = "autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp";
 
-rename $tmpfile, $outfile or die "Cannot rename $tmpfile to $outfile";
-
-print "$outfile\n" if $Verbose;
+if ($Html) {
+    $outfile = $outbase . ".html";
+    system ("emacs --eval '(let ((htmlize-before-hook (lambda () (compilation-mode) (font-lock-fontify-buffer)))) (htmlize-file \"$tmpfile\" \"$outfile\") (kill-emacs))'");
+} else {
+    $outfile = $outbase . ".txt";
+    rename $tmpfile, $outfile;
+}
+print "$outfile\n";
