@@ -1,5 +1,150 @@
 2004-07-09  Simon Josefsson <simon@josefsson.org>
 
+	* NEWS: Version 2.0.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Typo.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild, htmlize: Fix --version.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Fix --help.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Add.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Cosmetics.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Fix.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Create htmlize.1.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Add --help, --version, stolen from Texinfo gendocs.sh.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Fix.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Geometry.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Handle CRLF again.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild: Rewrite.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* examples/libidn.expect, examples/Makefile.am: Add.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Rewrite tutorial.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* examples/Makefile.am: Fix.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* examples/libidn2.txt, examples/example.html: Add.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Parse HTML too.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* tst-simple: Remove abindex.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize.el, NEWS: Add.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Dist htmlize.el.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Add checks for htmlize.el.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Fix htmlize.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Doc fix.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Remove abindex.1.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Remove abindex.  Add htmlize.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Print error on no argument.  Fix --abort info.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix --abort.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Doc fix.  Bump version.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, abindex: Remove abindex.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: First attempt at combining both autobuild and abindex
+	(sans --html).
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Dist htmlize.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Add.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
 	* abindex, autobuild, configure.ac: Bump version.
 
 2004-07-09  Simon Josefsson <simon@josefsson.org>
