@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.13 2004-07-09 11:11:45 jas Exp $
+@comment $Id: autobuild.texi,v 1.14 2004-07-09 11:24:52 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -313,6 +313,12 @@ EMACS-MODE (by default, @code{compilation-mode}), then invoke
 
 Note that @file{htmlize.el} is not part of GNU Emacs, so you must
 install it separately.  A copy is included in Autobuild.
+
+@verbatim
+Options:
+  --help      display this help and exit successfully.
+  --version   display version information and exit successfully.
+@end verbatim
 
 @node Copying This Manual
 @appendix Copying This Manual
