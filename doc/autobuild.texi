@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.4 2004-07-08 14:35:56 jas Exp $
+@comment $Id: autobuild.texi,v 1.5 2004-07-08 14:36:33 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -8,7 +8,7 @@
 @comment %**end of header
 @copying
 This manual is last updated @value{UPDATED} for version
-@value{VERSION} of GNU Libidn.
+@value{VERSION} of Autobuild.
 
 Copyright @copyright{} 2004 Simon Josefsson.
 
