@@ -1,5 +1,6 @@
 Makefile
 Makefile.in
+abput.1
 autobuild.1
 autobuild.aux
 autobuild.cp
