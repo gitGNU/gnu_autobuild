@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.21 2004-09-20 23:15:39 jas Exp $
+@comment $Id: autobuild.texi,v 1.22 2004-10-02 20:56:19 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -421,6 +421,9 @@ too.
 
     -n, --dry-run
            Just parse, don’t print output.
+
+    -s, --skip-unknown
+           Skip unparsable files.
 
     -v, --verbose
            Explain what is being done.
