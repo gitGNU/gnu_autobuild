@@ -1,0 +1,185 @@
+#!/usr/bin/perl
+
+# Copyright (C) 2004 Simon Josefsson.
+#
+# This file is part of Autobuild.
+#
+# Autobuild is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# Autobuild is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Autobuild; see the file COPYING.  If not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+# MA 02111-1307, USA.
+
+use strict;
+use Getopt::Long;
+
+# Parse command line parameters.
+my $Verbose;
+my ($PrintHelp, $PrintVersion);
+my ($Abort, $DryRun);
+my ($OutDir) = ".";
+GetOptions ('help|usage|h' => \$PrintHelp,
+	    'version|V'    => \$PrintVersion,
+	    'verbose|v'    => \$Verbose,
+	    'dry-run|n'    => \$DryRun,
+	    'outdir|o=s'   => \$OutDir);
+
+# Handle --help.
+if ($PrintHelp) {
+    print "Usage: $0 [OPTION]... [FILE]...\n";
+    print "\n";
+    print "Create HTML index to Autobuild generated build logs.\n";
+    print "\n";
+    print "Mandatory arguments to long options are mandatory for short options too.\n";
+    print "\n";
+    print "  -n, --dry-run           Just parse, don't write file.\n";
+    print "  -o, --outdir=DIR        Create files in specified directory.\n";
+    print "\n";
+    print "Other options:\n";
+    print "\n";
+    print "  -v, --verbose           Explain what is being done.\n";
+    print "      --help              Display this help and exit.\n";
+    print "      --version           Output version information and exit.\n";
+    print "\n";
+    print "Report bugs to <bug-autobuild\@josefsson.org>.\n";
+    exit 0;
+}
+
+# Handle --verison.
+if ($PrintVersion) {
+    print "abindex (autobuild) 1.0\n";
+    print "\n";
+    print "Copyright (C) 2004 Simon Josefsson\n";
+    print "This is free software; see the source for copying conditions.  There is NO\n";
+    print "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n";
+    exit 0;
+}
+
+my (@Files);
+
+
+my ($Project);
+my ($Revision);
+my ($Mode);
+my ($Hosttype);
+my ($Buildtype);
+my ($Hostname);
+my ($Timestamp);
+my ($Status);
+
+my (%Projects);
+my (%Revisions);
+my (%Modes);
+my (%Hosttypes);
+my (%Buildtypes);
+my (%Hostnames);
+my (%Timestamps);
+my (%Statuss);
+
+foreach $_ (@ARGV) {
+    if (!m:autobuild(,.*,)log.[a-z]+:) {
+	warn "Skipping file (unrecognized file name): `$_'";
+	next;
+    }
+
+    push @Files, $_;
+
+    $Project = $1 if m:,project=([^,]+),:;
+    $Revision = $1 if m:,revision=([^,]+),:;
+    $Mode = $1 if m:,mode=([^,]+),:;
+    $Hosttype = $1 if m:,hosttype=([^,]+),:;
+    $Buildtype = $1 if m:,buildtype=([^,]+),:;
+    $Hostname = $1 if m:,hostname=([^,]+),:;
+    $Timestamp = $1 if m:,timestamp=([^,]+),:;
+    $Status = $1 if m:,status=([^,]+),:;
+
+    if ($Verbose) {
+	print "$_:\n";
+	print " Project: $Project\n" if $Project;
+	print " Revision: $Revision\n" if $Revision;
+	print " Mode: $Mode\n" if $Mode;
+	print " Hosttype: $Hosttype\n" if $Hosttype;
+	print " Buildtype: $Buildtype\n" if $Buildtype;
+	print " Hostname: $Hostname\n" if $Hostname;
+	print " Timestamp: $Timestamp\n" if $Timestamp;
+	print " Status: $Status\n" if $Status;
+    }
+
+    $Projects{$Project} = 0;
+    ${$Revisions{$Project}}{$Revision} = 0;
+    ${$Hosttypes{$Project}}{$Hosttype} = 0;
+    ${$Hostnames{$Project}}{$Hostname} = 0;
+}
+
+my ($project, $revision, $hosttype, $hostname, $file);
+
+print "<h1>Index to Autobuild logs</h1>\n";
+
+foreach $project (sort keys %Projects) {
+    print "<hr>\n";
+    print "<h2>Project '$project'</h2>\n";
+
+    print "<p>Revisions: ";
+    foreach $revision (sort keys %{$Revisions{$project}}) {
+	print "<a href=\"#$project-$revision\">$revision</a>, ";
+    }
+
+    print "<p>Hosttypes: ";
+    foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
+	print "<a href=\"#$project-$hosttype\">$hosttype</a>, \n";
+    }
+
+    print "<p>Build hosts: ";
+    foreach $hostname (sort keys %{$Hostnames{$project}}) {
+	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
+    }
+
+    foreach $revision (reverse sort keys %{$Revisions{$project}}) {
+	print "<h3>Summary for $project $revision</h3>\n";
+	print "<table border=1>\n";
+	print "<tr>\n";
+	print "<td>Build host type</td>\n";
+	print "<td>Build host</td>\n";
+	print "<td>Build date</td>\n";
+	print "<td>Results</td>\n";
+	print "<td>Log</td>\n";
+	print "</tr>\n";
+	foreach $file (@Files) {
+	    next unless $file =~ m:,project=$project,:;
+	    next unless $file =~ m:,revision=$revision,:;
+
+	    $Mode = $1 if $file =~ m:,mode=([^,]+),:;
+	    $Hosttype = $1 if $file =~ m:,hosttype=([^,]+),:;
+	    $Buildtype = $1 if $file =~ m:,buildtype=([^,]+),:;
+	    $Hostname = $1 if $file =~ m:,hostname=([^,]+),:;
+	    $Timestamp = $1 if $file =~ m:,timestamp=([^,]+),:;
+	    $Status = $1 if $file =~ m:,status=([^,]+),:;
+
+	    print "<tr>\n";
+	    print "<td>$Hosttype</td>\n";
+	    print "<td>$Hostname</td>\n";
+	    print "<td>$Timestamp</td>\n";
+	    if ($Status = "ok") {
+		print "<td><font color=green>Success</font></td>\n";
+	    } elsif ($Status = "almost") {
+		print "<td><font color=yellow>Almost</font></td>\n";
+	    } else {
+		print "<td><font color=red>Failure</font></td>\n";
+	    }
+	    print "<td><a href=\"$file\">log</a></td>\n";
+	    print "</tr>\n";
+	}
+	print "</table>\n";
+    }
+
+}
+print "\n";
