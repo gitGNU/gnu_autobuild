@@ -72,8 +72,8 @@ while (<>) {
     $Timestamp = $1 if m,autobuild timestamp... (.*),;
 
     # GNU Autoconf output.
-    $Hosttype = $1 if !$Hosttype && m,checking host system type... (.*),;
-    $Buildtype = $1 if !$Buildtype && m,checking build system type... (.*),;
+    $Hosttype = $1 if !$Hosttype && m,checking host system type... ([a-z0-9-.]+),;
+    $Buildtype = $1 if !$Buildtype && m,checking build system type... ([a-z0-9-.]+),;
 
     # Works for GNU make.
     $Project = $1 if !$Project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
