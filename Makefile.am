@@ -26,6 +26,9 @@ dist_bin_SCRIPTS = autobuild abindex
 dist_man_MANS = autobuild.1 abindex.1
 MAINTAINERCLEANFILES = autobuild.1 abindex.1
 
+EXTRA_DIST = logs/autobuild.log
+TESTS = tst-autobuild
+
 autobuild.1: autobuild $(top_srcdir)/configure.ac
 	$(HELP2MAN) --no-info \
 		--name="Read and parse build logs" \
