@@ -2,7 +2,9 @@
 
 TMPDIR="tmp.$$"
 
-if ! mkdir $TMPDIR; then
+if mkdir $TMPDIR; then
+    :
+else
     echo mkdir $TMPDIR failed
     exit 1
 fi
@@ -26,7 +28,9 @@ if test "$filename" != "$TMPDIR/$expect"; then
     exit 1
 fi
 
-if ! cmp $filename $srcdir/logs/autobuild.log; then
+if cmp $filename $srcdir/logs/autobuild.log; then
+    :
+else
     echo File comparison failed
     rm -f $filename
     rmdir $TMPDIR
