@@ -17,7 +17,10 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
-EXTRA_DIST = example.html \
-	autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=latte,timestamp=20040607-0220,status=ok,log.html \
-	autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.html \
-	autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt
+EXTRA_DIST = libidn.txt
+
+example.html: libidn.txt
+	$(top_srcdir)/autobuild libidn.txt
+	$(top_srcdir)/autobuild --html libidn.txt
+	$(top_srcdir)/autobuild --html libidn.txt --hostname latte --timestamp=20040607-0220
+	$(top_srcdir)/abindex autobuild,*,log.* > example.html
