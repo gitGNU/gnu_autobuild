@@ -2,7 +2,7 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
-* Version 2.2 (unreleased)
+* Version 2.2 (released 2004-07-28)
 
 ** Guessing of project name and revision based on *.tar.gz names improved.
 
