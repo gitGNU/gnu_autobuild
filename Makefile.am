@@ -24,7 +24,7 @@ ACLOCAL_AMFLAGS = -I .
 m4datadir = $(datadir)/aclocal
 m4data_DATA = autobuild.m4
 
-dist_bin_SCRIPTS = autobuild abindex
+dist_bin_SCRIPTS = autobuild abindex htmlize
 
 TESTS = tst-autobuild tst-simple
 dist_check_SCRIPTS = $(TESTS)
