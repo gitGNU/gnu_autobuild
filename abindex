@@ -58,7 +58,7 @@ if ($PrintHelp) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    print "abindex (autobuild) 1.2\n";
+    print "abindex (autobuild) 1.3\n";
     print "\n";
     print "Copyright (C) 2004 Simon Josefsson\n";
     print "This is free software; see the source for copying conditions.  There is NO\n";
