@@ -23,6 +23,14 @@ AM_INIT_AUTOMAKE(gnits)
 
 AM_MISSING_PROG(HELP2MAN, help2man, $missing_dir)
 
+AC_PATH_PROG(PERL, perl)
+if test -z "$PERL"; then
+   AC_MSG_ERROR([perl not found])
+fi
+$PERL -e 'require 5.005;' || {
+   AC_MSG_ERROR([perl 5.005 or better is required])
+}
+
 AM_PATH_LISPDIR
 
 AB_INIT
