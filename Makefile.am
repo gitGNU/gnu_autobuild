@@ -27,7 +27,7 @@ dist_man_MANS = autobuild.1 abindex.1
 MAINTAINERCLEANFILES = autobuild.1 abindex.1
 
 EXTRA_DIST = logs/autobuild.log
-TESTS = tst-autobuild
+TESTS = tst-autobuild tst-simple
 dist_check_SCRIPTS = $(TESTS)
 
 autobuild.1: autobuild $(top_srcdir)/configure.ac
