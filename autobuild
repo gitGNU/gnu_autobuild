@@ -175,7 +175,7 @@ while (<>) {
 
 	if ($Verbose) {
 	    print "Project: $Project\n" if $Project;
-	    print "Revision: $Revision\n" if $Revision;
+	    print "Revision: $Revision\n" if $Revision != "";
 	    print "Mode: $Mode\n" if $Mode;
 	    print "Hosttype: $Hosttype\n" if $Hosttype;
 	    print "Buildtype: $Buildtype\n" if $Buildtype;
