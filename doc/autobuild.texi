@@ -1,0 +1,87 @@
+\input texinfo   @c -*-texinfo-*-
+@comment $Id: autobuild.texi,v 1.1 2004-07-08 13:50:37 jas Exp $
+@comment %**start of header
+@setfilename autobuild.info
+@include version.texi
+@settitle Autobuild @value{VERSION}
+@syncodeindex pg cp
+@comment %**end of header
+@copying
+This manual is for Autobuild
+(version @value{VERSION}, @value{UPDATED}),
+which is an example in the Texinfo documentation.
+
+Copyright @copyright{} 2004 Free Software Foundation, Inc.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being ``A GNU Manual,''
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled ``GNU Free Documentation
+License.''
+
+(a) The FSF's Back-Cover Text is: ``You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development.''
+@end quotation
+@end copying
+
+@dircategory Texinfo documentation system
+@direntry
+* autobuild: (autobuild)Invoking autobuild.
+@end direntry
+
+@titlepage
+@title Autobuild
+@subtitle for version @value{VERSION}, @value{UPDATED}
+@author A.U. Thor (@email{bug-texinfo@@gnu.org})
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top Autobuild
+
+@insertcopying
+@end ifnottex
+
+@menu
+* Invoking autobuild::
+* Copying This Manual::
+* Index::
+@end menu
+
+
+@node Invoking autobuild
+@chapter Invoking autobuild
+
+@pindex autobuild
+@cindex invoking @command{autobuild}
+
+This is a autobuild manual.  There is no autobuild program to
+invoke, but if there was, you could see its basic usage
+and command line options here.
+
+
+@node Copying This Manual
+@appendix Copying This Manual
+
+@menu
+* GNU Free Documentation License::  License for copying this manual.
+@end menu
+
+@include fdl.texi
+
+
+@node Index
+@unnumbered Index
+
+@printindex cp
+
+@bye
