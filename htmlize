@@ -19,7 +19,8 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
-rcs_revision='$Revision: 1.4 $'
+prog="`basename \"$0\"`"
+rcs_revision='$Revision: 1.5 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="htmlize $rcs_version (autobuild)
@@ -31,11 +32,12 @@ For more information about these matters, see the files named COPYING."
 
 usage="Usage: $prog [OPTION]... INFILE [OUTFILE [EMACS-MODE]]
 
-Launch GNU Emacs, loading INFILE into a buffer, then changing to
-EMACS-MODE (by default, compilation-mode), then invoke htmlize.el on
-the buffer, saving the output into OUTFILE.
+Launch GNU Emacs, loading INFILE into a buffer, then invoke EMACS-MODE
+followed by htmlize.el on the buffer, saving the output into OUTFILE.
 
 If OUTFILE is not specified, it will use INFILE appended with .html.
+
+If EMACS-MODE is not specified, compilation-mode will be used.
 
 Options:
   --help      display this help and exit successfully.
@@ -43,7 +45,7 @@ Options:
 
 Simple example: $prog mybuildlog.txt mybuildlog.html
 
-Email bug reports or enhancement requests to bug-autobuild@gnu.org."
+Report bugs to <bug-autobuild@josefsson.org>."
 
 while test $# -gt 0; do
   case $1 in
