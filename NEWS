@@ -6,6 +6,8 @@ See the end for copying conditions.
 
 ** Guessing of project name and revision based on *.tar.gz names improved.
 
+** Bug fixes.
+
 * Version 2.1 (released 2004-07-14)
 
 ** Htmlize now works in batch mode.
