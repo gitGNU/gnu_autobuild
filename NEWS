@@ -2,7 +2,7 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
-* Version 1.2 (unreleased)
+* Version 1.2 (released 2004-07-08)
 
 ** autobuild: Values specified on the command line are now used for all
 files read, when multiple filenames are supplied on command line,
