@@ -5,7 +5,10 @@ See the end for copying conditions.
 The inspiration for this package was based on earlier ad-hoc shell
 scripts used by Simon Josefsson for a few projects.
 
-The `htmlize' tool uses htmlfontify.el by Vivek Dasmohapatra.
+The `htmlize' tool uses htmlfontify.el by Vivek Dasmohapatra.  The
+name `htmlize' is due to Hrvoje Niksic; the tool htmlize used to
+invoke htmlize.el, but I was never able to make it work in pure tty
+mode, so I switched to htmlfontify.el.
 
 Command line parsing, handling of --help and --version, in the
 htmlize, abput* and abbuild* scripts, were taken from gendocs.sh in
