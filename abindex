@@ -26,25 +26,24 @@ use Getopt::Long;
 my $Verbose;
 my ($PrintHelp, $PrintVersion);
 my ($Abort, $DryRun);
-my ($OutDir) = ".";
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
 	    'verbose|v'    => \$Verbose,
 	    'abort|a'      => \$Abort,
-	    'dry-run|n'    => \$DryRun,
-	    'outdir|o=s'   => \$OutDir);
+	    'dry-run|n'    => \$DryRun);
 
 # Handle --help.
 if ($PrintHelp) {
-    print "Usage: $0 [OPTION]... [FILE]...\n";
+    print "Usage: $0 [OPTION]... [[DIR]... [FILE]...]...\n";
     print "\n";
-    print "Create HTML index to Autobuild generated build logs.\n";
+    print "Create HTML index to Autobuild generated build logs.  Each file is\n";
+    print "assumed to be named on the Autobuild format.  If an argument is a directory,\n";
+    print "all files in that directory is parsed.\n";
     print "\n";
     print "Mandatory arguments to long options are mandatory for short options too.\n";
     print "\n";
     print "      --abort             Abort when encountering bad filenames.\n";
     print "  -n, --dry-run           Just parse, don't write file.\n";
-    print "  -o, --outdir=DIR        Create files in specified directory.\n";
     print "\n";
     print "Other options:\n";
     print "\n";
