@@ -21,6 +21,8 @@ AC_INIT(autobuild, 1.0, bug-autobuild@josefsson.org)
 
 AM_INIT_AUTOMAKE
 
+AM_MISSING_PROG(HELP2MAN, help2man, $missing_dir)
+
 AC_CONFIG_FILES(Makefile)
 
 AC_OUTPUT
