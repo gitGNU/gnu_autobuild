@@ -12,8 +12,8 @@ generic front end.
 
 ** New commands used to build files on compile hosts.
 The generic front end "abbuild", and one backend
-"abbuild-sourceforge", is included.  Similar to abput, you can write a
-new backend easily.
+"abbuild-sourceforge", is included.  Similar to how abput works, you
+can write a new backend easily.
 
 * Version 2.2 (released 2004-07-28)
 
