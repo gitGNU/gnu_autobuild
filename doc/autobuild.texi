@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.10 2004-07-09 00:16:31 jas Exp $
+@comment $Id: autobuild.texi,v 1.11 2004-07-09 00:22:15 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -231,37 +231,32 @@ configure: autobuild mode... whatever
 
 @section Synopsis
 
-Read and parse build logs.
-
-@xref{Tutorial}, for more discussion.
-
 @example
-autobuild [OPTION]... [FILE]...
+autobuild [OPTION]... FILE...
 @end example
 
 @section Description
 
 Read and parse build logs to find project name, revision, build mode,
 build host type, build type (for cross compile builds), hostname, and
-timestamp, then produce a file (named depending on the extracted param‐
-eters) with the build log.
+timestamp, then print a HTML page with information and links to the
+logs.
+
+@xref{Tutorial}, for more discussion.
 
 Mandatory arguments to long options are mandatory for short options
 too.
 
 @verbatim
        --abort
-              Abort  if  guessing  values  fail.  With the exceptions of build
-              mode (falls back to ’default’) and the  status  (falls  back  to
-              ’fail’).
+              Abort  if any of the following values cannot be guessed: project
+              name, revision, host type, and build type.
 
        -n, --dry-run
-              Just parse, don’t write file.
+              Just parse, don’t print output.
 
-       --html Create  HTML output instead of text.  Need Emacs and htmlize.el.
-
-       -o, --outdir=DIR
-              Create files in specified directory.
+       -v, --verbose
+              Explain what is being done.
 
    For use when autobuild fail to guess the values properly:
        -p, --project=STRING
@@ -293,9 +288,6 @@ too.
 
        Other options:
 
-       -v, --verbose
-              Explain what is being done.
-
        --help Display this help and exit.
 
        --version
@@ -317,9 +309,12 @@ htmlize INFILE [OUTFILE [EMACS-MODE]]
 
 @section Description
 
-Starts emacs, load the INFILE file into a buffer, change to EMACS-MODE
-(by default, compilation-mode), then invoke @code{htmlize.el}, saving
-the output into OUTFILE.
+Launch GNU Emacs, loading INFILE into a buffer, then changing to
+EMACS-MODE (by default, @code{compilation-mode}), then invoke
+@code{htmlize.el} on the buffer, saving the output into OUTFILE.
+
+Note that @file{htmlize.el} is not part of GNU Emacs, so you must
+install it separately.  A copy is included in Autobuild.
 
 @node Copying This Manual
 @appendix Copying This Manual
