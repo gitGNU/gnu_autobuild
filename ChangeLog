@@ -1,5 +1,57 @@
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
+	* configure.ac: Call autobuild.m4.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Aclocal -I..
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Clean man pages.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Remove.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* AUTHORS, README: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Fix HTML.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add SSH string.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Ego boost.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Cross compile fixes.  Add hostname tables.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Add --abort.  Start hosttype tables.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Use help2man --no-info.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
 	* Makefile: Fix.
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
@@ -90,3 +142,8 @@
 
 	* COPYING, autobuild, Makefile: Add.
 
+	----------------------------------------------------------------------
+	Copyright 2004  Simon Josefsson
+	Copying and distribution of this file, with or without modification,
+	are permitted in any medium without royalty provided the copyright
+	notice and this notice are preserved.
