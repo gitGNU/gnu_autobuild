@@ -19,6 +19,9 @@
 
 ACLOCAL_AMFLAGS = -I .
 
+m4datadir = $(datadir)/aclocal
+m4data_DATA = autobuild.m4
+
 dist_bin_SCRIPTS = autobuild abindex
 dist_man_MANS = autobuild.1 abindex.1
 MAINTAINERCLEANFILES = autobuild.1 abindex.1
