@@ -57,7 +57,9 @@ if ($PrintHelp) {
     print "Mandatory arguments to long options are mandatory for short options too.\n";
     print "\n";
     print "      --abort             Abort if guessing values fail.\n";
-    print "                          With the exception of build mode.\n";
+    print "                          With the exceptions of build mode\n";
+    print "                          (falls back to 'default') and\n";
+    print "                          the status (falls back to 'fail').\n";
     print "  -n, --dry-run           Just parse, don't write file.\n";
     print "      --html              Create HTML output instead of text.\n";
     print "                          Need Emacs and htmlize.el.\n";
@@ -158,9 +160,9 @@ if (!$Abort) {
     $Hosttype = "unknown" if !$Hosttype;
     $Buildtype = "unknown" if !$Buildtype;
     $Timestamp = "unknown" if !$Timestamp;
-    $Status = "fail" if !$Status;
 }
 $Mode = "default" if !$Mode;
+$Status = "fail" if !$Status;
 
 if ($Verbose) {
     print "Project: $Project\n" if $Project;
