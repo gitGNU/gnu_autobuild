@@ -8,7 +8,8 @@ all:
 $(NAME).1: $(NAME)
 	help2man --name="Generate HTML build logs" ./$(NAME) > $(NAME).1
 
-install:
+.PHONY: install
+install: autobuild.1
 	install -D -c $(NAME) $(PREFIX)/sbin/$(NAME)
 	install -D -c -m 644 $(NAME).1 $(PREFIX)/man/man1/$(NAME).1
 
