@@ -113,16 +113,17 @@ open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
 my ($project, $revision, $mode, $hostname, $hosttype,
     $buildtype, $timestamp, $status);
 
-while (<>) {
-    $project = $Project;
-    $revision = $Revision;
-    $mode = $Mode;
-    $hostname = $Hostname;
-    $hosttype = $Hosttype;
-    $buildtype = $Buildtype;
-    $timestamp = $Timestamp;
-    $status = $Status;
+# Initialize variables.
+$project = $Project;
+$revision = $Revision;
+$mode = $Mode;
+$hostname = $Hostname;
+$hosttype = $Hosttype;
+$buildtype = $Buildtype;
+$timestamp = $Timestamp;
+$status = $Status;
 
+while (<>) {
     if (m,\r\n$,) {
 	chop; chop;
 	$_ = $_ . "\n";
@@ -205,5 +206,15 @@ while (<>) {
 	}
 
 	open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
+
+	# Reset variables.
+	$project = $Project;
+	$revision = $Revision;
+	$mode = $Mode;
+	$hostname = $Hostname;
+	$hosttype = $Hosttype;
+	$buildtype = $Buildtype;
+	$timestamp = $Timestamp;
+	$status = $Status;
     }
 }
