@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.48 $';
+    my ($rev) = '$Revision: 1.49 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -171,8 +171,8 @@ foreach $arg (@ARGV) {
 	    $status = "almost" if !$status && m,[0-9]+ of [0-9]+ tests failed,;
 
 	    # Works for GNU make.
-	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z]+)-[0-9.]+/.*(<[^>]+>)?',;
-	    $revision = $2 if !$revision && m,Entering directory `(<[^>]+>)?.*/[a-z]+-([0-9.]+)/.*(<[^>]+>)?',;
+	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z-]+)-[0-9.]+/.*(<[^>]+>)?',;
+	    $revision = $2 if !$revision && m,Entering directory `(<[^>]+>)?.*/[a-z-]+-([0-9.]+)/.*(<[^>]+>)?',;
 
 	    # Telnet string.
 	    $hostname = $1 if !$hostname && m,Trying (.*)\.\.\.,;
