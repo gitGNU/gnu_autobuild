@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.58 $';
+    my ($rev) = '$Revision: 1.59 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -373,7 +373,7 @@ foreach $project (sort keys %Projects) {
 	print "<table border=0>\n";
 	print "<tr bgcolor=lightblue>\n";
 	print "<td>Revision</td>\n";
-	print "<td>Build host type</td>\n";
+	print "<td>Cross?</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
@@ -407,7 +407,12 @@ foreach $project (sort keys %Projects) {
 	    $bit = !$bit;
 
 	    print "<td>$Revision</td>\n";
-	    print "<td>$Buildtype</td>\n";
+	    print "<td>";
+	    if ($hosttype eq $Buildtype) {
+		print "no\n";
+	    } else {
+		print "$hosttype from $Buildtype</td>\n";
+	    }
 	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
