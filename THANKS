@@ -11,6 +11,10 @@ Command line parsing, handling of --help and --version, in the
 htmlize, abput* and abbuild* scripts, were taken from gendocs.sh in
 Texinfo, written by Mohit Agarwal, Karl Berry et al.
 
+Bug reports, patches and/or suggestions were also received from:
+
+Linus Nordberg <linus@nordberg.se>
+
 ----------------------------------------------------------------------
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
