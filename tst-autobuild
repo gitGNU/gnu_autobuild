@@ -22,6 +22,8 @@
 TMPDIR="tmp.$$"
 srcdir=${srcdir:-.}
 
+LOG=$srcdir/examples/libidn.txt
+
 if mkdir $TMPDIR; then
     :
 else
@@ -29,8 +31,8 @@ else
     exit 1
 fi
 
-expect="autobuild,project=autobuild,revision=1.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=latte,timestamp=20040706-232434,status=ok,log.txt"
-filename=`$srcdir/autobuild -o $TMPDIR $srcdir/logs/autobuild.log`
+expect="autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt"
+filename=`$srcdir/autobuild -o $TMPDIR $LOG`
 err=$?
 
 if test "$err" != "0"; then
@@ -48,7 +50,7 @@ if test "$filename" != "$TMPDIR/$expect"; then
     exit 1
 fi
 
-if cmp $filename $srcdir/logs/autobuild.log; then
+if cmp $filename $LOG; then
     :
 else
     echo File comparison failed
