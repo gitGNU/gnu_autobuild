@@ -26,15 +26,10 @@ AM_MAKEINFOHTMLFLAGS = --no-split --number-sections --css-include=texinfo.css
 
 # Man pages.
 
-dist_man_MANS = autobuild.1 abindex.1
+dist_man_MANS = autobuild.1
 MAINTAINERCLEANFILES = $(dist_man_MANS)
 
 autobuild.1: $(top_srcdir)/autobuild $(top_srcdir)/configure.ac
 	$(HELP2MAN) --no-info \
 		--name="Read and parse build logs" \
 		--output=$@ $(top_srcdir)/autobuild
-
-abindex.1: $(top_srcdir)/abindex $(top_srcdir)/configure.ac
-	$(HELP2MAN) --no-info \
-		--name="Create HTML index to build logs" \
-		--output=$@ $(top_srcdir)/abindex
