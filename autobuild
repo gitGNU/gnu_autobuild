@@ -211,5 +211,6 @@ while (<>) {
 	undef $Hosttype;
 	undef $Buildtype;
 	undef $Timestamp;
+	undef $Status;
     }
 }
