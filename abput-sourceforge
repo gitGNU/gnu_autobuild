@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.1 $'
+rcs_revision='$Revision: 1.2 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="abput-sourceforge (autobuild) $rcs_version
@@ -35,7 +35,7 @@ usage="Usage: $prog [OPTION]... FILES...
 Upload FILES to SourceForge compile farm.
 
 Options:
-  -u, --username       SourceForge SSH username.  Defaults to $USER.
+  -u, --username       SourceForge SSH username.  Defaults to \$USER.
   -v, --verbose        Pass '-v' to scp.
   -h, --help           Display this help and exit successfully.
       --version        Display version information and exit successfully. 
