@@ -1,5 +1,33 @@
 2004-07-31  Simon Josefsson <simon@josefsson.org>
 
+	* NEWS: Version 3.1.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Fix.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: [no log message]
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Fix.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Don't use env (how to quote $PATH?).
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild: Don't check if file is there (it isn't).
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
 	* NEWS: Version 3.0.
 
 2004-07-31  Simon Josefsson <simon@josefsson.org>
