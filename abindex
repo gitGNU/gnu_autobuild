@@ -137,7 +137,7 @@ foreach $project (sort keys %Projects) {
     print "<h2>Project '$project'</h2>\n";
 
     print "<p>Revisions: ";
-    foreach $revision (sort keys %{$Revisions{$project}}) {
+    foreach $revision (reverse sort keys %{$Revisions{$project}}) {
 	print "<a href=\"#$project-$revision\">$revision</a>, ";
     }
 
@@ -152,13 +152,14 @@ foreach $project (sort keys %Projects) {
     }
 
     foreach $revision (reverse sort keys %{$Revisions{$project}}) {
+	print "<hr>\n";
 	print "<a name=\"$project-$revision\"><h3>Summary for $project $revision</h3></a>\n";
 	print "\n";
 	print "<table border=1>\n";
 	print "<tr>\n";
-	print "<td>Build host type</td>\n";
-	print "<td>Build host</td>\n";
+	print "<td>System</td>\n";
 	print "<td>Cross compile?</td>\n";
+	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
 	print "<td>Log</td>\n";
@@ -186,13 +187,13 @@ foreach $project (sort keys %Projects) {
 	    $Status = $1 if $file =~ m:,status=([^,]+),:;
 
 	    print "<tr>\n";
-	    print "<td>$Buildtype</td>\n";
-	    print "<td>$Hostname</td>\n";
+	    print "<td>$Hosttype</td>\n";
 	    if ($Hosttype eq $Buildtype) {
 		print "<td>no</td>\n";
 	    } else {
-		print "<td>$Hosttype</td>\n";
+		print "<td>yes, from $Buildtype</td>\n";
 	    }
+	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
 	    if ($Status eq "ok") {
 		print "<td><font color=green>Success</font></td>\n";
@@ -210,12 +211,13 @@ foreach $project (sort keys %Projects) {
     }
 
     foreach $hosttype (reverse sort keys %{$Hosttypes{$project}}) {
-	print "<a name=\"$project-$revision\"><h3>Summary for $project on $hosttype</h3></a>\n";
+	print "<hr>\n";
+	print "<a name=\"$project-$hosttype\"><h3>Summary for $project on $hosttype</h3></a>\n";
 	print "\n";
 	print "<table border=1>\n";
 	print "<tr>\n";
 	print "<td>Revision</td>\n";
-	print "<td>Cross compile?</td>\n";
+	print "<td>Build host type</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
@@ -244,11 +246,7 @@ foreach $project (sort keys %Projects) {
 
 	    print "<tr>\n";
 	    print "<td>$Revision</td>\n";
-	    if ($Hosttype eq $Buildtype) {
-		print "<td>no</td>\n";
-	    } else {
-		print "<td>$Hosttype</td>\n";
-	    }
+	    print "<td>$Buildtype</td>\n";
 	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
 	    if ($Status eq "ok") {
@@ -266,5 +264,64 @@ foreach $project (sort keys %Projects) {
 	print "\n";
     }
 
+    foreach $hostname (reverse sort keys %{$Hostnames{$project}}) {
+	print "<hr>\n";
+	print "<a name=\"$project-$hostname\"><h3>Summary for $project built on $hostname</h3></a>\n";
+	print "\n";
+	print "<table border=1>\n";
+	print "<tr>\n";
+	print "<td>Version</td>\n";
+	print "<td>System</td>\n";
+	print "<td>Cross compile?</td>\n";
+	print "<td>Build date</td>\n";
+	print "<td>Results</td>\n";
+	print "<td>Log</td>\n";
+	print "</tr>\n";
+	print "\n";
+	foreach $file (@Files) {
+	    next unless $file =~ m:,project=$project,:;
+	    next unless $file =~ m:,hostname=$hostname,:;
+
+	    my ($Project);
+	    my ($Revision);
+	    my ($Mode);
+	    my ($Hosttype);
+	    my ($Buildtype);
+	    my ($Hostname);
+	    my ($Timestamp);
+	    my ($Status);
+
+	    $Revision = $1 if $file =~ m:,revision=([^,]+),:;
+	    $Mode = $1 if $file =~ m:,mode=([^,]+),:;
+	    $Hosttype = $1 if $file =~ m:,hosttype=([^,]+),:;
+	    $Buildtype = $1 if $file =~ m:,buildtype=([^,]+),:;
+	    $Timestamp = $1 if $file =~ m:,timestamp=([^,]+),:;
+	    $Status = $1 if $file =~ m:,status=([^,]+),:;
+
+	    print "<tr>\n";
+	    print "<td>$Revision</td>\n";
+	    print "<td>$Hosttype</td>\n";
+	    if ($Hosttype eq $Buildtype) {
+		print "<td>no</td>\n";
+	    } else {
+		print "<td>yes, from $Buildtype</td>\n";
+	    }
+	    print "<td>$Timestamp</td>\n";
+	    if ($Status eq "ok") {
+		print "<td><font color=green>Success</font></td>\n";
+	    } elsif ($Status eq "almost") {
+		print "<td><font color=orange>Almost</font></td>\n";
+	    } else {
+		print "<td><font color=red>Failure</font></td>\n";
+	    }
+	    print "<td><a href=\"$file\">log</a></td>\n";
+	    print "</tr>\n";
+	    print "\n";
+	}
+	print "</table>\n";
+	print "\n";
+    }
+
 }
+
 print "\n";
