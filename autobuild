@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.42 $';
+    my ($rev) = '$Revision: 1.43 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -190,7 +190,7 @@ foreach $arg (@ARGV) {
 
 	if (!$Abort) {
 	    $project = "unknown" if !$project;
-	    $revision = "0" if $revision eq "";
+	    $revision = "0" if !$revision || $revision eq "";
 	    $hosttype = "unknown" if !$hosttype;
 	    $buildtype = "unknown" if !$buildtype;
 	}
