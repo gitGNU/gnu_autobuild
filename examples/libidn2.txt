@@ -1,0 +1,496 @@
+spawn telnet 192.233.54.143
+Trying 192.233.54.143...
+Will turn on socket level debugging.
+setsockopt (SO_DEBUG): Permission denied
+'encdebug': unknown argument ('set ?' for help).
+'authdebug': unknown argument ('set ?' for help).
+'verbose_encrypt': unknown argument ('set ?' for help).
+Connected to 192.233.54.143.
+Escape character is '^]'.
+
+NetBSD/i386 (spe143.testdrive.hp.com) (ttyp0)
+
+login: jas
+Password:
+Last login: Thu Jul  8 19:15:18 2004 from 217.215.27.65
+Copyright (c) 1996, 1997, 1998, 1999, 2000, 2001, 2002
+        The NetBSD Foundation, Inc.  All rights reserved.
+Copyright (c) 1980, 1983, 1986, 1988, 1990, 1991, 1993, 1994
+        The Regents of the University of California.  All rights reserved.
+
+Welcome to the Compaq Testdrive Program
+---------------------------------------
+The Testdrive program is here to enable you to get direct access via the
+internet to Compaq's high end AlphaServers and Proliant servers.  We thank
+you for your time trying out our equipment and encourage
+suggestions.  Please send all comments and feedback to
+testdrive@compaq.com.
+
+Rules of the Program
+--------------------
+We do not allow the following:
+1. Running password crackers, dnetc clients, seti, distrib.net, etc.
+
+2. Bringing down our machines, cracking, etc.  We have no doubt that you
+can break into the machines if you really want to, but why.  When you
+bring down a machine you take away a free and valuable resource from the
+open source community.  So please, think before you act.
+
+3. Long running, CPU bound processes are not encouraged.  The 
+Testdrive program is not intended as a benchmark nor production
+environment.  
+Programs that consume significant amounts of system resources only make
+other 
+users Testdrive experiences less useful.  Experiencing the power of Compaq 
+systems should be taken in moderation for everyone's benefit! :-)
+
+4. Abusive file storage.  Testdrive is not intended as an ISP/ASP
+environment.  
+User areas are not backed up, and cannot be restored.  Users with large 
+amount of disk usage should understand they are simply consuming their 
+fellow testers resources.
+
+Connections and File Moving
+---------------------------
+We only allow ftp and telnet in to the testdrive program. No outgoing
+connections are allowed.
+
+To move a file, ftp into any of our testdrive machines, and use a put to
+place the files in your house directory.  From there they will be
+available on all machines.
+
+For fast local access from individual machines to your files, use the /tmp
+directory on the local machine.
+
+Thanks again for Testdriving
+
+Testdrive Team
+ba86ea0bd6dce20d259f6876267c2159
+spe143.testdrive.hp.com> time csh -x -c 'test -d /tmp/jas || mkdir /tmp/jas; cd /tmp/jas && rm -rf libidn-0.5.1 && gzip -cd ~/libidn-0.5.1.tar.gz |tar xf - ; cd libidn-0.5.1 && setenv PATH ${PATH}:/tmp/jas/bin; ./configure --prefix=/tmp/jas CC=cc && make install check && cat ~/.expect-trigger-ok'; gcc --version; ~/config.guess; cat ~/.expect-trigger
+ba86ea0bd6dce20d259f6876267c2159
+test -d /tmp/jas
+cd /tmp/jas
+rm -rf libidn-0.5.1
+gzip -cd /house/jas/libidn-0.5.1.tar.gz
+tar xf -
+cd libidn-0.5.1
+setenv PATH /house/jas/bin:/usr/bin:/bin:/usr/pkg/bin:/usr/local/bin:/tmp/jas/bin
+./configure --prefix=/tmp/jas CC=cc
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... no
+checking for mawk... no
+checking for nawk... no
+checking for awk... awk
+checking whether make sets $(MAKE)... yes
+checking whether NLS is requested... yes
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... no
+checking for msgmerge... no
+checking for style of include used by make... GNU
+checking for gcc... cc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ANSI C... none needed
+checking dependency style of cc... gcc
+checking build system type... i386-unknown-netbsdelf1.6
+checking host system type... i386-unknown-netbsdelf1.6
+checking for ld used by GCC... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking whether NLS is requested... yes
+checking for GNU gettext in libc... no
+checking for iconv... no, consider installing GNU libiconv
+checking for GNU gettext in libintl... no
+checking whether to use NLS... no
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for egrep... grep -E
+checking for ld used by cc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for /usr/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognise dependent libraries... match_pattern /lib[^/]+(\.so|_pic\.a)$
+checking how to run the C preprocessor... cc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc
+checking how to run the C++ preprocessor... g++ -E
+checking for g77... g77
+checking whether we are using the GNU Fortran 77 compiler... yes
+checking whether g77 accepts -g... yes
+checking the maximum length of command line arguments... 65536
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc static flag  works... yes
+checking if cc supports -fno-rtti -fno-exceptions... yes
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... yes
+checking dynamic linker characteristics... NetBSD ld.elf_so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by g++... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC
+checking if g++ PIC flag -fPIC works... yes
+checking if g++ supports -c -o file.o... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... NetBSD ld.elf_so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+appending configuration tag "F77" to libtool
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for g77 option to produce PIC... -fPIC
+checking if g77 PIC flag -fPIC works... yes
+checking if g77 supports -c -o file.o... yes
+checking whether the g77 linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... NetBSD ld.elf_so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking for gcc... (cached) cc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether cc accepts -g... (cached) yes
+checking for cc option to accept ANSI C... (cached) none needed
+checking dependency style of cc... (cached) gcc
+checking for iconv... (cached) no, consider installing GNU libiconv
+checking for emacs... no
+checking for xemacs... no
+checking where .elc files should go... ${datadir}/emacs/site-lisp
+checking for ANSI C header files... (cached) yes
+checking for unistd.h... (cached) yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking for stdint types... stdint.h (shortcircuit)
+make use of stdint.h in lib/idn-int.h (assuming C99 compatible system)
+checking getopt.h usability... yes
+checking getopt.h presence... yes
+checking for getopt.h... yes
+checking for getopt_long_only... no
+checking if setlocale() and nl_langinfo() works... yes
+checking if TLD API for specific TLD rules should be built... yes
+checking for pkg-config... no
+checking if implementation in Java should be built... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating libidn.pc
+config.status: creating doc/reference/Makefile
+config.status: creating doc/java/Makefile
+config.status: creating lib/stringprep.h
+config.status: creating contrib/doxygen/Doxyfile
+config.status: creating doc/Makefile
+config.status: creating doc/specifications/Makefile
+config.status: creating doc/tld/Makefile
+config.status: creating lib/Makefile
+config.status: creating src/Makefile
+config.status: creating tests/Makefile
+config.status: creating examples/Makefile
+config.status: creating java/Makefile
+config.status: creating java/gnu/Makefile
+config.status: creating java/gnu/inet/Makefile
+config.status: creating java/gnu/inet/encoding/Makefile
+config.status: creating java/misc/Makefile
+config.status: creating po/Makefile.in
+config.status: creating config.h
+config.status: executing default-1 commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+config.status: executing depfiles commands
+config.status: executing lib/idn-int.h commands
+config.status: creating lib/idn-int.h : _LIBIDN_LIB_IDN_INT_H
+make install check
+Making install in lib
+make  install-am
+source='nfkc.c' object='nfkc.lo' libtool=yes  depfile='.deps/nfkc.Plo' tmpdepfile='.deps/nfkc.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o nfkc.lo nfkc.c
+mkdir .libs
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c nfkc.c -Wp,-MD,.deps/nfkc.TPlo  -fPIC -DPIC -o .libs/nfkc.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c nfkc.c -Wp,-MD,.deps/nfkc.TPlo -o nfkc.o >/dev/null 2>&1
+source='toutf8.c' object='toutf8.lo' libtool=yes  depfile='.deps/toutf8.Plo' tmpdepfile='.deps/toutf8.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o toutf8.lo toutf8.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c toutf8.c -Wp,-MD,.deps/toutf8.TPlo  -fPIC -DPIC -o .libs/toutf8.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c toutf8.c -Wp,-MD,.deps/toutf8.TPlo -o toutf8.o >/dev/null 2>&1
+source='version.c' object='version.lo' libtool=yes  depfile='.deps/version.Plo' tmpdepfile='.deps/version.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o version.lo version.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c version.c -Wp,-MD,.deps/version.TPlo  -fPIC -DPIC -o .libs/version.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c version.c -Wp,-MD,.deps/version.TPlo -o version.o >/dev/null 2>&1
+source='stringprep.c' object='stringprep.lo' libtool=yes  depfile='.deps/stringprep.Plo' tmpdepfile='.deps/stringprep.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o stringprep.lo stringprep.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c stringprep.c -Wp,-MD,.deps/stringprep.TPlo  -fPIC -DPIC -o .libs/stringprep.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c stringprep.c -Wp,-MD,.deps/stringprep.TPlo -o stringprep.o >/dev/null 2>&1
+source='rfc3454.c' object='rfc3454.lo' libtool=yes  depfile='.deps/rfc3454.Plo' tmpdepfile='.deps/rfc3454.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o rfc3454.lo rfc3454.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c rfc3454.c -Wp,-MD,.deps/rfc3454.TPlo  -fPIC -DPIC -o .libs/rfc3454.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c rfc3454.c -Wp,-MD,.deps/rfc3454.TPlo -o rfc3454.o >/dev/null 2>&1
+source='profiles.c' object='profiles.lo' libtool=yes  depfile='.deps/profiles.Plo' tmpdepfile='.deps/profiles.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o profiles.lo profiles.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c profiles.c -Wp,-MD,.deps/profiles.TPlo  -fPIC -DPIC -o .libs/profiles.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c profiles.c -Wp,-MD,.deps/profiles.TPlo -o profiles.o >/dev/null 2>&1
+source='punycode.c' object='punycode.lo' libtool=yes  depfile='.deps/punycode.Plo' tmpdepfile='.deps/punycode.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o punycode.lo punycode.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c punycode.c -Wp,-MD,.deps/punycode.TPlo  -fPIC -DPIC -o .libs/punycode.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c punycode.c -Wp,-MD,.deps/punycode.TPlo -o punycode.o >/dev/null 2>&1
+source='idna.c' object='idna.lo' libtool=yes  depfile='.deps/idna.Plo' tmpdepfile='.deps/idna.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o idna.lo idna.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c idna.c -Wp,-MD,.deps/idna.TPlo  -fPIC -DPIC -o .libs/idna.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c idna.c -Wp,-MD,.deps/idna.TPlo -o idna.o >/dev/null 2>&1
+source='pr29.c' object='pr29.lo' libtool=yes  depfile='.deps/pr29.Plo' tmpdepfile='.deps/pr29.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o pr29.lo pr29.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c pr29.c -Wp,-MD,.deps/pr29.TPlo  -fPIC -DPIC -o .libs/pr29.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c pr29.c -Wp,-MD,.deps/pr29.TPlo -o pr29.o >/dev/null 2>&1
+source='idn-free.c' object='idn-free.lo' libtool=yes  depfile='.deps/idn-free.Plo' tmpdepfile='.deps/idn-free.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o idn-free.lo idn-free.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c idn-free.c -Wp,-MD,.deps/idn-free.TPlo  -fPIC -DPIC -o .libs/idn-free.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c idn-free.c -Wp,-MD,.deps/idn-free.TPlo -o idn-free.o >/dev/null 2>&1
+source='tld.c' object='tld.lo' libtool=yes  depfile='.deps/tld.Plo' tmpdepfile='.deps/tld.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o tld.lo tld.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c tld.c -Wp,-MD,.deps/tld.TPlo  -fPIC -DPIC -o .libs/tld.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c tld.c -Wp,-MD,.deps/tld.TPlo -o tld.o >/dev/null 2>&1
+source='tlds.c' object='tlds.lo' libtool=yes  depfile='.deps/tlds.Plo' tmpdepfile='.deps/tlds.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..      -g -O2 -c -o tlds.lo tlds.c
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c tlds.c -Wp,-MD,.deps/tlds.TPlo  -fPIC -DPIC -o .libs/tlds.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -c tlds.c -Wp,-MD,.deps/tlds.TPlo -o tlds.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=link cc  -g -O2    -o libidn.la -rpath /tmp/jas/lib -version-info 15:1:4 nfkc.lo toutf8.lo version.lo stringprep.lo  rfc3454.lo profiles.lo punycode.lo idna.lo pr29.lo idn-free.lo  tld.lo tlds.lo  
+cc -shared  .libs/nfkc.o .libs/toutf8.o .libs/version.o .libs/stringprep.o .libs/rfc3454.o .libs/profiles.o .libs/punycode.o .libs/idna.o .libs/pr29.o .libs/idn-free.o .libs/tld.o .libs/tlds.o   -Wl,-soname -Wl,libidn.so.15 -o .libs/libidn.so.15.1
+(cd .libs && rm -f libidn.so.15 && ln -s libidn.so.15.1 libidn.so.15)
+(cd .libs && rm -f libidn.so && ln -s libidn.so.15.1 libidn.so)
+ar cru .libs/libidn.a  nfkc.o toutf8.o version.o stringprep.o rfc3454.o profiles.o punycode.o idna.o pr29.o idn-free.o tld.o tlds.o
+ranlib .libs/libidn.a
+creating libidn.la
+(cd .libs && rm -f libidn.la && ln -s ../libidn.la libidn.la)
+test -z "/tmp/jas/lib" || /bin/sh ../mkinstalldirs "/tmp/jas/lib"
+ /bin/sh ../libtool --mode=install /usr/bin/install -c  'libidn.la' '/tmp/jas/lib/libidn.la'
+/usr/bin/install -c .libs/libidn.so.15.1 /tmp/jas/lib/libidn.so.15.1
+(cd /tmp/jas/lib && rm -f libidn.so.15 && ln -s libidn.so.15.1 libidn.so.15)
+(cd /tmp/jas/lib && rm -f libidn.so && ln -s libidn.so.15.1 libidn.so)
+/usr/bin/install -c .libs/libidn.lai /tmp/jas/lib/libidn.la
+/usr/bin/install -c .libs/libidn.a /tmp/jas/lib/libidn.a
+ranlib /tmp/jas/lib/libidn.a
+chmod 644 /tmp/jas/lib/libidn.a
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /tmp/jas/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+test -z "/tmp/jas/include" || /bin/sh ../mkinstalldirs "/tmp/jas/include"
+ /usr/bin/install -c -m 644 'stringprep.h' '/tmp/jas/include/stringprep.h'
+ /usr/bin/install -c -m 644 'idna.h' '/tmp/jas/include/idna.h'
+ /usr/bin/install -c -m 644 'punycode.h' '/tmp/jas/include/punycode.h'
+ /usr/bin/install -c -m 644 'idn-free.h' '/tmp/jas/include/idn-free.h'
+ /usr/bin/install -c -m 644 'tld.h' '/tmp/jas/include/tld.h'
+test -z "/tmp/jas/include" || /bin/sh ../mkinstalldirs "/tmp/jas/include"
+ /usr/bin/install -c -m 644 'idn-int.h' '/tmp/jas/include/idn-int.h'
+Making install in po
+if test "libidn" = "gettext-tools"; then  /bin/sh .././mkinstalldirs /tmp/jas/share/gettext/po;  for file in Makefile.in.in remove-potcdate.sin  quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do  /usr/bin/install -c -m 644 ./$file  /tmp/jas/share/gettext/po/$file;  done;  for file in Makevars; do  rm -f /tmp/jas/share/gettext/po/$file;  done;  else  : ;  fi
+Making install in src
+cp ./getopt_.h getopt.h-t
+mv getopt.h-t getopt.h
+make  install-am
+source='idn.c' object='idn.o' libtool=no  depfile='.deps/idn.Po' tmpdepfile='.deps/idn.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c idn.c
+source='idn_cmd.c' object='idn_cmd.o' libtool=no  depfile='.deps/idn_cmd.Po' tmpdepfile='.deps/idn_cmd.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c idn_cmd.c
+source='getopt.c' object='getopt.lo' libtool=yes  depfile='.deps/getopt.Plo' tmpdepfile='.deps/getopt.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H  -I. -I. -I..  -I../lib -I../lib    -g -O2 -c -o getopt.lo getopt.c
+mkdir .libs
+ cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -c getopt.c -Wp,-MD,.deps/getopt.TPlo  -fPIC -DPIC -o .libs/getopt.o
+ cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -c getopt.c -Wp,-MD,.deps/getopt.TPlo -o getopt.o >/dev/null 2>&1
+source='getopt1.c' object='getopt1.lo' libtool=yes  depfile='.deps/getopt1.Plo' tmpdepfile='.deps/getopt1.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H  -I. -I. -I..  -I../lib -I../lib    -g -O2 -c -o getopt1.lo getopt1.c
+ cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -c getopt1.c -Wp,-MD,.deps/getopt1.TPlo  -fPIC -DPIC -o .libs/getopt1.o
+ cc -DLOCALEDIR=\"/tmp/jas/share/locale\" -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -c getopt1.c -Wp,-MD,.deps/getopt1.TPlo -o getopt1.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=link cc  -g -O2    -o idn  idn.o idn_cmd.o ../lib/libidn.la  getopt.lo getopt1.lo 
+cc -g -O2 -o .libs/idn idn.o idn_cmd.o .libs/getopt.o .libs/getopt1.o  ../lib/.libs/libidn.so  -Wl,--rpath -Wl,/tmp/jas/lib
+creating idn
+test -z "/tmp/jas/bin" || /bin/sh ../mkinstalldirs "/tmp/jas/bin"
+  /bin/sh ../libtool --mode=install /usr/bin/install -c 'idn' '/tmp/jas/bin/idn'
+/usr/bin/install -c .libs/idn /tmp/jas/bin/idn
+test -z "/tmp/jas/share/emacs/site-lisp" || /bin/sh ../mkinstalldirs "/tmp/jas/share/emacs/site-lisp"
+ /usr/bin/install -c -m 644 'punycode.el' '/tmp/jas/share/emacs/site-lisp/punycode.el'
+ /usr/bin/install -c -m 644 'idna.el' '/tmp/jas/share/emacs/site-lisp/idna.el'
+Making install in doc
+make  install-recursive
+Making install in specifications
+Making install in tld
+Making install in java
+test -z "/tmp/jas/info" || /bin/sh ../mkinstalldirs "/tmp/jas/info"
+ /usr/bin/install -c -m 644 './libidn.info' '/tmp/jas/info/libidn.info'
+ install-info --info-dir='/tmp/jas/info' '/tmp/jas/info/libidn.info'
+test -z "/tmp/jas/man/man1" || /bin/sh ../mkinstalldirs "/tmp/jas/man/man1"
+ /usr/bin/install -c -m 644 './idn.1' '/tmp/jas/man/man1/idn.1'
+test -z "/tmp/jas/man/man3" || /bin/sh ../mkinstalldirs "/tmp/jas/man/man3"
+ /usr/bin/install -c -m 644 './man/idna_to_ascii_4i.3' '/tmp/jas/man/man3/idna_to_ascii_4i.3'
+ /usr/bin/install -c -m 644 './man/idna_to_unicode_44i.3' '/tmp/jas/man/man3/idna_to_unicode_44i.3'
+ /usr/bin/install -c -m 644 './man/idna_to_ascii_4z.3' '/tmp/jas/man/man3/idna_to_ascii_4z.3'
+ /usr/bin/install -c -m 644 './man/idna_to_ascii_8z.3' '/tmp/jas/man/man3/idna_to_ascii_8z.3'
+ /usr/bin/install -c -m 644 './man/idna_to_ascii_lz.3' '/tmp/jas/man/man3/idna_to_ascii_lz.3'
+ /usr/bin/install -c -m 644 './man/idna_to_unicode_4z4z.3' '/tmp/jas/man/man3/idna_to_unicode_4z4z.3'
+ /usr/bin/install -c -m 644 './man/idna_to_unicode_8z4z.3' '/tmp/jas/man/man3/idna_to_unicode_8z4z.3'
+ /usr/bin/install -c -m 644 './man/idna_to_unicode_8z8z.3' '/tmp/jas/man/man3/idna_to_unicode_8z8z.3'
+ /usr/bin/install -c -m 644 './man/idna_to_unicode_8zlz.3' '/tmp/jas/man/man3/idna_to_unicode_8zlz.3'
+ /usr/bin/install -c -m 644 './man/idna_to_unicode_lzlz.3' '/tmp/jas/man/man3/idna_to_unicode_lzlz.3'
+ /usr/bin/install -c -m 644 './man/stringprep_utf8_to_unichar.3' '/tmp/jas/man/man3/stringprep_utf8_to_unichar.3'
+ /usr/bin/install -c -m 644 './man/stringprep_unichar_to_utf8.3' '/tmp/jas/man/man3/stringprep_unichar_to_utf8.3'
+ /usr/bin/install -c -m 644 './man/stringprep_utf8_to_ucs4.3' '/tmp/jas/man/man3/stringprep_utf8_to_ucs4.3'
+ /usr/bin/install -c -m 644 './man/stringprep_ucs4_to_utf8.3' '/tmp/jas/man/man3/stringprep_ucs4_to_utf8.3'
+ /usr/bin/install -c -m 644 './man/stringprep_utf8_nfkc_normalize.3' '/tmp/jas/man/man3/stringprep_utf8_nfkc_normalize.3'
+ /usr/bin/install -c -m 644 './man/stringprep_ucs4_nfkc_normalize.3' '/tmp/jas/man/man3/stringprep_ucs4_nfkc_normalize.3'
+ /usr/bin/install -c -m 644 './man/pr29_4.3' '/tmp/jas/man/man3/pr29_4.3'
+ /usr/bin/install -c -m 644 './man/pr29_4z.3' '/tmp/jas/man/man3/pr29_4z.3'
+ /usr/bin/install -c -m 644 './man/pr29_8z.3' '/tmp/jas/man/man3/pr29_8z.3'
+ /usr/bin/install -c -m 644 './man/punycode_encode.3' '/tmp/jas/man/man3/punycode_encode.3'
+ /usr/bin/install -c -m 644 './man/punycode_decode.3' '/tmp/jas/man/man3/punycode_decode.3'
+ /usr/bin/install -c -m 644 './man/stringprep_4i.3' '/tmp/jas/man/man3/stringprep_4i.3'
+ /usr/bin/install -c -m 644 './man/stringprep_4zi.3' '/tmp/jas/man/man3/stringprep_4zi.3'
+ /usr/bin/install -c -m 644 './man/stringprep.3' '/tmp/jas/man/man3/stringprep.3'
+ /usr/bin/install -c -m 644 './man/stringprep_profile.3' '/tmp/jas/man/man3/stringprep_profile.3'
+ /usr/bin/install -c -m 644 './man/tld_get_table.3' '/tmp/jas/man/man3/tld_get_table.3'
+ /usr/bin/install -c -m 644 './man/tld_default_table.3' '/tmp/jas/man/man3/tld_default_table.3'
+ /usr/bin/install -c -m 644 './man/tld_get_4.3' '/tmp/jas/man/man3/tld_get_4.3'
+ /usr/bin/install -c -m 644 './man/tld_get_4z.3' '/tmp/jas/man/man3/tld_get_4z.3'
+ /usr/bin/install -c -m 644 './man/tld_get_z.3' '/tmp/jas/man/man3/tld_get_z.3'
+ /usr/bin/install -c -m 644 './man/tld_check_4t.3' '/tmp/jas/man/man3/tld_check_4t.3'
+ /usr/bin/install -c -m 644 './man/tld_check_4tz.3' '/tmp/jas/man/man3/tld_check_4tz.3'
+ /usr/bin/install -c -m 644 './man/tld_check_4.3' '/tmp/jas/man/man3/tld_check_4.3'
+ /usr/bin/install -c -m 644 './man/tld_check_4z.3' '/tmp/jas/man/man3/tld_check_4z.3'
+ /usr/bin/install -c -m 644 './man/tld_check_8z.3' '/tmp/jas/man/man3/tld_check_8z.3'
+ /usr/bin/install -c -m 644 './man/tld_check_lz.3' '/tmp/jas/man/man3/tld_check_lz.3'
+ /usr/bin/install -c -m 644 './man/stringprep_locale_charset.3' '/tmp/jas/man/man3/stringprep_locale_charset.3'
+ /usr/bin/install -c -m 644 './man/stringprep_convert.3' '/tmp/jas/man/man3/stringprep_convert.3'
+ /usr/bin/install -c -m 644 './man/stringprep_locale_to_utf8.3' '/tmp/jas/man/man3/stringprep_locale_to_utf8.3'
+ /usr/bin/install -c -m 644 './man/stringprep_utf8_to_locale.3' '/tmp/jas/man/man3/stringprep_utf8_to_locale.3'
+ /usr/bin/install -c -m 644 './man/stringprep_check_version.3' '/tmp/jas/man/man3/stringprep_check_version.3'
+Making install in tests
+source='utils.c' object='utils.lo' libtool=yes  depfile='.deps/utils.Plo' tmpdepfile='.deps/utils.TPlo'  depmode=gcc /bin/sh ../depcomp  /bin/sh ../libtool --mode=compile cc -DHAVE_CONFIG_H  -I. -I. -I..  -I../lib -I../lib    -g -O2 -c -o utils.lo utils.c
+mkdir .libs
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -c utils.c -Wp,-MD,.deps/utils.TPlo  -fPIC -DPIC -o .libs/utils.o
+ cc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -c utils.c -Wp,-MD,.deps/utils.TPlo -o utils.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o libutils.la   utils.lo  
+ar cru .libs/libutils.a .libs/utils.o
+ranlib .libs/libutils.a
+creating libutils.la
+(cd .libs && rm -f libutils.la && ln -s ../libutils.la libutils.la)
+Making install in examples
+source='example.c' object='example.o' libtool=no  depfile='.deps/example.Po' tmpdepfile='.deps/example.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c example.c
+/bin/sh ../libtool --mode=link cc  -g -O2    -o example  example.o ../lib/libidn.la 
+mkdir .libs
+cc -g -O2 -o .libs/example example.o  ../lib/.libs/libidn.so -Wl,--rpath -Wl,/tmp/jas/lib
+creating example
+source='example2.c' object='example2.o' libtool=no  depfile='.deps/example2.Po' tmpdepfile='.deps/example2.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c example2.c
+/bin/sh ../libtool --mode=link cc  -g -O2    -o example2  example2.o ../lib/libidn.la 
+cc -g -O2 -o .libs/example2 example2.o  ../lib/.libs/libidn.so -Wl,--rpath -Wl,/tmp/jas/lib
+creating example2
+source='example3.c' object='example3.o' libtool=no  depfile='.deps/example3.Po' tmpdepfile='.deps/example3.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c example3.c
+/bin/sh ../libtool --mode=link cc  -g -O2    -o example3  example3.o ../lib/libidn.la 
+cc -g -O2 -o .libs/example3 example3.o  ../lib/.libs/libidn.so -Wl,--rpath -Wl,/tmp/jas/lib
+creating example3
+source='example4.c' object='example4.o' libtool=no  depfile='.deps/example4.Po' tmpdepfile='.deps/example4.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c example4.c
+/bin/sh ../libtool --mode=link cc  -g -O2    -o example4  example4.o ../lib/libidn.la 
+cc -g -O2 -o .libs/example4 example4.o  ../lib/.libs/libidn.so -Wl,--rpath -Wl,/tmp/jas/lib
+creating example4
+source='example5.c' object='example5.o' libtool=no  depfile='.deps/example5.Po' tmpdepfile='.deps/example5.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c example5.c
+/bin/sh ../libtool --mode=link cc  -g -O2    -o example5  example5.o ../lib/libidn.la 
+cc -g -O2 -o .libs/example5 example5.o  ../lib/.libs/libidn.so -Wl,--rpath -Wl,/tmp/jas/lib
+creating example5
+Making install in java
+Making install in gnu
+Making install in inet
+Making install in encoding
+echo timestamp > classdist_noinst.stamp
+Making install in .
+test -z "" || /bin/sh ../mkinstalldirs ""
+Making install in misc
+echo timestamp > classdist_noinst.stamp
+test -z "/tmp/jas/lib/pkgconfig" || /bin/sh ./mkinstalldirs "/tmp/jas/lib/pkgconfig"
+ /usr/bin/install -c -m 644 'libidn.pc' '/tmp/jas/lib/pkgconfig/libidn.pc'
+Making check in lib
+make  check-am
+Making check in po
+Making check in src
+make  check-am
+Making check in doc
+make  check-recursive
+Making check in specifications
+Making check in tld
+Making check in java
+Making check in tests
+make  tst_stringprep tst_punycode  tst_idna tst_idna2 tst_nfkc  tst_pr29 tst_tld
+source='tst_stringprep.c' object='tst_stringprep.o' libtool=no  depfile='.deps/tst_stringprep.Po' tmpdepfile='.deps/tst_stringprep.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_stringprep.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_stringprep  tst_stringprep.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_stringprep tst_stringprep.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+source='tst_punycode.c' object='tst_punycode.o' libtool=no  depfile='.deps/tst_punycode.Po' tmpdepfile='.deps/tst_punycode.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_punycode.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_punycode  tst_punycode.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_punycode tst_punycode.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+source='tst_idna.c' object='tst_idna.o' libtool=no  depfile='.deps/tst_idna.Po' tmpdepfile='.deps/tst_idna.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_idna.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_idna  tst_idna.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_idna tst_idna.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+source='tst_idna2.c' object='tst_idna2.o' libtool=no  depfile='.deps/tst_idna2.Po' tmpdepfile='.deps/tst_idna2.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_idna2.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_idna2  tst_idna2.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_idna2 tst_idna2.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+source='tst_nfkc.c' object='tst_nfkc.o' libtool=no  depfile='.deps/tst_nfkc.Po' tmpdepfile='.deps/tst_nfkc.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_nfkc.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_nfkc  tst_nfkc.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_nfkc tst_nfkc.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+source='tst_pr29.c' object='tst_pr29.o' libtool=no  depfile='.deps/tst_pr29.Po' tmpdepfile='.deps/tst_pr29.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_pr29.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_pr29  tst_pr29.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_pr29 tst_pr29.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+source='tst_tld.c' object='tst_tld.o' libtool=no  depfile='.deps/tst_tld.Po' tmpdepfile='.deps/tst_tld.TPo'  depmode=gcc /bin/sh ../depcomp  cc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib    -g -O2 -c tst_tld.c
+/bin/sh ../libtool --mode=link cc  -g -O2  -no-install  -o tst_tld  tst_tld.o ../lib/libidn.la libutils.la 
+cc -g -O2 -o tst_tld tst_tld.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/tmp/jas/libidn-0.5.1/lib/.libs -Wl,--rpath -Wl,/tmp/jas/lib
+make  check-TESTS
+PASS: tst_stringprep
+PASS: tst_punycode
+PASS: tst_idna
+PASS: tst_idna2
+PASS: tst_nfkc
+PASS: tst_pr29
+PASS: tst_tld
+==================
+All 7 tests passed
+==================
+Making check in examples
+Making check in java
+Making check in gnu
+Making check in inet
+Making check in encoding
+Making check in .
+Making check in misc
+cat /house/jas/.expect-trigger-ok
+cdbcefaa83ddf9cd7024a93d209e2f0b
+24.6u 2.1s 1:13.56 36.5% 0+0k 2+5225io 0pf+0w
+2.95.3
+i386-unknown-netbsdelf1.6
+d567a59be6412c21a04e77e9c9ae107c
+spe143.testdrive.hp.com> exit
+spe143.testdrive.hp.com> logout
+Connection closed by foreign host.
