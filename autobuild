@@ -25,12 +25,13 @@ use Getopt::Long;
 # Parse command line parameters.
 my $Verbose = 0;
 my ($PrintHelp, $PrintVersion) = 0;
-my ($Html, $DryRun) = 0;
+my ($Abort, $DryRun, $Html) = 0;
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
 	    'verbose|v'    => \$Verbose,
 	    'html'         => \$Html,
+	    'abort|a'      => \$Abort,
 	    'dry-run|n'    => \$DryRun,
 	    'p|project=s'  => \$Project,
 	    'revision=s'   => \$Revision,
@@ -51,9 +52,11 @@ if ($PrintHelp) {
     print "\n";
     print "Mandatory arguments to long options are mandatory for short options too.\n";
     print "\n";
+    print "      --abort             Abort if guessing values fail.\n";
+    print "                          With the exception of build mode.\n";
+    print "  -n, --dry-run           Just parse, don't write file.\n";
     print "      --html              Create HTML output instead of text.\n";
     print "                          requires that htmlize.el is installed.\n";
-    print "  -n, --dry-run           Just parse, don't write file.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "  -p, --project=STRING    Specify project name.\n";
@@ -134,13 +137,15 @@ while (<>) {
     print OUT $_;
 }
 
-$Project = "unknown" if !$Project;
-$Revision = "0" if !$Revision;
+if (!$Abort) {
+    $Project = "unknown" if !$Project;
+    $Revision = "0" if !$Revision;
+    $Hostname = "unknown" if !$Hostname;
+    $Hosttype = "unknown" if !$Hosttype;
+    $Buildtype = "unknown" if !$Buildtype;
+    $Timestamp = "unknown" if !$Timestamp;
+}
 $Mode = "default" if !$Mode;
-$Hostname = "unknown" if !$Hostname;
-$Hosttype = "unknown" if !$Hosttype;
-$Buildtype = "unknown" if !$Buildtype;
-$Timestamp = "unknown" if !$Timestamp;
 
 if ($Verbose) {
     print "autobuild project... $Project\n";
@@ -153,6 +158,11 @@ if ($Verbose) {
 }
 
 close OUT;
+
+die "Could not guess all required values".($Verbose ? "" :
+					   " (use -v to print values)")."\n"
+    if $Abort && (!$Project || !$Revision || !$Hostname ||
+		  !$Hosttype || !$Buildtype || !$Timestamp);
 
 exit 0 if $DryRun;
 
