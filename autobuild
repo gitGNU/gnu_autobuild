@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
 # Copyright (C) 2004 Simon Josefsson.
 #
@@ -29,7 +29,7 @@ my ($Abort, $DryRun);
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype,
     $Buildtype, $Timestamp, $Status);
 GetOptions ('help|usage|h' => \$PrintHelp,
-	    'version|V'    => \$PrintVersion,
+	    'version'      => \$PrintVersion,
 	    'verbose|v'    => \$Verbose,
 	    'abort|a'      => \$Abort,
 	    'dry-run|n'    => \$DryRun,
@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.41 $';
+    my ($rev) = '$Revision: 1.42 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
