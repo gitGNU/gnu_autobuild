@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.11 2004-07-09 00:22:15 jas Exp $
+@comment $Id: autobuild.texi,v 1.12 2004-07-09 00:48:10 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -89,86 +89,84 @@ does not help you do this.  A very simple way to do this is as
 follows:
 
 @example
-jas@@latte:~/src/libidn-0.5.0$ ./configure > ~/foo
-jas@@latte:~/src/libidn-0.5.0$ make check >> ~/foo
+jas@@latte:~/src/libidn-0.5.0$ ./configure > ~/libidn.txt
+jas@@latte:~/src/libidn-0.5.0$ make check >> ~/libidn.txt
 @end example
 
-We'll continue directly and invoke autobuild on the log file.
+Now let Autobuild parse the file.
 
 @example
 jas@@latte:~/src/libidn-0.5.0$ cd
-jas@@latte:~$ autobuild -v foo
-Project: libidn
-Revision: 0.5.0
-Mode: default
-Hosttype: i686-pc-linux-gnu
-Buildtype: i686-pc-linux-gnu
-Hostname: unknown
-Timestamp: unknown
-Status: ok
-./autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt
-jas@@latte:~$ ls -la foo autobuild\,project\=libidn\,revision\=0.5.0\,mode\=default\,hosttype\=i686-pc-linux-gnu\,buildtype\=i686-pc-linux-gnu\,hostname\=unknown\,timestamp\=unknown\,status\=ok\,log.txt
--rw-r--r--    1 jas      jas         24821 2004-07-07 02:27 autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt
--rwxr-xr-x    1 jas      jas         24821 2004-07-07 02:27 foo
+jas@@latte:~$ autobuild --dry-run --verbose libidn.txt
+`libidn.txt':
+ Project: libidn
+ Revision: 0.5.0
+ Mode: default
+ Hosttype: i686-pc-linux-gnu
+ Buildtype: i686-pc-linux-gnu
+ Hostname: unknown
+ Timestamp: unknown
+ Status: ok
 jas@@latte:~$
 @end example
 
-The @file{foo} file is identical to the @file{autobuild,*,log.txt}
-except for the name.  The special form of the file name is used by
-@code{abindex} to create nice looking indicies for your log files.
+Everything went fine, except possibly that the hostname and timestamp
+have default looking values.  If Autobuild is not able to guess more
+important values, such as the project name, you may have to use a
+command line parameter, e.g. @code{--project}.  You could also
+consider improving the guessing logic.
 
-If you have Emacs and htmlize.el installed, you can also get nice HTML
-outputs of the build logs, as follows:
+Now, one build log isn't much if you want to make an overview.  Let's
+create another build log. @footnote{The script @file{td} is not part
+of Autobuild.  It is responsible for logging on a remote machine and
+building a package -- it may be cleaned up and discussed here in the
+future.}
 
 @example
-jas@@latte:~$ autobuild --html -v foo
-Project: libidn
-Revision: 0.5.0
-Mode: default
-Hosttype: i686-pc-linux-gnu
-Buildtype: i686-pc-linux-gnu
-Hostname: unknown
-Timestamp: unknown
-Status: ok
-./autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.html
-jas@@latte:~$
+jas@@latte:~/src/libidn-0.5.1$ td > ~/libidn2.txt
 @end example
 
-You may have noticed that some fields have default looking values.
-This is because autobuild could not guess them using the log file you
-provided.  Either you can improve the guessing logic, or simpler,
-specify the values on the command line.
+If you have Emacs and htmlize.el installed, you can markup this log
+file up using the @code{htmlize} tool.
 
 @example
-jas@@latte:~$ autobuild --html -v foo --hostname latte --timestamp=20040607-0220
-Project: libidn
-Revision: 0.5.0
-Mode: default
-Hosttype: i686-pc-linux-gnu
-Buildtype: i686-pc-linux-gnu
-Hostname: latte
-Timestamp: 20040607-0220
-Status: ok
-./autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=latte,timestamp=20040607-0220,status=ok,log.html
+jas@@latte:~$ htmlize libidn2.txt libidn2.html
 jas@@latte:~$
 @end example
 
-Much better.  Let's look at the HTML output for our example.  First,
-invoke @code{abindex} to get the files.
+Ok, now we have two build logs, and one of them has even been
+converted into HTML format.  Let's generate a summary for them.
+Notice that here Autobuild is actually parsing a HTML page, which can
+be less reliable than parsing a text file.
 
 @example
-jas@@latte:~$ abindex autobuild,*,log.* > example.html
+jas@@latte:~$ autobuild --verbose libidn.txt libidn2.html  > example.html
+`libidn.txt':
+ Project: libidn
+ Revision: 0.5.0
+ Mode: default
+ Hosttype: i686-pc-linux-gnu
+ Buildtype: i686-pc-linux-gnu
+ Hostname: unknown
+ Timestamp: unknown
+ Status: ok
+`libidn2.html':
+ Project: libidn
+ Revision: 0.5.1
+ Mode: default
+ Hosttype: i386-unknown-netbsdelf1.6
+ Buildtype: i386-unknown-netbsdelf1.6
+ Hostname: 192.233.54.143
+ Timestamp: unknown
+ Status: ok
 jas@@latte:~$
 @end example
-
-Recall that since we supplied some values, and regenerated the output,
-we have three different files matching the file name glob, but all
-three are based on the same build, so it will not be very exciting.
 
 See the @file{examples/} sub-directory in the Autobuild source code
-distribution, it execute the above commands.  In that directory, you
-can remove the distributed @file{example.html} and type @kbd{make
-example.html} to regenerate it.
+distribution, it contain the @file{libidn.txt} and @file{libidn2.txt}
+files, and a Makefile that will execute the above commands.  In that
+directory, you can remove the distributed @file{example.html} and type
+@kbd{make example.html} to regenerate it.
 
 @node Integrating autobuild.m4 in your project
 @chapter Integrating autobuild.m4 in your project
