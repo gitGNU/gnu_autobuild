@@ -2,6 +2,10 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
+* Version 3.2 (unreleased)
+
+** Improved regexp's for guessing project name, revision, etc.
+
 * Version 3.1 (released 2004-07-31)
 
 ** Bug fixes.
