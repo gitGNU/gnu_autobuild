@@ -17,7 +17,7 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
-EXTRA_DIST = libidn.txt libidn2.txt
+EXTRA_DIST = libidn.txt libidn2.txt libidn.expect
 
 example.html: libidn.txt libidn2.txt
 	$(top_srcdir)/htmlize libidn2.txt libidn2.html && \
