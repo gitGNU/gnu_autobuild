@@ -26,7 +26,6 @@ m4data_DATA = autobuild.m4
 
 dist_bin_SCRIPTS = autobuild abindex
 
-EXTRA_DIST = logs/autobuild.log
 TESTS = tst-autobuild tst-simple
 dist_check_SCRIPTS = $(TESTS)
 
