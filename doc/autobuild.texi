@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.5 2004-07-08 14:36:33 jas Exp $
+@comment $Id: autobuild.texi,v 1.6 2004-07-08 15:49:24 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -157,16 +157,18 @@ Much better.  Let's look at the HTML output for our example.  First,
 invoke @code{abindex} to get the files.
 
 @example
-jas@@latte:~$ abindex autobuild,*,log.html > example.html
+jas@@latte:~$ abindex autobuild,*,log.* > example.html
 jas@@latte:~$
 @end example
 
-Recall that since we supplied some values, we have two different files
-matching the file name glob.  Since both files originated from the
-same build, it will not be very exciting.
+Recall that since we supplied some values, and regenerated the output,
+we have three different files matching the file name glob, but all
+three are based on the same build, so it will not be very exciting.
 
 See the @file{examples/} sub-directory in the Autobuild source code
-distribution for all files generated above.
+distribution, it execute the above commands.  In that directory, you
+can remove the distributed @file{example.html} and type @cmd{make
+example.html} to regenerate it.
 
 @node Integrating autobuild.m4 in your project
 @chapter Integrating autobuild.m4 in your project
