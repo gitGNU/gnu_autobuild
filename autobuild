@@ -59,6 +59,7 @@ if ($PrintHelp || $#ARGV == -1) {
     print "  -v, --verbose           Explain what is being done.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
+    print "\n";
     print "  -p, --project=STRING    Specify project name.\n";
     print "      --revision=STRING   Specify project revision.\n";
     print "      --mode=STRING       Specify build mode (typically 'default').\n";
