@@ -23,10 +23,11 @@ use strict;
 use Getopt::Long;
 
 # Parse command line parameters.
-my $Help = 0;
 my $Verbose = 0;
+my ($PrintHelp, $PrintVersion) = 0;
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
-GetOptions ('help|usage|h' => \$Help,
+GetOptions ('help|usage|h' => \$PrintHelp,
+	    'version|V'    => \$PrintVersion,
 	    'verbose'      => \$Verbose,
 	    'project=s'    => \$Project,
 	    'revision=s'   => \$Revision,
@@ -37,8 +38,30 @@ GetOptions ('help|usage|h' => \$Help,
 	    'Timestamp=s'  => \$Timestamp);
 
 # Handle --help.
-if ($Help) {
-    print "Usage: $0 [-v] [-h] [FILE ...]\n";
+if ($PrintHelp) {
+    print "Usage: $0 [OPTION]... [FILE]...\n";
+    print "\n";
+    print "Read and parse build logs to find project name, revision, build mode,\n";
+    print "build host type, build type (for cross compile builds), hostname, and\n";
+    print "timestamp, then produce a HTML file (named depending on the extracted\n";
+    print "parameters) with the build log.\n";
+    print "\n";
+    print "Mandatory arguments to long options are mandatory for short options too.\n";
+    print "  -v, --verbose      explain what is being done.\n";
+    print "      --help         display this help and exit\n";
+    print "      --version      output version information and exit\n";
+    print "\n";
+    print "Report bugs to <bug-autobuild\@josefsson.org>.\n";
+    exit 0;
+}
+
+# Handle --verison.
+if ($PrintVersion) {
+    print "autobuild (autobuild) 1.0\n";
+    print "\n";
+    print "Copyright (C) 2004 Simon Josefsson\n";
+    print "This is free software; see the source for copying conditions.  There is NO\n";
+    print "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n";
     exit 0;
 }
 
