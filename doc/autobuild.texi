@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.2 2004-07-08 14:02:44 jas Exp $
+@comment $Id: autobuild.texi,v 1.3 2004-07-08 14:19:23 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -58,6 +58,7 @@ Software Foundation raise funds for GNU development.''
 
 @menu
 * Introduction::
+* Tutorial::
 * Integrating autobuild.m4 in your project::
 * Invoking autobuild::
 * Invoking abindex::
@@ -79,6 +80,93 @@ The quickest way to get an understanding of what Autobuild can do for
 you, is to look at some example output.  For now, we recommend looking
 at how Autobuild is used in the GNU Libidn project, see
 @url{http://josefsson.org/autobuild-logs/libidn.html}.
+
+@node Tutorial
+@chapter Tutorial
+
+The first step is to collect build logs of your package.  Autobuild
+does not help you do this.  A very simple way to do this is as
+follows:
+
+@example
+jas@@latte:~/src/libidn-0.5.0$ ./configure > ~/foo
+jas@@latte:~/src/libidn-0.5.0$ make check >> ~/foo
+@end example
+
+We'll continue directly and invoke autobuild on the log file.
+
+@example
+jas@@latte:~/src/libidn-0.5.0$ cd
+jas@@latte:~$ autobuild -v foo
+Project: libidn
+Revision: 0.5.0
+Mode: default
+Hosttype: i686-pc-linux-gnu
+Buildtype: i686-pc-linux-gnu
+Hostname: unknown
+Timestamp: unknown
+Status: ok
+./autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt
+jas@@latte:~$ ls -la foo autobuild\,project\=libidn\,revision\=0.5.0\,mode\=default\,hosttype\=i686-pc-linux-gnu\,buildtype\=i686-pc-linux-gnu\,hostname\=unknown\,timestamp\=unknown\,status\=ok\,log.txt
+-rw-r--r--    1 jas      jas         24821 2004-07-07 02:27 autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt
+-rwxr-xr-x    1 jas      jas         24821 2004-07-07 02:27 foo
+jas@@latte:~$
+@end example
+
+The @file{foo} file is identical to the @file{autobuild,*,log.txt}
+except for the name.  The special form of the file name is used by
+@code{abindex} to create nice looking indicies for your log files.
+
+If you have Emacs and htmlize.el installed, you can also get nice HTML
+outputs of the build logs, as follows:
+
+@example
+jas@@latte:~$ autobuild --html -v foo
+Project: libidn
+Revision: 0.5.0
+Mode: default
+Hosttype: i686-pc-linux-gnu
+Buildtype: i686-pc-linux-gnu
+Hostname: unknown
+Timestamp: unknown
+Status: ok
+./autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.html
+jas@@latte:~$
+@end example
+
+You may have noticed that some fields have default looking values.
+This is because autobuild could not guess them using the log file you
+provided.  Either you can improve the guessing logic, or simpler,
+specify the values on the command line.
+
+@example
+jas@@latte:~$ autobuild --html -v foo --hostname latte --timestamp=20040607-0220
+Project: libidn
+Revision: 0.5.0
+Mode: default
+Hosttype: i686-pc-linux-gnu
+Buildtype: i686-pc-linux-gnu
+Hostname: latte
+Timestamp: 20040607-0220
+Status: ok
+./autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=latte,timestamp=20040607-0220,status=ok,log.html
+jas@@latte:~$
+@end example
+
+Much better.  Let's look at the HTML output for our example.  First,
+invoke @code{abindex} to get the files.
+
+@example
+jas@@latte:~$ abindex autobuild,*,log.html > example.html
+jas@@latte:~$
+@end example
+
+Recall that since we supplied some values, we have two different files
+matching the file name glob.  Since both files originated from the
+same build, it will not be very exciting.
+
+See the @file{examples/} sub-directory in the Autobuild source code
+distribution for all files generated above.
 
 @node Integrating autobuild.m4 in your project
 @chapter Integrating autobuild.m4 in your project
