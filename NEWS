@@ -4,8 +4,6 @@ See the end for copying conditions.
 
 * Version 2.2 (unreleased)
 
-** Autobuild now find the perl interpreter in $PATH, not just /usr/bin/perl.
-
 * Version 2.1 (released 2004-07-14)
 
 ** Htmlize now works in batch mode.
