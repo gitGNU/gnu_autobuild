@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.7 $'
+rcs_revision='$Revision: 1.8 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="htmlize (autobuild) $rcs_version
@@ -40,8 +40,12 @@ If OUTFILE is not specified, it will use INFILE appended with .html.
 If EMACS-MODE is not specified, compilation-mode will be used.
 
 Options:
-  --help      display this help and exit successfully.
-  --version   display version information and exit successfully.
+  -f, --force   overwrite OUTFILE if it exists, instead of
+                exiting unsuccessfully with an error message.
+  -u, --update  only write to OUTFILE when OUTFILE does not exist,
+                or when INFILE is more recent than OUTFILE.
+  -h, --help    display this help and exit successfully.
+  --version     display version information and exit successfully.
 
 Simple example: $prog mybuildlog.txt mybuildlog.html
 
@@ -49,8 +53,13 @@ Report bugs to <bug-autobuild@josefsson.org>."
 
 while test $# -gt 0; do
   case $1 in
+    -h) echo "$usage"; exit 0;;
     --help) echo "$usage"; exit 0;;
     --version) echo "$version"; exit 0;;
+    -f) force=t;;
+    --force) force=t;;
+    -u) update=t;;
+    --update) update=t;;
     -*)
       echo "$0: Unknown or ambiguous option \`$1'." >&2
       echo "$0: Try \`--help' for more information." >&2
@@ -63,7 +72,7 @@ while test $# -gt 0; do
       elif test -z "$EMACSMODE"; then
         EMACSMODE=$1
       else
-        echo "$0: extra non-option argument \`$1'." >&2
+        echo "$0: Extra non-option argument \`$1'." >&2
         exit 1
       fi;;
   esac
@@ -78,4 +87,20 @@ fi
 OUTFILE=${OUTFILE:-$INFILE.html}
 EMACSMODE=${EMACSMODE:-compilation-mode}
 
-emacs --geometry 0x0+1600+1200 --eval "(let ((coding-system-for-write 'binary) (htmlize-before-hook (lambda () ($EMACSMODE) (font-lock-fontify-buffer)))) (htmlize-file \"$INFILE\" \"$OUTFILE\") (kill-emacs))"
+if test -f $OUTFILE; then
+    if test -n "$force"; then
+	rm -f $OUTFILE || exit 1
+    elif test -n "$update"; then
+	if test $INFILE -nt $OUTFILE; then
+	    rm -f $OUTFILE || exit 1
+	else
+	    echo "$0: Nothing to be done for \`$OUTFILE'." >&2
+	    exit 0
+	fi
+    else
+	echo "$0: File already exists: \`$OUTFILE'." >&2
+	exit 1
+    fi
+fi
+
+emacs --batch --eval "(let ((coding-system-for-write 'binary)) (autoload 'htmlfontify-buffer \"htmlfontify\") (toggle-debug-on-error) (find-file \"$INFILE\") ($EMACSMODE) (font-lock-fontify-buffer) (htmlfontify-buffer) (setq buffer-file-name \"$OUTFILE\") (save-buffer) (kill-emacs))"
