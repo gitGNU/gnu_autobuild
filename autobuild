@@ -43,7 +43,7 @@ GetOptions ('help|usage|h' => \$PrintHelp,
 	    'Status=s'     => \$Status);
 
 # Handle --help.
-if ($PrintHelp || $#ARGV == -1) {
+if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
     print "Usage: $0 [OPTION]... FILE...\n";
     print "\n";
     print "Read and parse build logs to find project name, revision, build mode,\n";
@@ -86,7 +86,8 @@ if ($PrintHelp || $#ARGV == -1) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    print "autobuild (autobuild) 2.0\n";
+    my ($rev) = '$Revision: 1.40 $';
+    print "autobuild (autobuild) $rev\n";
     print "\n";
     print "Copyright (C) 2004 Simon Josefsson\n";
     print "This is free software; see the source for copying conditions.  There is NO\n";
