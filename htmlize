@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.6 $'
+rcs_revision='$Revision: 1.7 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="htmlize (autobuild) $rcs_version
@@ -78,4 +78,4 @@ fi
 OUTFILE=${OUTFILE:-$INFILE.html}
 EMACSMODE=${EMACSMODE:-compilation-mode}
 
-emacs --geometry 0x0+1600+1200 --eval "(let ((coding-system-for-write 'binary) (htmlize-before-hook (lambda () ($MODE) (font-lock-fontify-buffer)))) (htmlize-file \"$IN\" \"$OUT\") (kill-emacs))"
+emacs --geometry 0x0+1600+1200 --eval "(let ((coding-system-for-write 'binary) (htmlize-before-hook (lambda () ($EMACSMODE) (font-lock-fontify-buffer)))) (htmlize-file \"$INFILE\" \"$OUTFILE\") (kill-emacs))"
