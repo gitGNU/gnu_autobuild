@@ -1,5 +1,41 @@
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
+	* abindex: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Add abindex.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Change output filenames.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Remove CRLF.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Detect "almost" --status.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Don't --abort for status.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add --status.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add --outdir.  More hostname guessing.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Doc fix.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
 	* autobuild: Add --abort.
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
