@@ -19,14 +19,16 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
-if perl -c $src/autobuild; then
+srcdir=${srcdir:-.}
+
+if perl -c $srcdir/autobuild; then
     :
 else
     echo Perl could not parse autobuild
     exit 1
 fi
 
-if perl -c $src/abindex; then
+if perl -c $srcdir/abindex; then
     :
 else
     echo Perl could not parse abindex
