@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.9 $'
+rcs_revision='$Revision: 1.10 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="htmlize (autobuild) $rcs_version
@@ -120,4 +120,4 @@ if test -f $OUTFILE; then
     fi
 fi
 
-$EMACS --batch --eval "(let ((hfy-display-class '((class . color))) (coding-system-for-write 'binary)) (autoload 'htmlfontify-buffer \"htmlfontify\") (toggle-debug-on-error) (find-file \"$INFILE\") ($EMACSMODE) (font-lock-fontify-buffer) (htmlfontify-buffer) (setq buffer-file-name \"$OUTFILE\") (save-buffer) (kill-emacs))"
+$EMACS --batch --eval "(let ((font-lock-verbose nil) (hfy-display-class '((class . color))) (coding-system-for-write 'binary)) (autoload 'htmlfontify-buffer \"htmlfontify\") (toggle-debug-on-error) (find-file \"$INFILE\") ($EMACSMODE) (font-lock-fontify-buffer) (htmlfontify-buffer) (setq buffer-file-name \"$OUTFILE\") (save-buffer) (kill-emacs))"
