@@ -43,7 +43,7 @@ GetOptions ('help|usage|h' => \$PrintHelp,
 	    'Status=s'     => \$Status);
 
 # Handle --help.
-if ($PrintHelp) {
+if ($PrintHelp || $#ARGV == -1) {
     print "Usage: $0 [OPTION]... [FILE]...\n";
     print "\n";
     print "Read and parse build logs to find project name, revision, build mode,\n";
@@ -52,12 +52,9 @@ if ($PrintHelp) {
     print "\n";
     print "Mandatory arguments to long options are mandatory for short options too.\n";
     print "\n";
-    print "      --abort             Abort if guessing values for a file fails.\n";
-    print "                          With the exceptions of build mode\n";
-    print "                          (falls back to 'default') and\n";
-    print "                          the status (falls back to 'fail').\n";
-    print "                          Use in combination with -v to print name\n";
-    print "                          of file.\n";
+    print "      --abort             Abort if any of the following values\n";
+    print "                          cannot be guessed: project name, revision,\n";
+    print "                          host type, and build type.\n";
     print "  -n, --dry-run           Just parse, don't print output.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
@@ -195,7 +192,7 @@ foreach $arg (@ARGV) {
 	$timestamp = "unknown" if !$timestamp;
 
 	if ($Verbose) {
-	    print STDERR "$file:\n";
+	    print STDERR "`$file':\n";
 	    print STDERR " Project: $project\n";
 	    print STDERR " Revision: $revision\n";
 	    print STDERR " Mode: $mode\n";
@@ -207,7 +204,8 @@ foreach $arg (@ARGV) {
 	}
 
 	die "Could not guess all required values" .
-	    ($Verbose ? "" : " (use -v to print values)")."\n"
+	    ($Verbose ? " for file\n" :
+	     " (use -v to print values) while reading:\n$file\n")
 	    if $Abort && (!$project || $revision eq "" ||
 			  !$hosttype || !$buildtype || !$status);
 
