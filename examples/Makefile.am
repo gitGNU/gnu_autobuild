@@ -17,10 +17,8 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
-EXTRA_DIST = libidn.txt
+EXTRA_DIST = libidn.txt libidn2.txt
 
-example.html: libidn.txt
-	$(top_srcdir)/autobuild libidn.txt
-	$(top_srcdir)/autobuild --html libidn.txt
-	$(top_srcdir)/autobuild --html libidn.txt --hostname latte --timestamp=20040607-0220
-	$(top_srcdir)/abindex autobuild,*,log.* > example.html
+example.html: libidn.txt libidn2.txt
+	$(top_srcdir)/htmlize libidn2.txt libidn2.html && \
+		$(top_srcdir)/autobuild libidn.txt libidn2.html > example.html
