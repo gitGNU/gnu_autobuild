@@ -1,3 +1,35 @@
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 3.2.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: More guess regexps.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add PWD from set guessing regexp.
+
+2004-08-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix make regexp.
+
+2004-08-02  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Fix.
+
+2004-08-02  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
 2004-07-31  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 3.1.
