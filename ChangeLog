@@ -1,3 +1,32 @@
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* abindex, autobuild, configure.ac: Bump version.
+
+2004-07-09  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 1.5.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Abindex usage fix.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi, abindex: Doc fix.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Remove --outdir (not used).  Doc fix.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Also accept directories on command line.  Create links
+	to each project if multiple projects.  Minor markup fixes.
+
 2004-07-08  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 1.4.
