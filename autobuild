@@ -44,7 +44,7 @@ GetOptions ('help|usage|h' => \$PrintHelp,
 
 # Handle --help.
 if ($PrintHelp || $#ARGV == -1) {
-    print "Usage: $0 [OPTION]... [FILE]...\n";
+    print "Usage: $0 [OPTION]... FILE...\n";
     print "\n";
     print "Read and parse build logs to find project name, revision, build mode,\n";
     print "build host type, build type (for cross compile builds), hostname, and\n";
