@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.8 $'
+rcs_revision='$Revision: 1.9 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="htmlize (autobuild) $rcs_version
@@ -32,22 +32,32 @@ For more information about these matters, see the files named COPYING."
 
 usage="Usage: $prog [OPTION]... INFILE [OUTFILE [EMACS-MODE]]
 
-Launch GNU Emacs, loading INFILE into a buffer, then invoke EMACS-MODE
-followed by htmlize.el on the buffer, saving the output into OUTFILE.
+Launch Emacs and load INFILE into a buffer, then invoke a major mode
+for font locking, and render the fontified buffer as HTML, saving the
+result into OUTFILE.
+
+Emacs must have htmlfontify.el installed in its load-path.
 
 If OUTFILE is not specified, it will use INFILE appended with .html.
 
 If EMACS-MODE is not specified, compilation-mode will be used.
 
 Options:
-  -f, --force   overwrite OUTFILE if it exists, instead of
-                exiting unsuccessfully with an error message.
-  -u, --update  only write to OUTFILE when OUTFILE does not exist,
-                or when INFILE is more recent than OUTFILE.
-  -h, --help    display this help and exit successfully.
-  --version     display version information and exit successfully.
+      --emacs COMMAND  Use specified command to invoke emacs, e.g. \"emacs21\".
+      --mode MODE      Fontify file using specified Emacs mode, defaults to
+                       \"compilation-mode\".  E.g., \"sh-mode\".
+  -f, --force          Overwrite OUTFILE if it exists, instead of
+                       exiting unsuccessfully with an error message.
+  -u, --update         Only write to OUTFILE when OUTFILE does not exist,
+                       or when INFILE is more recent than OUTFILE.
+  -h, --help           Display this help and exit successfully.
+      --version        Display version information and exit successfully. 
 
-Simple example: $prog mybuildlog.txt mybuildlog.html
+Environment variables:
+  EMACS                The Emacs editor command.
+
+Simple example:
+  $prog mybuildlog.txt mybuildlog.html
 
 Report bugs to <bug-autobuild@josefsson.org>."
 
@@ -60,6 +70,7 @@ while test $# -gt 0; do
     --force) force=t;;
     -u) update=t;;
     --update) update=t;;
+    --emacs) shift; EMACS=$1;;
     -*)
       echo "$0: Unknown or ambiguous option \`$1'." >&2
       echo "$0: Try \`--help' for more information." >&2
@@ -86,6 +97,12 @@ fi
 
 OUTFILE=${OUTFILE:-$INFILE.html}
 EMACSMODE=${EMACSMODE:-compilation-mode}
+EMACS=${EMACS:-emacs}
+
+if test ! -f $INFILE; then
+    echo "$0: No such file \`$INFILE'." >&2
+    exit 1
+fi
 
 if test -f $OUTFILE; then
     if test -n "$force"; then
@@ -103,4 +120,4 @@ if test -f $OUTFILE; then
     fi
 fi
 
-emacs --batch --eval "(let ((coding-system-for-write 'binary)) (autoload 'htmlfontify-buffer \"htmlfontify\") (toggle-debug-on-error) (find-file \"$INFILE\") ($EMACSMODE) (font-lock-fontify-buffer) (htmlfontify-buffer) (setq buffer-file-name \"$OUTFILE\") (save-buffer) (kill-emacs))"
+$EMACS --batch --eval "(let ((hfy-display-class '((class . color))) (coding-system-for-write 'binary)) (autoload 'htmlfontify-buffer \"htmlfontify\") (toggle-debug-on-error) (find-file \"$INFILE\") ($EMACSMODE) (font-lock-fontify-buffer) (htmlfontify-buffer) (setq buffer-file-name \"$OUTFILE\") (save-buffer) (kill-emacs))"
