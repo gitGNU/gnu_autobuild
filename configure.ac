@@ -19,7 +19,7 @@ dnl Boston, MA 02111-1307, USA.
 
 AC_INIT(autobuild, 1.3, bug-autobuild@josefsson.org)
 
-AM_INIT_AUTOMAKE([gnits tar-pax])
+AM_INIT_AUTOMAKE(gnits)
 
 AM_MISSING_PROG(HELP2MAN, help2man, $missing_dir)
 
