@@ -52,10 +52,12 @@ if ($PrintHelp) {
     print "\n";
     print "Mandatory arguments to long options are mandatory for short options too.\n";
     print "\n";
-    print "      --abort             Abort if guessing values fail.\n";
+    print "      --abort             Abort if guessing values for a file fails.\n";
     print "                          With the exceptions of build mode\n";
     print "                          (falls back to 'default') and\n";
     print "                          the status (falls back to 'fail').\n";
+    print "                          Use in combination with -v to print name\n";
+    print "                          of file.\n";
     print "  -n, --dry-run           Just parse, don't print output.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
@@ -86,7 +88,7 @@ if ($PrintHelp) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    print "autobuild (autobuild) 1.5\n";
+    print "autobuild (autobuild) 2.0\n";
     print "\n";
     print "Copyright (C) 2004 Simon Josefsson\n";
     print "This is free software; see the source for copying conditions.  There is NO\n";
