@@ -7,6 +7,10 @@ scripts used by Simon Josefsson for a few projects.
 
 The `htmlize' tool uses htmlfontify.el by Vivek Dasmohapatra.
 
+Command line parsing, handling of --help and --version, in the abput*
+and abbuild* scripts, were taken from gendocs.sh in Texinfo, written
+by Mohit Agarwal, Karl Berry et al.
+
 ----------------------------------------------------------------------
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
