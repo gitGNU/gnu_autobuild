@@ -17,7 +17,7 @@ dnl along with Autobuild; see the file COPYING.  If not, write to the
 dnl Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 dnl Boston, MA 02111-1307, USA.
 
-AC_INIT(autobuild, 3.0, bug-autobuild@josefsson.org)
+AC_INIT(autobuild, 3.1, bug-autobuild@josefsson.org)
 
 AM_INIT_AUTOMAKE(gnits)
 
