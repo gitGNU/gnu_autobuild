@@ -2,6 +2,13 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
+* Version 1.5 (unreleased)
+
+** abindex: Accepts directories as command line argument, not just files.
+This is useful if you have too many files in a directory, so that
+expanding wildcards in the directory overflow command line argument
+size restrictions.
+
 * Version 1.4 (released 2004-07-08)
 
 ** Don't include generated files in examples/.
