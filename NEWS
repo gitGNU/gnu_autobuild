@@ -2,7 +2,11 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
-* Version 2.0 (unreleased)
+* Version 2.1 (unreleased)
+
+** Htmlize now works in batch mode.
+This was accomplished by using htmlfontify.el by Vivek Dasmohapatra
+instead of htmlize.el.
 
 * Version 2.0 (released 2004-07-09)
 
