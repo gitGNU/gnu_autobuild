@@ -22,7 +22,6 @@ AC_INIT(autobuild, 2.1, bug-autobuild@josefsson.org)
 AM_INIT_AUTOMAKE(gnits)
 
 AM_MISSING_PROG(HELP2MAN, help2man, $missing_dir)
-AM_MISSING_PROG(PERL, perl, $missing_dir)
 
 AM_PATH_LISPDIR
 
