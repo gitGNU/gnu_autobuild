@@ -2,6 +2,12 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004 Simon Josefsson
 See the end for copying conditions.
 
+* Version 1.4 (unreleased)
+
+** Don't include generated files in examples/.
+The file names were too long, which causes problems with tar.  Now you
+have to type 'make example.html' in examples/ yourself.
+
 * Version 1.3 (released 2004-07-08)
 
 ** Added proper manual in doc/.
