@@ -1,5 +1,21 @@
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
+	* autobuild: Add --abort.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix hostname guessing.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Support --dry-run.  Support telnet hostname guessing.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Support text and HTML.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
 	* Makefile: Fix.
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
