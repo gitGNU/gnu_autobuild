@@ -19,46 +19,25 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
-TMPDIR="tmp.$$"
+TMP="tmp.$$"
 srcdir=${srcdir:-.}
 
-LOG=$srcdir/examples/libidn.txt
-
-if mkdir $TMPDIR; then
-    :
-else
-    echo mkdir $TMPDIR failed
-    exit 1
-fi
-
-expect="autobuild,project=libidn,revision=0.5.0,mode=default,hosttype=i686-pc-linux-gnu,buildtype=i686-pc-linux-gnu,hostname=unknown,timestamp=unknown,status=ok,log.txt"
-filename=`$srcdir/autobuild -o $TMPDIR $LOG`
+filename=`(cd $srcdir; ./autobuild --dry-run --verbose examples/libidn.txt) 2> $TMP`
 err=$?
 
 if test "$err" != "0"; then
     echo Running autobuild failed: $err
-    rmdir $TMPDIR
+    rm -f $TMP
     exit 1
 fi
 
-if test "$filename" != "$TMPDIR/$expect"; then
-    echo File name mismatch
-    echo Expected: $expect
-    echo Got: $filename
-    rm -f $filename
-    rmdir $TMPDIR
-    exit 1
-fi
-
-if cmp $filename $LOG; then
+if cmp $TMP $srcdir/examples/libidn.expect; then
     :
 else
     echo File comparison failed
-    rm -f $filename
-    rmdir $TMPDIR
+    rm -f $TMP
     exit 1
 fi
 
-rm -f $filename
-rmdir $TMPDIR
+rm -f $TMP
 exit 0
