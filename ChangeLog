@@ -1,3 +1,79 @@
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix release target.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 1.0.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Clean Status too.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Mention number of entries.  Fix final blanks.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix last commit.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Accept in _ system triplets.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* abindex: Fix sort orders.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild: Don't use !.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild: Use srcdir.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Dist test script.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix test rule.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add self test.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild, logs/autobuild.log: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Clear variables between files.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Handle more than file name on command line.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4: Make sure AC_CANONICAL_* is called.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Gnits.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS, buildconf.sh: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix ChangeLog.
+
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
 	* autobuild.m4: Add.
