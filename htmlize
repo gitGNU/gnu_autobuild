@@ -20,15 +20,15 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.11 $'
+rcs_revision='$Revision: 1.12 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="htmlize (autobuild) $rcs_version
 
 Copyright (C) 2004 Simon Josefsson
-There is NO warranty.  You may redistribute this software
-under the terms of the GNU General Public License.
-For more information about these matters, see the files named COPYING."
+There is NO warranty.  You may redistribute this software under the
+terms of the GNU General Public License.  For more information about
+these matters, see the file named COPYING."
 
 usage="Usage: $prog [OPTION]... INFILE [OUTFILE [EMACS-MODE]]
 
