@@ -1,0 +1,113 @@
+#!/usr/bin/perl
+
+# Copyright (C) 2004 Simon Josefsson.
+#
+# This file is part of Autobuild.
+#
+# Autobuild is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# Autobuild is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Autobuild; see the file COPYING.  If not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+# MA 02111-1307, USA.
+
+use strict;
+use Getopt::Long;
+
+# Parse command line parameters.
+my $Help = 0;
+my $Verbose = 0;
+my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
+GetOptions ('help|usage|h' => \$Help,
+	    'verbose'      => \$Verbose,
+	    'project=s'    => \$Project,
+	    'revision=s'   => \$Revision,
+	    'mode=s'       => \$Mode,
+	    'Hosttype=s'   => \$Hosttype,
+	    'Buildtype=s'  => \$Buildtype,
+	    'Hostname=s'   => \$Hostname,
+	    'Timestamp=s'  => \$Timestamp);
+
+# Handle --help.
+if ($Help) {
+    print "Usage: $0 [-v] [-h] [FILE ...]\n";
+    exit 0;
+}
+
+if ($Verbose) {
+    print "Project: $Project\n" if $Project;
+    print "Revision: $Revision\n" if $Revision;
+    print "Mode: $Mode\n" if $Mode;
+    print "Hosttype: $Hosttype\n" if $Hosttype;
+    print "Buildtype: $Buildtype\n" if $Buildtype;
+    print "Hostname: $Hostname\n" if $Hostname;
+    print "Timestamp: $Timestamp\n" if $Timestamp;
+}
+
+# Declarations.
+my ($tmpfile) = ".autobuild.$$";
+
+# Always clean up in case of failure.
+sub END { unlink $tmpfile; }
+
+# Core.
+open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
+
+while (<>) {
+    # These override everything.
+    $Project = $1 if m,autobuild project... (.*),;
+    $Revision = $1 if m,autobuild revision... (.*),;
+    $Mode = $1 if m,autobuild mode... (.*),;
+    $Hostname = $1 if m,autobuild hostname... (.*),;
+    $Hosttype = $1 if m,autobuild hosttype... (.*),;
+    $Buildtype = $1 if m,autobuild buildtype... (.*),;
+    $Timestamp = $1 if m,autobuild timestamp... (.*),;
+
+    # GNU Autoconf output.
+    $Hosttype = $1 if !$Hosttype && m,checking host system type... (.*),;
+    $Buildtype = $1 if !$Buildtype && m,checking build system type... (.*),;
+
+    # Works for GNU make.
+    $Project = $1 if !$Project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
+    $Revision = $1 if !$Revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
+
+    # If output mention a tar.gz archive.
+    $Project = $1 if !$Project && m,/([a-z]+)-[0-9.]+.tar.gz,;
+    $Revision = $1 if !$Revision && m,/[a-z]+-([0-9.]+).tar.gz,;
+
+    print OUT $_;
+}
+
+$Project = "unknown" if !$Project;
+$Revision = "0" if !$Revision;
+$Mode = "default" if !$Mode;
+$Hostname = "unknown" if !$Hostname;
+$Hosttype = "unknown" if !$Hosttype;
+$Buildtype = "unknown" if !$Buildtype;
+$Timestamp = "unknown" if !$Timestamp;
+
+if ($Verbose) {
+    print "autobuild project... $Project\n";
+    print "autobuild revision... $Revision\n";
+    print "autobuild mode... $Mode\n";
+    print "autobuild hosttype... $Hosttype\n";
+    print "autobuild buildtype... $Buildtype\n";
+    print "autobuild hostname... $Hostname\n";
+    print "autobuild timestamp... $Timestamp\n";
+}
+
+close OUT;
+
+my ($outfile) = "autobuild-log,project:$Project,revision:$Revision,mode:$Mode,hosttype:$Hosttype,buildtype:$Buildtype,hostname:$Hostname,timestamp=$Timestamp.txt";
+
+rename $tmpfile, $outfile or die "Cannot rename $tmpfile to $outfile";
+
+print "$outfile\n" if $Verbose;
