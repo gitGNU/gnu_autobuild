@@ -17,8 +17,8 @@ AC_DEFUN([AB_INIT],
 	AC_REQUIRE([AC_CANONICAL_BUILD])
 	AC_REQUIRE([AC_CANONICAL_HOST])
 
-	AC_MSG_NOTICE([autobuild project... $PACKAGE_NAME])
-	AC_MSG_NOTICE([autobuild revision... $PACKAGE_VERSION])
+	AC_MSG_NOTICE([autobuild project... ${PACKAGE_NAME:-$PACKAGE}])
+	AC_MSG_NOTICE([autobuild revision... ${PACKAGE_VERSION:-$VERSION}])
 	hostname=`hostname`
 	if test "$hostname"; then
 	   AC_MSG_NOTICE([autobuild hostname... $hostname])
