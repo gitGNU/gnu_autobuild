@@ -110,78 +110,90 @@ sub END { unlink $tmpfile; }
 # Core.
 open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
 
+my ($project, $revision, $mode, $hostname, $hosttype,
+    $buildtype, $timestamp, $status);
+
 while (<>) {
+    $project = $Project;
+    $revision = $Revision;
+    $mode = $Mode;
+    $hostname = $Hostname;
+    $hosttype = $Hosttype;
+    $buildtype = $Buildtype;
+    $timestamp = $Timestamp;
+    $status = $Status;
+
     if (m,\r\n$,) {
 	chop; chop;
 	$_ = $_ . "\n";
     }
 
-    # These override everything.
-    $Project = $1 if m,autobuild project... (.*),;
-    $Revision = $1 if m,autobuild revision... (.*),;
-    $Mode = $1 if m,autobuild mode... (.*),;
-    $Hostname = $1 if m,autobuild hostname... (.*),;
-    $Hosttype = $1 if m,autobuild hosttype... (.*),;
-    $Buildtype = $1 if m,autobuild buildtype... (.*),;
-    $Timestamp = $1 if m,autobuild timestamp... (.*),;
+    # These override everything (except command line parameters).
+    $project = $1 if !$Project && m,autobuild project... (.*),;
+    $revision = $1 if !$Revision && m,autobuild revision... (.*),;
+    $mode = $1 if !$Mode && m,autobuild mode... (.*),;
+    $hostname = $1 if !$Hostname && m,autobuild hostname... (.*),;
+    $hosttype = $1 if !$Hosttype && m,autobuild hosttype... (.*),;
+    $buildtype = $1 if !$Buildtype && m,autobuild buildtype... (.*),;
+    $timestamp = $1 if !$Timestamp && m,autobuild timestamp... (.*),;
 
     # GNU Autoconf host/build output.
-    $Hosttype = $1 if !$Hosttype && m,checking host system type... ([a-z0-9_.-]+),;
-    $Buildtype = $1 if !$Buildtype && m,checking build system type... ([a-z0-9_.-]+),;
+    $hosttype = $1 if !$hosttype && m,checking host system type... ([a-z0-9_.-]+),;
+    $buildtype = $1 if !$buildtype && m,checking build system type... ([a-z0-9_.-]+),;
 
     # Automake self test output.
-    $Status = "ok" if !$Status && m,All [0-9]+ tests passed,;
-    $Status = "almost" if !$Status && m,[0-9]+ of [0-9]+ tests failed,;
+    $status = "ok" if !$status && m,All [0-9]+ tests passed,;
+    $status = "almost" if !$status && m,[0-9]+ of [0-9]+ tests failed,;
 
     # Works for GNU make.
-    $Project = $1 if !$Project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
-    $Revision = $1 if !$Revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
+    $project = $1 if !$project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
+    $revision = $1 if !$revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
 
     # Telnet string.
-    $Hostname = $1 if !$Hostname && m,Trying (.*)\.\.\.,;
-    $Hostname = $1 if !$Hostname && m,Connected to (.*)\.,;
+    $hostname = $1 if !$hostname && m,Trying (.*)\.\.\.,;
+    $hostname = $1 if !$hostname && m,Connected to (.*)\.,;
 
     # SSH string.
-    $Hostname = $1 if !$Hostname && m,Connection to (.*) closed.,;
+    $hostname = $1 if !$hostname && m,Connection to (.*) closed.,;
 
     # If output mention a tar.gz archive.
-    $Project = $1 if !$Project && m,/([a-z]+)-[0-9.]+.tar.gz,;
-    $Revision = $1 if !$Revision && m,/[a-z]+-([0-9.]+).tar.gz,;
+    $project = $1 if !$project && m,/([a-z]+)-[0-9.]+.tar.gz,;
+    $revision = $1 if !$revision && m,/[a-z]+-([0-9.]+).tar.gz,;
 
     print OUT $_;
 
     if (eof) {
 	if (!$Abort) {
-	    $Project = "unknown" if !$Project;
-	    $Revision = "0" if !$Revision;
-	    $Hostname = "unknown" if !$Hostname;
-	    $Hosttype = "unknown" if !$Hosttype;
-	    $Buildtype = "unknown" if !$Buildtype;
-	    $Timestamp = "unknown" if !$Timestamp;
+	    $project = "unknown" if !$project;
+	    $revision = "0" if $revision eq "";
+	    $hostname = "unknown" if !$hostname;
+	    $hosttype = "unknown" if !$hosttype;
+	    $buildtype = "unknown" if !$buildtype;
+	    $timestamp = "unknown" if !$timestamp;
 	}
-	$Mode = "default" if !$Mode;
-	$Status = "fail" if !$Status;
+	$mode = "default" if !$mode;
+	$status = "fail" if !$status;
 
 	if ($Verbose) {
-	    print "Project: $Project\n" if $Project;
-	    print "Revision: $Revision\n" if $Revision ne "";
-	    print "Mode: $Mode\n" if $Mode;
-	    print "Hosttype: $Hosttype\n" if $Hosttype;
-	    print "Buildtype: $Buildtype\n" if $Buildtype;
-	    print "Hostname: $Hostname\n" if $Hostname;
-	    print "Timestamp: $Timestamp\n" if $Timestamp;
-	    print "Status: $Status\n" if $Status;
+	    print STDERR "Project: $project\n" if $project;
+	    print STDERR "Revision: $revision\n" if $revision ne "";
+	    print STDERR "Mode: $mode\n" if $mode;
+	    print STDERR "Hosttype: $hosttype\n" if $hosttype;
+	    print STDERR "Buildtype: $buildtype\n" if $buildtype;
+	    print STDERR "Hostname: $hostname\n" if $hostname;
+	    print STDERR "Timestamp: $timestamp\n" if $timestamp;
+	    print STDERR "Status: $status\n" if $status;
 	}
 
 	close OUT;
 
 	die "Could not guess all required values" .
 	    ($Verbose ? "" : " (use -v to print values)")."\n"
-	    if $Abort && (!$Project || !$Revision || !$Hostname || !$Hosttype
-			  || !$Buildtype || !$Timestamp || !$Status);
+	    if $Abort && (!$project || !$revision || !$hostname || !$hosttype
+			  || !$buildtype || !$timestamp || !$status);
 
 	if (!$DryRun) {
-	    my ($outbase, $outfile) = "$OutDir/autobuild,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp,status=$Status,log";
+	    my ($outbase, $outfile) = "$OutDir/autobuild,project=$project,revision=$revision,mode=$mode,hosttype=$hosttype,buildtype=$buildtype,hostname=$hostname,timestamp=$timestamp,status=$status,log";
 	    if ($Html) {
 		$outfile = $outbase . ".html";
 		system ("emacs --eval '(let ((htmlize-before-hook (lambda () (compilation-mode) (font-lock-fontify-buffer)))) (htmlize-file \"$tmpfile\" \"$outfile\") (kill-emacs))'");
@@ -193,13 +205,5 @@ while (<>) {
 	}
 
 	open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
-	undef $Project;
-	undef $Revision;
-	undef $Mode;
-	undef $Hostname;
-	undef $Hosttype;
-	undef $Buildtype;
-	undef $Timestamp;
-	undef $Status;
     }
 }
