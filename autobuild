@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.57 $';
+    my ($rev) = '$Revision: 1.58 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -299,17 +299,17 @@ foreach $project (sort keys %Projects) {
     print "\n";
 
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
+	my $bit = 0;
+
 	print "<hr>\n";
 	print "<a name=\"$project-$revision\"><h3>Summary for $project $revision</h3></a>\n";
 	print "\n";
-	print "<table border=1>\n";
-	print "<tr>\n";
+	print "<table border=0>\n";
+	print "<tr bgcolor=lightblue>\n";
 	print "<td>System</td>\n";
-	print "<td>Cross compile?</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
-	print "<td>Log</td>\n";
 	print "</tr>\n";
 	print "\n";
 	foreach $file (@Files) {
@@ -332,23 +332,30 @@ foreach $project (sort keys %Projects) {
 	    $Timestamp = $Timestamp{$file};
 	    $Status = $Status{$file};
 
-	    print "<tr>\n";
-	    print "<td>$Hosttype</td>\n";
-	    if ($Hosttype eq $Buildtype) {
-		print "<td>no</td>\n";
+	    if ($bit) {
+		print "<tr bgcolor=lightgray>\n";
 	    } else {
-		print "<td>yes, from $Buildtype</td>\n";
+		print "<tr>\n";
+	    }
+	    $bit = !$bit;
+
+	    print "<td>$Hosttype";
+	    if ($Hosttype eq $Buildtype) {
+		print "</td>\n";
+	    } else {
+		print " from $Buildtype</td>\n";
 	    }
 	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
+	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
-		print "<td><font color=green>Success</font></td>\n";
+		print "<font color=green>Success</font>\n";
 	    } elsif ($Status eq "almost") {
-		print "<td><font color=orange>Almost</font></td>\n";
+		print "<font color=orange>Almost</font>\n";
 	    } else {
-		print "<td><font color=red>Failure</font></td>\n";
+		print "<font color=red>Failure</font>\n";
 	    }
-	    print "<td><a href=\"$file\">log</a></td>\n";
+	    print "</a></td>\n";
 	    print "</tr>\n";
 	    print "\n";
 	}
@@ -358,17 +365,18 @@ foreach $project (sort keys %Projects) {
     print "\n";
 
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
+	my $bit = 0;
+
 	print "<hr>\n";
 	print "<a name=\"$project-$hosttype\"><h3>Summary for $project on $hosttype</h3></a>\n";
 	print "\n";
-	print "<table border=1>\n";
-	print "<tr>\n";
+	print "<table border=0>\n";
+	print "<tr bgcolor=lightblue>\n";
 	print "<td>Revision</td>\n";
 	print "<td>Build host type</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
-	print "<td>Log</td>\n";
 	print "</tr>\n";
 	print "\n";
 	foreach $file (@Files) {
@@ -391,19 +399,26 @@ foreach $project (sort keys %Projects) {
 	    $Timestamp = $Timestamp{$file};
 	    $Status = $Status{$file};
 
-	    print "<tr>\n";
+	    if ($bit) {
+		print "<tr bgcolor=lightgray>\n";
+	    } else {
+		print "<tr>\n";
+	    }
+	    $bit = !$bit;
+
 	    print "<td>$Revision</td>\n";
 	    print "<td>$Buildtype</td>\n";
 	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
+	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
-		print "<td><font color=green>Success</font></td>\n";
+		print "<font color=green>Success</font>\n";
 	    } elsif ($Status eq "almost") {
-		print "<td><font color=orange>Almost</font></td>\n";
+		print "<font color=orange>Almost</font>\n";
 	    } else {
-		print "<td><font color=red>Failure</font></td>\n";
+		print "<font color=red>Failure</font>\n";
 	    }
-	    print "<td><a href=\"$file\">log</a></td>\n";
+	    print "</a></td>\n";
 	    print "</tr>\n";
 	    print "\n";
 	}
@@ -413,17 +428,17 @@ foreach $project (sort keys %Projects) {
     print "\n";
 
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
+	my $bit = 0;
+
 	print "<hr>\n";
 	print "<a name=\"$project-$hostname\"><h3>Summary for $project built on $hostname</h3></a>\n";
 	print "\n";
-	print "<table border=1>\n";
-	print "<tr>\n";
+	print "<table border=0>\n";
+	print "<tr bgcolor=lightblue>\n";
 	print "<td>Version</td>\n";
 	print "<td>System</td>\n";
-	print "<td>Cross compile?</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
-	print "<td>Log</td>\n";
 	print "</tr>\n";
 	print "\n";
 	foreach $file (@Files) {
@@ -446,23 +461,30 @@ foreach $project (sort keys %Projects) {
 	    $Timestamp = $Timestamp{$file};
 	    $Status = $Status{$file};
 
-	    print "<tr>\n";
-	    print "<td>$Revision</td>\n";
-	    print "<td>$Hosttype</td>\n";
-	    if ($Hosttype eq $Buildtype) {
-		print "<td>no</td>\n";
+	    if ($bit) {
+		print "<tr bgcolor=lightgray>\n";
 	    } else {
-		print "<td>yes, from $Buildtype</td>\n";
+		print "<tr>\n";
+	    }
+	    $bit = !$bit;
+
+	    print "<td>$Revision</td>\n";
+	    print "<td>$Hosttype";
+	    if ($Hosttype eq $Buildtype) {
+		print "</td>\n";
+	    } else {
+		print " from $Buildtype</td>\n";
 	    }
 	    print "<td>$Timestamp</td>\n";
+	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
-		print "<td><font color=green>Success</font></td>\n";
+		print "<font color=green>Success</font>\n";
 	    } elsif ($Status eq "almost") {
-		print "<td><font color=orange>Almost</font></td>\n";
+		print "<font color=orange>Almost</font>\n";
 	    } else {
-		print "<td><font color=red>Failure</font></td>\n";
+		print "<font color=red>Failure</font>\n";
 	    }
-	    print "<td><a href=\"$file\">log</a></td>\n";
+	    print "</a></td>\n";
 	    print "</tr>\n";
 	    print "\n";
 	}
