@@ -122,6 +122,11 @@ sub END { unlink $tmpfile; }
 open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
 
 while (<>) {
+    if (m,\r\n$,) {
+	chop; chop;
+	$_ = $_ . "\n";
+    }
+
     # These override everything.
     $Project = $1 if m,autobuild project... (.*),;
     $Revision = $1 if m,autobuild revision... (.*),;
