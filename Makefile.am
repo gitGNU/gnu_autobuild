@@ -24,6 +24,8 @@ ACLOCAL_AMFLAGS = -I .
 m4datadir = $(datadir)/aclocal
 m4data_DATA = autobuild.m4
 
+dist_lisp_DATA = htmlize.el
+
 dist_bin_SCRIPTS = autobuild htmlize
 
 TESTS = tst-autobuild tst-simple
