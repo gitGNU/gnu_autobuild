@@ -137,27 +137,30 @@ print "</head>\n";
 print "\n";
 print "<body>\n";
 print "<h1>Index to Autobuild logs</h1>\n";
+print "\n";
+print "<p>This page was created on " . (scalar localtime) . " using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
+print "\n";
 
 foreach $project (sort keys %Projects) {
     print "<hr>\n";
     print "<h2>Project '$project'</h2>\n";
 
-    print "<p>Revisions: ";
+    print "<p>Revisions (" . keys(%{$Revisions{$project}}) . "): ";
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<a href=\"#$project-$revision\">$revision</a>, ";
     }
 
-    print "<p>Hosttypes: ";
+    print "<p>Hosttypes (" . keys(%{$Hosttypes{$project}}) . "): ";
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	print "<a href=\"#$project-$hosttype\">$hosttype</a>, \n";
     }
 
-    print "<p>Build hosts: ";
+    print "<p>Build hosts (" . keys(%{$Hostnames{$project}}) . "): ";
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
 	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
     }
 
-    foreach $revision (reverse sort  { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
+    foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<hr>\n";
 	print "<a name=\"$project-$revision\"><h3>Summary for $project $revision</h3></a>\n";
 	print "\n";
@@ -332,7 +335,93 @@ foreach $project (sort keys %Projects) {
 
 print "\n";
 print "<hr>\n";
-print "This page was created on " . (scalar localtime) . " using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<br>\n";
+print "<hr>\n";
 print "\n";
 print "</body>\n";
 print "</html>\n";
