@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.51 $';
+    my ($rev) = '$Revision: 1.52 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -154,13 +154,13 @@ foreach $arg (@ARGV) {
 	    }
 
 	    # These override everything (except command line parameters).
-	    $project = $1 if !$Project && m,autobuild project... (.*),;
-	    $revision = $1 if !$Revision && m,autobuild revision... (.*),;
-	    $mode = $1 if !$Mode && m,autobuild mode... (.*),;
-	    $hostname = $1 if !$Hostname && m,autobuild hostname... (.*),;
-	    $hosttype = $1 if !$Hosttype && m,autobuild hosttype... (.*),;
-	    $buildtype = $1 if !$Buildtype && m,autobuild buildtype... (.*),;
-	    $timestamp = $1 if !$Timestamp && m,autobuild timestamp... (.*),;
+	    $project = $1 if !$Project && m,autobuild project... (.+),;
+	    $revision = $1 if !$Revision && m,autobuild revision... (.+),;
+	    $mode = $1 if !$Mode && m,autobuild mode... (.+),;
+	    $hostname = $1 if !$Hostname && m,autobuild hostname... (.+),;
+	    $hosttype = $1 if !$Hosttype && m,autobuild hosttype... (.+),;
+	    $buildtype = $1 if !$Buildtype && m,autobuild buildtype... (.+),;
+	    $timestamp = $1 if !$Timestamp && m,autobuild timestamp... (.+),;
 
 	    # GNU Autoconf host/build output.
 	    $hosttype = $3 if !$hosttype && m,host system type(<[^>]+>)?\.\.\. (<[^>]+>)?([a-z0-9_.-]+),;
