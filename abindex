@@ -66,7 +66,7 @@ if ($PrintVersion) {
     exit 0;
 }
 
-my (@Files, $file);
+my (@Files, $arg, $file);
 
 my (%Projects);
 my (%Revisions);
@@ -77,55 +77,73 @@ my (%Hostnames);
 my (%Timestamps);
 my (%Statuss);
 
-foreach $file (@ARGV) {
-    if (!$file =~ m:autobuild(,.*,)log.[a-z]+:) {
-	warn "Skipping file (unrecognized file name): `$file'";
+foreach $arg (@ARGV) {
+    my (@files);
+
+    if (-d $arg) {
+	if (!opendir DIRH, $arg) {
+	    warn "Cannot open directory: $arg";
+	    next;
+	}
+	@files = grep { /^[^.]/ && -f "$arg/$_" } readdir(DIRH);
+	closedir DIRH;
+    } elsif (-f $arg) {
+	push @files, $arg;
+    } else {
+	warn "Skipping unknown file: $arg";
 	next;
     }
 
-    my ($Project);
-    my ($Revision);
-    my ($Mode);
-    my ($Hosttype);
-    my ($Buildtype);
-    my ($Hostname);
-    my ($Timestamp);
-    my ($Status);
+    foreach $file (@files) {
+	if (!$file =~ m:autobuild(,.*,)log.[a-z]+:) {
+	    warn "Skipping file (unrecognized file name): `$file'";
+	    next;
+	}
 
-    $Project = $1 if $file =~ m:,project=([^,]+),:;
-    $Revision = $1 if $file =~ m:,revision=([^,]+),:;
-    $Mode = $1 if $file =~ m:,mode=([^,]+),:;
-    $Hosttype = $1 if $file =~ m:,hosttype=([^,]+),:;
-    $Buildtype = $1 if $file =~ m:,buildtype=([^,]+),:;
-    $Hostname = $1 if $file =~ m:,hostname=([^,]+),:;
-    $Timestamp = $1 if $file =~ m:,timestamp=([^,]+),:;
-    $Status = $1 if $file =~ m:,status=([^,]+),:;
+	my ($Project);
+	my ($Revision);
+	my ($Mode);
+	my ($Hosttype);
+	my ($Buildtype);
+	my ($Hostname);
+	my ($Timestamp);
+	my ($Status);
 
-    if ($Verbose) {
-	print STDERR "$file:\n";
-	print STDERR " Project: $Project\n";
-	print STDERR " Revision: $Revision\n";
-	print STDERR " Mode: $Mode\n";
-	print STDERR " Hosttype: $Hosttype\n";
-	print STDERR " Buildtype: $Buildtype\n";
-	print STDERR " Hostname: $Hostname\n";
-	print STDERR " Timestamp: $Timestamp\n";
-	print STDERR " Status: $Status\n";
+	$Project = $1 if $file =~ m:,project=([^,]+),:;
+	$Revision = $1 if $file =~ m:,revision=([^,]+),:;
+	$Mode = $1 if $file =~ m:,mode=([^,]+),:;
+	$Hosttype = $1 if $file =~ m:,hosttype=([^,]+),:;
+	$Buildtype = $1 if $file =~ m:,buildtype=([^,]+),:;
+	$Hostname = $1 if $file =~ m:,hostname=([^,]+),:;
+	$Timestamp = $1 if $file =~ m:,timestamp=([^,]+),:;
+	$Status = $1 if $file =~ m:,status=([^,]+),:;
+
+	if ($Verbose) {
+	    print STDERR "$file:\n";
+	    print STDERR " Project: $Project\n";
+	    print STDERR " Revision: $Revision\n";
+	    print STDERR " Mode: $Mode\n";
+	    print STDERR " Hosttype: $Hosttype\n";
+	    print STDERR " Buildtype: $Buildtype\n";
+	    print STDERR " Hostname: $Hostname\n";
+	    print STDERR " Timestamp: $Timestamp\n";
+	    print STDERR " Status: $Status\n";
+	}
+
+	if (!$Project || $Revision eq "" || !$Mode || !$Hosttype ||
+	    !$Buildtype || !$Hostname || !$Timestamp || !$Status) {
+	    warn "Skipping file (missing values): `$file'";
+	    die if $Abort;
+	    next;
+	}
+
+	push @Files, $file;
+
+	$Projects{$Project} = 0;
+	${$Revisions{$Project}}{$Revision} = 0;
+	${$Hosttypes{$Project}}{$Hosttype} = 0;
+	${$Hostnames{$Project}}{$Hostname} = 0;
     }
-
-    if (!$Project || $Revision eq "" || !$Mode || !$Hosttype ||
-	!$Buildtype || !$Hostname || !$Timestamp || !$Status) {
-	warn "Skipping file (missing values): `$file'";
-	die if $Abort;
-	next;
-    }
-
-    push @Files, $file;
-
-    $Projects{$Project} = 0;
-    ${$Revisions{$Project}}{$Revision} = 0;
-    ${$Hosttypes{$Project}}{$Hosttype} = 0;
-    ${$Hostnames{$Project}}{$Hostname} = 0;
 }
 
 my ($project, $revision, $hosttype, $hostname);
@@ -141,24 +159,36 @@ print "\n";
 print "<p>This page was created on " . (scalar localtime) . " using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
 print "\n";
 
+if (%Projects > 1) {
+    print "<hr>\n";
+    print "<h2>Quick links to each project</h2>\n";
+    print "\n";
+    print "<p><ul>\n";
+    foreach $project (sort keys %Projects) {
+	print "<li><a href=\"#$project\">$project</a>\n";
+    }
+    print "</ul>\n";
+}
+
 foreach $project (sort keys %Projects) {
     print "<hr>\n";
-    print "<h2>Project '$project'</h2>\n";
-
+    print "<h2><a name=\"$project\">Project '$project'</a></h2>\n";
+    print "\n";
     print "<p>Revisions (" . keys(%{$Revisions{$project}}) . "): ";
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<a href=\"#$project-$revision\">$revision</a>, ";
     }
-
+    print "\n";
     print "<p>Hosttypes (" . keys(%{$Hosttypes{$project}}) . "): ";
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	print "<a href=\"#$project-$hosttype\">$hosttype</a>, \n";
     }
-
+    print "\n";
     print "<p>Build hosts (" . keys(%{$Hostnames{$project}}) . "): ";
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
 	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
     }
+    print "\n";
 
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<hr>\n";
@@ -218,6 +248,7 @@ foreach $project (sort keys %Projects) {
 	print "</table>\n";
 	print "\n";
     }
+    print "\n";
 
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	print "<hr>\n";
@@ -272,6 +303,7 @@ foreach $project (sort keys %Projects) {
 	print "</table>\n";
 	print "\n";
     }
+    print "\n";
 
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
 	print "<hr>\n";
@@ -330,6 +362,7 @@ foreach $project (sort keys %Projects) {
 	print "</table>\n";
 	print "\n";
     }
+    print "\n";
 
 }
 
