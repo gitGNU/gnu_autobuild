@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.14 2004-07-09 11:24:52 jas Exp $
+@comment $Id: autobuild.texi,v 1.15 2004-07-09 13:03:22 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -278,7 +278,7 @@ For use when autobuild fail to guess the values properly:
 
     --timestamp=STRING
            Specify  when  build  was  made.  Any date format will work, but
-           ’YYYY‐MM‐DDTHH:MM:SS’ is recommended.
+           `YYYY-MM-DD+HH.MM.SS' is recommended.
 
     --status=STRING
            Outcome of build.  Any string will work, but "ok" and "fail" are
