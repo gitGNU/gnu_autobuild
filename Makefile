@@ -8,9 +8,6 @@ all:
 install:
 	install -D -c $(NAME) "$(PREFIX)/sbin/cks-dns"
 
-clean:
-	rm -f *~ *.bak autobuild-log*.txt
-
 # Maintainer targets below.
 
 .PHONY: ChangeLog
