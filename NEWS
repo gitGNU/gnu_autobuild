@@ -6,7 +6,7 @@ See the end for copying conditions.
 
 ** Autobuild and Abindex now combined into one tool "autobuild".
 
-** Autobuild --html switch now moved into a separate script "htmlize".
+** New script "htmlize" replaces the Autobuild --html parameter.
 
 ** A copy of htmlize.el is now included and is installed by default.
 
