@@ -1,3 +1,76 @@
+2004-07-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 2.2.
+
+2004-07-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-28  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Improve *.tar.gz project/revision guessing.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Look for perl.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Remove.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Revert all #! magic, can't get it to work on NetBSD
+	with perl in non-standard location anyway.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix #! magic.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Use #! magic.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix warnings.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Revert.
+
+2004-07-16  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Look for perl.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs.sh, doc/gendocs_template: Update.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Typo.
+
+2004-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Typo.
+
 2004-07-14  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 2.1.
