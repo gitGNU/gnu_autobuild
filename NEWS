@@ -4,6 +4,12 @@ See the end for copying conditions.
 
 * Version 2.3 (unreleased)
 
+** New commands used to upload files to compile hosts.
+The generic front end "abput", and one backend "abput-sourceforge", is
+included.  By simply writing a new backend, e.g., "abput-myownserver",
+you can introduce new compile hosts that become available via the
+generic front end.
+
 * Version 2.2 (released 2004-07-28)
 
 ** Guessing of project name and revision based on *.tar.gz names improved.
