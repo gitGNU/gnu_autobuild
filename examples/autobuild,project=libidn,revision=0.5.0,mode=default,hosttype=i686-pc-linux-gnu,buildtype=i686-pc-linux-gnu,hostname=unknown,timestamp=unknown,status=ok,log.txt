@@ -1,0 +1,377 @@
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether NLS is requested... yes
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for msgmerge... /usr/bin/msgmerge
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking dependency style of gcc... gcc3
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+checking for ld used by GCC... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking whether NLS is requested... yes
+checking for GNU gettext in libc... yes
+checking whether to use NLS... yes
+checking where the gettext function comes from... libc
+checking for a sed that does not truncate output... /bin/sed
+checking for egrep... grep -E
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for /usr/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognise dependent libraries... pass_all
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking how to run the C++ preprocessor... g++ -E
+checking for g77... no
+checking for f77... no
+checking for xlf... no
+checking for frt... no
+checking for pgf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for f90... no
+checking for xlf90... no
+checking for pgf90... no
+checking for epcf90... no
+checking for f95... no
+checking for fort... no
+checking for xlf95... no
+checking for ifc... no
+checking for efc... no
+checking for pgf95... no
+checking for lf95... no
+checking for gfortran... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 32768
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if gcc static flag  works... yes
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC
+checking if gcc PIC flag -fPIC works... yes
+checking if gcc supports -c -o file.o... yes
+checking whether the gcc linker (/usr/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by g++... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC
+checking if g++ PIC flag -fPIC works... yes
+checking if g++ supports -c -o file.o... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+appending configuration tag "F77" to libtool
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ANSI C... (cached) none needed
+checking dependency style of gcc... (cached) gcc3
+checking for iconv... yes
+checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+checking for emacs... emacs
+checking where .elc files should go... ${datadir}/emacs/site-lisp
+checking for ANSI C header files... (cached) yes
+checking for unistd.h... (cached) yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking for stdint types... stdint.h (shortcircuit)
+make use of stdint.h in lib/idn-int.h (assuming C99 compatible system)
+checking for getopt_long... yes
+checking if setlocale() and nl_langinfo() works... yes
+checking if TLD API for specific TLD rules should be built... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking gtk-doc version >= 1.1... yes
+checking if implementation in Java should be built... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating libidn.pc
+config.status: creating doc/reference/Makefile
+config.status: creating doc/java/Makefile
+config.status: creating lib/stringprep.h
+config.status: creating contrib/doxygen/Doxyfile
+config.status: creating doc/Makefile
+config.status: creating doc/specifications/Makefile
+config.status: creating doc/tld/Makefile
+config.status: creating lib/Makefile
+config.status: creating src/Makefile
+config.status: creating tests/Makefile
+config.status: creating examples/Makefile
+config.status: creating java/Makefile
+config.status: creating java/gnu/Makefile
+config.status: creating java/gnu/inet/Makefile
+config.status: creating java/gnu/inet/encoding/Makefile
+config.status: creating java/misc/Makefile
+config.status: creating po/Makefile.in
+config.status: creating config.h
+config.status: executing default-1 commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+config.status: executing depfiles commands
+config.status: executing lib/idn-int.h commands
+config.status: creating lib/idn-int.h : _LIBIDN_LIB_IDN_INT_H
+Making check in lib
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/lib'
+make  check-am
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/lib'
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT nfkc.lo -MD -MP -MF ".deps/nfkc.Tpo" -c -o nfkc.lo nfkc.c; \
+then mv -f ".deps/nfkc.Tpo" ".deps/nfkc.Plo"; else rm -f ".deps/nfkc.Tpo"; exit 1; fi
+mkdir .libs
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT nfkc.lo -MD -MP -MF .deps/nfkc.Tpo -c nfkc.c  -fPIC -DPIC -o .libs/nfkc.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT nfkc.lo -MD -MP -MF .deps/nfkc.Tpo -c nfkc.c -o nfkc.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT toutf8.lo -MD -MP -MF ".deps/toutf8.Tpo" -c -o toutf8.lo toutf8.c; \
+then mv -f ".deps/toutf8.Tpo" ".deps/toutf8.Plo"; else rm -f ".deps/toutf8.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT toutf8.lo -MD -MP -MF .deps/toutf8.Tpo -c toutf8.c  -fPIC -DPIC -o .libs/toutf8.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT toutf8.lo -MD -MP -MF .deps/toutf8.Tpo -c toutf8.c -o toutf8.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT version.lo -MD -MP -MF ".deps/version.Tpo" -c -o version.lo version.c; \
+then mv -f ".deps/version.Tpo" ".deps/version.Plo"; else rm -f ".deps/version.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT version.lo -MD -MP -MF .deps/version.Tpo -c version.c  -fPIC -DPIC -o .libs/version.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT version.lo -MD -MP -MF .deps/version.Tpo -c version.c -o version.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT stringprep.lo -MD -MP -MF ".deps/stringprep.Tpo" -c -o stringprep.lo stringprep.c; \
+then mv -f ".deps/stringprep.Tpo" ".deps/stringprep.Plo"; else rm -f ".deps/stringprep.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT stringprep.lo -MD -MP -MF .deps/stringprep.Tpo -c stringprep.c  -fPIC -DPIC -o .libs/stringprep.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT stringprep.lo -MD -MP -MF .deps/stringprep.Tpo -c stringprep.c -o stringprep.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT rfc3454.lo -MD -MP -MF ".deps/rfc3454.Tpo" -c -o rfc3454.lo rfc3454.c; \
+then mv -f ".deps/rfc3454.Tpo" ".deps/rfc3454.Plo"; else rm -f ".deps/rfc3454.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT rfc3454.lo -MD -MP -MF .deps/rfc3454.Tpo -c rfc3454.c  -fPIC -DPIC -o .libs/rfc3454.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT rfc3454.lo -MD -MP -MF .deps/rfc3454.Tpo -c rfc3454.c -o rfc3454.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT profiles.lo -MD -MP -MF ".deps/profiles.Tpo" -c -o profiles.lo profiles.c; \
+then mv -f ".deps/profiles.Tpo" ".deps/profiles.Plo"; else rm -f ".deps/profiles.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT profiles.lo -MD -MP -MF .deps/profiles.Tpo -c profiles.c  -fPIC -DPIC -o .libs/profiles.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT profiles.lo -MD -MP -MF .deps/profiles.Tpo -c profiles.c -o profiles.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT punycode.lo -MD -MP -MF ".deps/punycode.Tpo" -c -o punycode.lo punycode.c; \
+then mv -f ".deps/punycode.Tpo" ".deps/punycode.Plo"; else rm -f ".deps/punycode.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT punycode.lo -MD -MP -MF .deps/punycode.Tpo -c punycode.c  -fPIC -DPIC -o .libs/punycode.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT punycode.lo -MD -MP -MF .deps/punycode.Tpo -c punycode.c -o punycode.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT idna.lo -MD -MP -MF ".deps/idna.Tpo" -c -o idna.lo idna.c; \
+then mv -f ".deps/idna.Tpo" ".deps/idna.Plo"; else rm -f ".deps/idna.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT idna.lo -MD -MP -MF .deps/idna.Tpo -c idna.c  -fPIC -DPIC -o .libs/idna.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT idna.lo -MD -MP -MF .deps/idna.Tpo -c idna.c -o idna.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT pr29.lo -MD -MP -MF ".deps/pr29.Tpo" -c -o pr29.lo pr29.c; \
+then mv -f ".deps/pr29.Tpo" ".deps/pr29.Plo"; else rm -f ".deps/pr29.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT pr29.lo -MD -MP -MF .deps/pr29.Tpo -c pr29.c  -fPIC -DPIC -o .libs/pr29.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT pr29.lo -MD -MP -MF .deps/pr29.Tpo -c pr29.c -o pr29.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT idn-free.lo -MD -MP -MF ".deps/idn-free.Tpo" -c -o idn-free.lo idn-free.c; \
+then mv -f ".deps/idn-free.Tpo" ".deps/idn-free.Plo"; else rm -f ".deps/idn-free.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT idn-free.lo -MD -MP -MF .deps/idn-free.Tpo -c idn-free.c  -fPIC -DPIC -o .libs/idn-free.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT idn-free.lo -MD -MP -MF .deps/idn-free.Tpo -c idn-free.c -o idn-free.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT tld.lo -MD -MP -MF ".deps/tld.Tpo" -c -o tld.lo tld.c; \
+then mv -f ".deps/tld.Tpo" ".deps/tld.Plo"; else rm -f ".deps/tld.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT tld.lo -MD -MP -MF .deps/tld.Tpo -c tld.c  -fPIC -DPIC -o .libs/tld.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT tld.lo -MD -MP -MF .deps/tld.Tpo -c tld.c -o tld.o >/dev/null 2>&1
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT tlds.lo -MD -MP -MF ".deps/tlds.Tpo" -c -o tlds.lo tlds.c; \
+then mv -f ".deps/tlds.Tpo" ".deps/tlds.Plo"; else rm -f ".deps/tlds.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT tlds.lo -MD -MP -MF .deps/tlds.Tpo -c tlds.c  -fPIC -DPIC -o .libs/tlds.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT tlds.lo -MD -MP -MF .deps/tlds.Tpo -c tlds.c -o tlds.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o libidn.la -rpath /usr/local/lib -version-info 15:0:4 nfkc.lo toutf8.lo version.lo stringprep.lo rfc3454.lo profiles.lo punycode.lo idna.lo pr29.lo idn-free.lo tld.lo tlds.lo  
+gcc -shared  .libs/nfkc.o .libs/toutf8.o .libs/version.o .libs/stringprep.o .libs/rfc3454.o .libs/profiles.o .libs/punycode.o .libs/idna.o .libs/pr29.o .libs/idn-free.o .libs/tld.o .libs/tlds.o   -Wl,-soname -Wl,libidn.so.11 -o .libs/libidn.so.11.4.0
+(cd .libs && rm -f libidn.so.11 && ln -s libidn.so.11.4.0 libidn.so.11)
+(cd .libs && rm -f libidn.so && ln -s libidn.so.11.4.0 libidn.so)
+ar cru .libs/libidn.a  nfkc.o toutf8.o version.o stringprep.o rfc3454.o profiles.o punycode.o idna.o pr29.o idn-free.o tld.o tlds.o
+ranlib .libs/libidn.a
+creating libidn.la
+(cd .libs && rm -f libidn.la && ln -s ../libidn.la libidn.la)
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/lib'
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/lib'
+Making check in po
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/po'
+make[1]: Nothing to be done for `check'.
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/po'
+Making check in src
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/src'
+make  check-am
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/src'
+if gcc -DLOCALEDIR=\"/usr/local/share/locale\" -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT idn.o -MD -MP -MF ".deps/idn.Tpo" -c -o idn.o idn.c; \
+then mv -f ".deps/idn.Tpo" ".deps/idn.Po"; else rm -f ".deps/idn.Tpo"; exit 1; fi
+if gcc -DLOCALEDIR=\"/usr/local/share/locale\" -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT idn_cmd.o -MD -MP -MF ".deps/idn_cmd.Tpo" -c -o idn_cmd.o idn_cmd.c; \
+then mv -f ".deps/idn_cmd.Tpo" ".deps/idn_cmd.Po"; else rm -f ".deps/idn_cmd.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o idn  idn.o idn_cmd.o ../lib/libidn.la   
+mkdir .libs
+gcc -g -O2 -o .libs/idn idn.o idn_cmd.o  ../lib/.libs/libidn.so
+creating idn
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/src'
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/src'
+Making check in doc
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/doc'
+make  check-recursive
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/doc'
+Making check in specifications
+make[3]: Entering directory `/home/jas/src/libidn-0.5.0/doc/specifications'
+make[3]: Nothing to be done for `check'.
+make[3]: Leaving directory `/home/jas/src/libidn-0.5.0/doc/specifications'
+Making check in tld
+make[3]: Entering directory `/home/jas/src/libidn-0.5.0/doc/tld'
+make[3]: Nothing to be done for `check'.
+make[3]: Leaving directory `/home/jas/src/libidn-0.5.0/doc/tld'
+Making check in java
+make[3]: Entering directory `/home/jas/src/libidn-0.5.0/doc/java'
+make[3]: Nothing to be done for `check'.
+make[3]: Leaving directory `/home/jas/src/libidn-0.5.0/doc/java'
+make[3]: Entering directory `/home/jas/src/libidn-0.5.0/doc'
+make[3]: Nothing to be done for `check-am'.
+make[3]: Leaving directory `/home/jas/src/libidn-0.5.0/doc'
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/doc'
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/doc'
+Making check in tests
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/tests'
+if /bin/sh ../libtool --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT utils.lo -MD -MP -MF ".deps/utils.Tpo" -c -o utils.lo utils.c; \
+then mv -f ".deps/utils.Tpo" ".deps/utils.Plo"; else rm -f ".deps/utils.Tpo"; exit 1; fi
+mkdir .libs
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -MT utils.lo -MD -MP -MF .deps/utils.Tpo -c utils.c  -fPIC -DPIC -o .libs/utils.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../lib -g -O2 -MT utils.lo -MD -MP -MF .deps/utils.Tpo -c utils.c -o utils.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o libutils.la   utils.lo  
+ar cru .libs/libutils.a .libs/utils.o
+ranlib .libs/libutils.a
+creating libutils.la
+(cd .libs && rm -f libutils.la && ln -s ../libutils.la libutils.la)
+make  tst_stringprep tst_punycode tst_idna tst_idna2 tst_nfkc tst_pr29 tst_tld
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/tests'
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_stringprep.o -MD -MP -MF ".deps/tst_stringprep.Tpo" -c -o tst_stringprep.o tst_stringprep.c; \
+then mv -f ".deps/tst_stringprep.Tpo" ".deps/tst_stringprep.Po"; else rm -f ".deps/tst_stringprep.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_stringprep  tst_stringprep.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_stringprep tst_stringprep.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_punycode.o -MD -MP -MF ".deps/tst_punycode.Tpo" -c -o tst_punycode.o tst_punycode.c; \
+then mv -f ".deps/tst_punycode.Tpo" ".deps/tst_punycode.Po"; else rm -f ".deps/tst_punycode.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_punycode  tst_punycode.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_punycode tst_punycode.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_idna.o -MD -MP -MF ".deps/tst_idna.Tpo" -c -o tst_idna.o tst_idna.c; \
+then mv -f ".deps/tst_idna.Tpo" ".deps/tst_idna.Po"; else rm -f ".deps/tst_idna.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_idna  tst_idna.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_idna tst_idna.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_idna2.o -MD -MP -MF ".deps/tst_idna2.Tpo" -c -o tst_idna2.o tst_idna2.c; \
+then mv -f ".deps/tst_idna2.Tpo" ".deps/tst_idna2.Po"; else rm -f ".deps/tst_idna2.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_idna2  tst_idna2.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_idna2 tst_idna2.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_nfkc.o -MD -MP -MF ".deps/tst_nfkc.Tpo" -c -o tst_nfkc.o tst_nfkc.c; \
+then mv -f ".deps/tst_nfkc.Tpo" ".deps/tst_nfkc.Po"; else rm -f ".deps/tst_nfkc.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_nfkc  tst_nfkc.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_nfkc tst_nfkc.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_pr29.o -MD -MP -MF ".deps/tst_pr29.Tpo" -c -o tst_pr29.o tst_pr29.c; \
+then mv -f ".deps/tst_pr29.Tpo" ".deps/tst_pr29.Po"; else rm -f ".deps/tst_pr29.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_pr29  tst_pr29.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_pr29 tst_pr29.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT tst_tld.o -MD -MP -MF ".deps/tst_tld.Tpo" -c -o tst_tld.o tst_tld.c; \
+then mv -f ".deps/tst_tld.Tpo" ".deps/tst_tld.Po"; else rm -f ".deps/tst_tld.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2 -no-install  -o tst_tld  tst_tld.o ../lib/libidn.la libutils.la 
+gcc -g -O2 -o tst_tld tst_tld.o  ../lib/.libs/libidn.so ./.libs/libutils.a -Wl,--rpath -Wl,/home/jas/src/libidn-0.5.0/lib/.libs
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/tests'
+make  check-TESTS
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/tests'
+PASS: tst_stringprep
+PASS: tst_punycode
+PASS: tst_idna
+PASS: tst_idna2
+PASS: tst_nfkc
+PASS: tst_pr29
+PASS: tst_tld
+==================
+All 7 tests passed
+==================
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/tests'
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/tests'
+Making check in examples
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/examples'
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT example.o -MD -MP -MF ".deps/example.Tpo" -c -o example.o example.c; \
+then mv -f ".deps/example.Tpo" ".deps/example.Po"; else rm -f ".deps/example.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o example  example.o ../lib/libidn.la 
+mkdir .libs
+gcc -g -O2 -o .libs/example example.o  ../lib/.libs/libidn.so
+creating example
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT example2.o -MD -MP -MF ".deps/example2.Tpo" -c -o example2.o example2.c; \
+then mv -f ".deps/example2.Tpo" ".deps/example2.Po"; else rm -f ".deps/example2.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o example2  example2.o ../lib/libidn.la 
+gcc -g -O2 -o .libs/example2 example2.o  ../lib/.libs/libidn.so
+creating example2
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT example3.o -MD -MP -MF ".deps/example3.Tpo" -c -o example3.o example3.c; \
+then mv -f ".deps/example3.Tpo" ".deps/example3.Po"; else rm -f ".deps/example3.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o example3  example3.o ../lib/libidn.la 
+gcc -g -O2 -o .libs/example3 example3.o  ../lib/.libs/libidn.so
+creating example3
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT example4.o -MD -MP -MF ".deps/example4.Tpo" -c -o example4.o example4.c; \
+then mv -f ".deps/example4.Tpo" ".deps/example4.Po"; else rm -f ".deps/example4.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o example4  example4.o ../lib/libidn.la 
+gcc -g -O2 -o .libs/example4 example4.o  ../lib/.libs/libidn.so
+creating example4
+if gcc -DHAVE_CONFIG_H -I. -I. -I..  -I../lib -I../lib   -g -O2 -MT example5.o -MD -MP -MF ".deps/example5.Tpo" -c -o example5.o example5.c; \
+then mv -f ".deps/example5.Tpo" ".deps/example5.Po"; else rm -f ".deps/example5.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link gcc  -g -O2   -o example5  example5.o ../lib/libidn.la 
+gcc -g -O2 -o .libs/example5 example5.o  ../lib/.libs/libidn.so
+creating example5
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/examples'
+Making check in java
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0/java'
+Making check in gnu
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/java/gnu'
+Making check in inet
+make[3]: Entering directory `/home/jas/src/libidn-0.5.0/java/gnu/inet'
+Making check in encoding
+make[4]: Entering directory `/home/jas/src/libidn-0.5.0/java/gnu/inet/encoding'
+echo timestamp > classdist_noinst.stamp
+make[4]: Leaving directory `/home/jas/src/libidn-0.5.0/java/gnu/inet/encoding'
+make[4]: Entering directory `/home/jas/src/libidn-0.5.0/java/gnu/inet'
+make[4]: Nothing to be done for `check-am'.
+make[4]: Leaving directory `/home/jas/src/libidn-0.5.0/java/gnu/inet'
+make[3]: Leaving directory `/home/jas/src/libidn-0.5.0/java/gnu/inet'
+make[3]: Entering directory `/home/jas/src/libidn-0.5.0/java/gnu'
+make[3]: Nothing to be done for `check-am'.
+make[3]: Leaving directory `/home/jas/src/libidn-0.5.0/java/gnu'
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/java/gnu'
+Making check in .
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/java'
+make[2]: Nothing to be done for `check-am'.
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/java'
+Making check in misc
+make[2]: Entering directory `/home/jas/src/libidn-0.5.0/java/misc'
+echo timestamp > classdist_noinst.stamp
+make[2]: Leaving directory `/home/jas/src/libidn-0.5.0/java/misc'
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0/java'
+make[1]: Entering directory `/home/jas/src/libidn-0.5.0'
+make[1]: Leaving directory `/home/jas/src/libidn-0.5.0'
