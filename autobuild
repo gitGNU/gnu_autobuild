@@ -190,7 +190,7 @@ die "Could not guess all required values".($Verbose ? "" :
 
 exit 0 if $DryRun;
 
-my ($outbase, $outfile) = "$OutDir/autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp,status=$Status";
+my ($outbase, $outfile) = "$OutDir/autobuild,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp,status=$Status,log";
 
 if ($Html) {
     $outfile = $outbase . ".html";
