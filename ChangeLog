@@ -1,5 +1,13 @@
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
+	* autobuild.m4: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Install autobuild.m4.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
 	* configure.ac: Call autobuild.m4.
 
 2004-07-06  Simon Josefsson <simon@josefsson.org>
