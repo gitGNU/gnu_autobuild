@@ -204,5 +204,12 @@ while (<>) {
 	}
 
 	open OUT, "> $tmpfile" or die "Can't open temporary file: $!";
+	undef $Project;
+	undef $Revision;
+	undef $Mode;
+	undef $Hostname;
+	undef $Hosttype;
+	undef $Buildtype;
+	undef $Timestamp;
     }
 }
