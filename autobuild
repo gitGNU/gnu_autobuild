@@ -25,12 +25,13 @@ use Getopt::Long;
 # Parse command line parameters.
 my $Verbose = 0;
 my ($PrintHelp, $PrintVersion) = 0;
-my ($Html) = 0;
+my ($Html, $DryRun) = 0;
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
 	    'verbose|v'    => \$Verbose,
 	    'html'         => \$Html,
+	    'dry-run|n'    => \$DryRun,
 	    'p|project=s'  => \$Project,
 	    'revision=s'   => \$Revision,
 	    'mode=s'       => \$Mode,
@@ -52,6 +53,7 @@ if ($PrintHelp) {
     print "\n";
     print "      --html              Create HTML output instead of text.\n";
     print "                          requires that htmlize.el is installed.\n";
+    print "  -n, --dry-run           Just parse, don't write file.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "  -p, --project=STRING    Specify project name.\n";
@@ -122,6 +124,9 @@ while (<>) {
     $Project = $1 if !$Project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
     $Revision = $1 if !$Revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
 
+    # Telnet string.
+    $Hostname = $1 if !$Hostname && m,Connected to \(.*\).,;
+
     # If output mention a tar.gz archive.
     $Project = $1 if !$Project && m,/([a-z]+)-[0-9.]+.tar.gz,;
     $Revision = $1 if !$Revision && m,/[a-z]+-([0-9.]+).tar.gz,;
@@ -148,6 +153,8 @@ if ($Verbose) {
 }
 
 close OUT;
+
+exit 0 if $DryRun;
 
 my ($outbase, $outfile) = "autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp";
 
