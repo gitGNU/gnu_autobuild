@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.3 2004-07-08 14:19:23 jas Exp $
+@comment $Id: autobuild.texi,v 1.4 2004-07-08 14:35:56 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -171,6 +171,55 @@ distribution for all files generated above.
 @node Integrating autobuild.m4 in your project
 @chapter Integrating autobuild.m4 in your project
 
+A normal build log from an Autoconf/Automake based project do normally
+not include the project name, revision, time stamp of build or host
+name of the build host.  Specifying these values using
+@code{--project} etc (@pxref{Invoking autobuild}) can be tedious,
+especially considering that it would be so simple for the Autoconf
+@file{configure} script to print them.
+
+To solve the above problem, Autobuild include a @acronym{M4} macro
+suitable for use in your Autoconf project, invoked from
+@file{configure.ac}.  Properly installed, the macro will make your
+project print something similar to the following output (this example
+is what the Autobuild itself print during its build), as part of its
+build.  This format is later recognized by Autobuild.
+
+@example
+...
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+configure: autobuild project... autobuild
+configure: autobuild revision... 1.2
+configure: autobuild hostname... latte
+configure: autobuild timestamp... 20040708-163123
+...
+@end example
+
+To use the macro, put something like the following in your
+@file{configure.ac}:
+
+@example
+AB_INIT
+@end example
+
+Then make sure your Autoconf installation can find the
+@file{autobuild.m4} which should have been installed when you
+installed Autobuild.
+
+The macro can take an optional parameter, the build mode, as follows:
+
+@example
+AB_INIT(whatever)
+@end example
+
+This would result in an additional message:
+
+@example
+...
+configure: autobuild mode... whatever
+...
+@end example
 
 @node Invoking autobuild
 @chapter Invoking autobuild
@@ -178,9 +227,76 @@ distribution for all files generated above.
 @pindex autobuild
 @cindex invoking @command{autobuild}
 
-This is a autobuild manual.  There is no autobuild program to
-invoke, but if there was, you could see its basic usage
-and command line options here.
+@section Synopsis
+
+Read and parse build logs.  @xref{Tutorial}, for more discussion.
+
+@example
+autobuild [OPTION]... [FILE]...
+@end example
+
+@section Description
+
+Read and parse build logs to find project name, revision, build mode,
+build host type, build type (for cross compile builds), hostname, and
+timestamp, then produce a file (named depending on the extracted param‐
+eters) with the build log.
+
+Mandatory arguments to long options are mandatory for short options
+too.
+
+@verbatim
+       --abort
+              Abort  if  guessing  values  fail.  With the exceptions of build
+              mode (falls back to ’default’) and the  status  (falls  back  to
+              ’fail’).
+
+       -n, --dry-run
+              Just parse, don’t write file.
+
+       --html Create  HTML output instead of text.  Need Emacs and htmlize.el.
+
+       -o, --outdir=DIR
+              Create files in specified directory.
+
+   For use when autobuild fail to guess the values properly:
+       -p, --project=STRING
+              Specify project name.
+
+       --revision=STRING
+              Specify project revision.
+
+       --mode=STRING
+              Specify build mode (typically ’default’).
+
+       --hosttype=STRING
+              Specify host type (e.g., i686‐pc‐linux‐gnu).
+
+       --buildtype=STRING
+              Specify build type  (e.g.,  m68k‐uclinux‐elf).   Different  from
+              hosttype for cross compiles.
+
+       --hostname=STRING
+              Specify name of host log was created on.
+
+       --timestamp=STRING
+              Specify  when  build  was  made.  Any date format will work, but
+              ’YYYY‐MM‐DDTHH:MM:SS’ is recommended.
+
+       --status=STRING
+              Outcome of build.  Any string will work, but "ok" and "fail" are
+              recommended for the two basic outcomes.
+
+       Other options:
+
+       -v, --verbose
+              Explain what is being done.
+
+       --help Display this help and exit.
+
+       --version
+              Output version information and exit.
+@end verbatim
 
 @node Invoking abindex
 @chapter Invoking abindex
@@ -188,10 +304,41 @@ and command line options here.
 @pindex abindex
 @cindex invoking @command{abindex}
 
-This is a autobuild manual.  There is no autobuild program to invoke,
-but if there was, you could see its basic usage and command line
-options here.
+@section synopsis
+Create HTML index to build logs.
 
+@example
+abindex [OPTION]... [FILE]...
+@end example
+
+@section Description
+
+Create HTML index to Autobuild generated build logs.  @xref{Tutorial},
+for more discussion.
+
+Mandatory arguments to long options are mandatory for short options
+too.
+
+@verbatim
+       --abort
+              Abort when encountering bad filenames.
+
+       -n, --dry-run
+              Just parse, don’t write file.
+
+       -o, --outdir=DIR
+              Create files in specified directory.
+
+       Other options:
+
+       -v, --verbose
+              Explain what is being done.
+
+       --help Display this help and exit.
+
+       --version
+              Output version information and exit.
+@end verbatim
 
 @node Copying This Manual
 @appendix Copying This Manual
