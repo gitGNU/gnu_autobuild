@@ -8,6 +8,9 @@ all:
 install:
 	install -D -c $(NAME) "$(PREFIX)/sbin/cks-dns"
 
+clean:
+	rm -f *~ *.bak autobuild-log*.txt
+
 # Maintainer targets below.
 
 .PHONY: ChangeLog
@@ -20,5 +23,6 @@ $(NAME)-$(VERSION).tar.gz: ChangeLog
 	gpg -b $(NAME)-$(VERSION).tar.gz
 
 ChangeLog:
+	rm -f ChangeLog
 	cvs2cl --FSF --fsf --usermap .cvsusers -I ChangeLog -I .cvs
 	cvs commit -m "Generated." ChangeLog
