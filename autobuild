@@ -27,7 +27,8 @@ my $Verbose;
 my ($PrintHelp, $PrintVersion);
 my ($Abort, $DryRun, $Html);
 my ($OutDir) = ".";
-my ($Project, $Revision, $Mode, $Hostname, $Hosttype, $Buildtype, $Timestamp);
+my ($Project, $Revision, $Mode, $Hostname, $Hosttype,
+    $Buildtype, $Timestamp, $Status);
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
 	    'verbose|v'    => \$Verbose,
@@ -41,7 +42,8 @@ GetOptions ('help|usage|h' => \$PrintHelp,
 	    'Hosttype=s'   => \$Hosttype,
 	    'Buildtype=s'  => \$Buildtype,
 	    'Hostname=s'   => \$Hostname,
-	    'Timestamp=s'  => \$Timestamp);
+	    'Timestamp=s'  => \$Timestamp,
+	    'Status=s'     => \$Status);
 
 # Handle --help.
 if ($PrintHelp) {
@@ -72,6 +74,10 @@ if ($PrintHelp) {
     print "      --timestamp=STRING  Specify when build was made.\n";
     print "                          Any date format will work, but\n";
     print "                          'YYYY-MM-DDTHH:MM:SS' is recommended.\n";
+    print "      --status=STRING     Outcome of build.\n";
+    print "                          Any string will work, but \"ok\" and\n";
+    print "                          \"fail\" are recommended for the two\n";
+    print "                          basic outcomes.\n";
     print "\n";
     print "Other options:\n";
     print "\n";
@@ -101,6 +107,7 @@ if ($Verbose) {
     print "Buildtype: $Buildtype\n" if $Buildtype;
     print "Hostname: $Hostname\n" if $Hostname;
     print "Timestamp: $Timestamp\n" if $Timestamp;
+    print "Status: $Status\n" if $Status;
 }
 
 # Declarations.
@@ -122,9 +129,12 @@ while (<>) {
     $Buildtype = $1 if m,autobuild buildtype... (.*),;
     $Timestamp = $1 if m,autobuild timestamp... (.*),;
 
-    # GNU Autoconf output.
+    # GNU Autoconf host/build output.
     $Hosttype = $1 if !$Hosttype && m,checking host system type... ([a-z0-9-.]+),;
     $Buildtype = $1 if !$Buildtype && m,checking build system type... ([a-z0-9-.]+),;
+
+    # Automake self test output.
+    $Status = "ok" if !$Status && m,All [0-9] tests passed,;
 
     # Works for GNU make.
     $Project = $1 if !$Project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
@@ -148,17 +158,19 @@ if (!$Abort) {
     $Hosttype = "unknown" if !$Hosttype;
     $Buildtype = "unknown" if !$Buildtype;
     $Timestamp = "unknown" if !$Timestamp;
+    $Status = "fail" if !$Status;
 }
 $Mode = "default" if !$Mode;
 
 if ($Verbose) {
-    print "autobuild project... $Project\n";
-    print "autobuild revision... $Revision\n";
-    print "autobuild mode... $Mode\n";
-    print "autobuild hosttype... $Hosttype\n";
-    print "autobuild buildtype... $Buildtype\n";
-    print "autobuild hostname... $Hostname\n";
-    print "autobuild timestamp... $Timestamp\n";
+    print "Project: $Project\n" if $Project;
+    print "Revision: $Revision\n" if $Revision;
+    print "Mode: $Mode\n" if $Mode;
+    print "Hosttype: $Hosttype\n" if $Hosttype;
+    print "Buildtype: $Buildtype\n" if $Buildtype;
+    print "Hostname: $Hostname\n" if $Hostname;
+    print "Timestamp: $Timestamp\n" if $Timestamp;
+    print "Status: $Status\n" if $Status;
 }
 
 close OUT;
@@ -166,11 +178,11 @@ close OUT;
 die "Could not guess all required values".($Verbose ? "" :
 					   " (use -v to print values)")."\n"
     if $Abort && (!$Project || !$Revision || !$Hostname ||
-		  !$Hosttype || !$Buildtype || !$Timestamp);
+		  !$Hosttype || !$Buildtype || !$Timestamp || !$Status);
 
 exit 0 if $DryRun;
 
-my ($outbase, $outfile) = "$OutDir/autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp";
+my ($outbase, $outfile) = "$OutDir/autobuild-log,project=$Project,revision=$Revision,mode=$Mode,hosttype=$Hosttype,buildtype=$Buildtype,hostname=$Hostname,timestamp=$Timestamp,status=$Status";
 
 if ($Html) {
     $outfile = $outbase . ".html";
