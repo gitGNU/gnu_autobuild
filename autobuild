@@ -136,7 +136,8 @@ while (<>) {
     $Buildtype = $1 if !$Buildtype && m,checking build system type... ([a-z0-9-.]+),;
 
     # Automake self test output.
-    $Status = "ok" if !$Status && m,All [0-9] tests passed,;
+    $Status = "ok" if !$Status && m,All [0-9]+ tests passed,;
+    $Status = "almost" if !$Status && m,[0-9]+ of [0-9]+ tests failed,;
 
     # Works for GNU make.
     $Project = $1 if !$Project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
