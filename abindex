@@ -34,7 +34,7 @@ GetOptions ('help|usage|h' => \$PrintHelp,
 
 # Handle --help.
 if ($PrintHelp) {
-    print "Usage: $0 [OPTION]... [[DIR]... [FILE]...]...\n";
+    print "Usage: $0 [OPTION]... FILE...\n";
     print "\n";
     print "Create HTML index to Autobuild generated build logs.  Each file is\n";
     print "assumed to be named on the Autobuild format.  If an argument is a directory,\n";

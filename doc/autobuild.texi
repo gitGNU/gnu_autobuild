@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.7 2004-07-08 15:52:20 jas Exp $
+@comment $Id: autobuild.texi,v 1.8 2004-07-08 21:26:02 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -231,7 +231,9 @@ configure: autobuild mode... whatever
 
 @section Synopsis
 
-Read and parse build logs.  @xref{Tutorial}, for more discussion.
+Read and parse build logs.
+
+@xref{Tutorial}, for more discussion.
 
 @example
 autobuild [OPTION]... [FILE]...
@@ -315,8 +317,11 @@ abindex [OPTION]... [FILE]...
 
 @section Description
 
-Create HTML index to Autobuild generated build logs.  @xref{Tutorial},
-for more discussion.
+Create HTML index to Autobuild generated build logs.  Each file is
+assumed to be named on the Autobuild format.  If an argument is a
+directory, all files in that directory is parsed.
+
+@xref{Tutorial}, for more discussion.
 
 Mandatory arguments to long options are mandatory for short options
 too.
