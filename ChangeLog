@@ -1,3 +1,87 @@
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 3.0.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Fix.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild, NEWS: Fix.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Fix.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge, doc/Makefile.am: Add.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abput, abbuild, Makefile.am, doc/Makefile.am: Add.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abput: Make -s required.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump version.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abput: Remove testdrive, for now.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add abput-sourceforge.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am, abput-sourceforge: Add.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add abput.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Add abput.1.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abput: Fix man page.
+
+2004-07-31  Simon Josefsson <simon@josefsson.org>
+
+	* abput: Add.
+
+2004-07-29  Simon Josefsson <simon@josefsson.org>
+
+	* doc/gendocs_template: Remove FSF stuff.
+
+2004-07-28  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2004-07-28  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
 2004-07-28  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 2.2.
