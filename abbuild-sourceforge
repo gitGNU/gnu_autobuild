@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.5 $'
+rcs_revision='$Revision: 1.6 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="abbuild-sourceforge (autobuild) $rcs_version
@@ -93,4 +93,4 @@ ABSFUSER=${ABSFUSER:-$USER}
 BASEFILE=`basename $FILE .tar.gz`
 BASEFILE=`basename $BASEFILE .tar.bz2`
 
-ssh $VERBOSE -l $ABSFUSER cf-shell.sf.net ssh $HOST "set \; hostname \; test -d /tmp/\$USER \|\| mkdir /tmp/\$USER \; cd /tmp/\$USER \&\& rm -rf /tmp/\$USER/$BASEFILE \&\& gzip -cd \~/$FILE \| tar xf - \&\& cd /tmp/\$USER/$BASEFILE \&\& ./configure --prefix=/tmp/\$USER \&\& make install check \; gcc --version \; make --version \; hostname"
+ssh $VERBOSE -l $ABSFUSER cf-shell.sf.net ssh $HOST "test -d /tmp/\$USER \|\| mkdir /tmp/\$USER \; cd /tmp/\$USER \&\& rm -rf /tmp/\$USER/$BASEFILE \&\& gzip -cd \~/$FILE \| tar xf - \&\& cd /tmp/\$USER/$BASEFILE \&\& ./configure --prefix=/tmp/\$USER \&\& make install check \; gcc --version \; make --version \; hostname \; set"
