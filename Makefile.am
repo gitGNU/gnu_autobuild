@@ -17,28 +17,18 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
+SUBDIRS = doc
+
 ACLOCAL_AMFLAGS = -I .
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = autobuild.m4
 
 dist_bin_SCRIPTS = autobuild abindex
-dist_man_MANS = autobuild.1 abindex.1
-MAINTAINERCLEANFILES = autobuild.1 abindex.1
 
 EXTRA_DIST = logs/autobuild.log
 TESTS = tst-autobuild tst-simple
 dist_check_SCRIPTS = $(TESTS)
-
-autobuild.1: autobuild $(top_srcdir)/configure.ac
-	$(HELP2MAN) --no-info \
-		--name="Read and parse build logs" \
-		--output=$@ $(top_builddir)/autobuild
-
-abindex.1: abindex $(top_srcdir)/configure.ac
-	$(HELP2MAN) --no-info \
-		--name="Create HTML index to build logs" \
-		--output=$@ $(top_builddir)/abindex
 
 # Maintainer targets below.
 
