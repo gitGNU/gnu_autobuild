@@ -20,7 +20,7 @@
 # MA 02111-1307, USA.
 
 prog="`basename \"$0\"`"
-rcs_revision='$Revision: 1.1 $'
+rcs_revision='$Revision: 1.2 $'
 rcs_version=`set - $rcs_revision; echo $2`
 program=`echo $0 | sed -e 's!.*/!!'`
 version="abput (autobuild) $rcs_version
@@ -45,7 +45,7 @@ Options:
 Simple example:
   $prog -s testdrive -s sourceforge yourproject-4.2.tar.gz
 
-For details on each system, invoke \"abput-SYSTEM --help\", e.g.:
+For details on each system, invoke the system specific script directly:
   $prog-sourceforge --help
 
 Report bugs to <bug-autobuild@josefsson.org>."
