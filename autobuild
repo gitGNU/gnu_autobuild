@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-eval '(exit $?0)' && eval 'exec perl ‐wS $0 ${1+"$@"}'
-    & eval 'exec /usr/bin/perl ‐wS $0 $argv:q'
+eval '(exit $?0)' && eval 'exec perl -wS $0 ${1+"$@"}'
+    & eval 'exec /usr/bin/perl -wS $0 $argv:q'
     if $running_under_some_shell;
 
 # Copyright (C) 2004 Simon Josefsson.
@@ -89,7 +89,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.45 $';
+    my ($rev) = '$Revision: 1.46 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
