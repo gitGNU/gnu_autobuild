@@ -23,4 +23,4 @@ IN=$1
 OUT=${2:-$1.html}
 MODE=${3:-compilation-mode}
 
-emacs --eval "(let ((htmlize-before-hook (lambda () ($MODE) (font-lock-fontify-buffer)))) (htmlize-file \"$IN\" \"$OUT\") (kill-emacs))"
+emacs --geometry 0x0+1600+1200 --eval "(let ((coding-system-for-write 'binary) (htmlize-before-hook (lambda () ($MODE) (font-lock-fontify-buffer)))) (htmlize-file \"$IN\" \"$OUT\") (kill-emacs))"
