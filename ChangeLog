@@ -1,5 +1,9 @@
 2004-08-26  Simon Josefsson <simon@josefsson.org>
 
+	* NEWS: Version 3.3.
+
+2004-08-26  Simon Josefsson <simon@josefsson.org>
+
 	* tst-autobuild: Use perl in path.
 
 2004-08-26  Simon Josefsson <simon@josefsson.org>
