@@ -14,6 +14,9 @@
 # Usage: AB_INIT([MODE]).
 AC_DEFUN([AB_INIT],
 [
+	AC_REQUIRE([AC_CANONICAL_BUILD])
+	AC_REQUIRE([AC_CANONICAL_HOST])
+
 	AC_MSG_NOTICE([autobuild project... $PACKAGE_NAME])
 	AC_MSG_NOTICE([autobuild revision... $PACKAGE_VERSION])
 	hostname=`hostname`
