@@ -62,8 +62,6 @@ release:
 	cvs rtag $(tag) $(PACKAGE)
 	gpg -b $(distdir).tar.gz
 	gpg --verify $(distdir).tar.gz.sig
-	echo "directory: $(PACKAGE)" > $(distdir).tar.gz.directive
-	gpg --clearsign $(distdir).tar.gz.directive
 	cp -v $(distdir).tar.gz{,.sig} $(htmldir)/releases/
 	cd $(htmldir) && cvs add -kb releases/$(distdir).tar.gz{,.sig} && \
 		cvs commit -m "Update." releases/
