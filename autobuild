@@ -155,16 +155,16 @@ foreach $arg (@ARGV) {
 	    $timestamp = $1 if !$Timestamp && m,autobuild timestamp... (.*),;
 
 	    # GNU Autoconf host/build output.
-	    $hosttype = $1 if !$hosttype && m,checking host system type... ([a-z0-9_.-]+),;
-	    $buildtype = $1 if !$buildtype && m,checking build system type... ([a-z0-9_.-]+),;
+	    $hosttype = $3 if !$hosttype && m,host system type(<[^>]+>)?\.\.\. (<[^>]+>)?([a-z0-9_.-]+),;
+	    $buildtype = $3 if !$buildtype && m,build system type(<[^>]+>)?\.\.\. (<[^>]+>)?([a-z0-9_.-]+),;
 
 	    # Automake self test output.
 	    $status = "ok" if !$status && m,All [0-9]+ tests passed,;
 	    $status = "almost" if !$status && m,[0-9]+ of [0-9]+ tests failed,;
 
 	    # Works for GNU make.
-	    $project = $1 if !$project && m,make\[[0-9]+\]: Entering directory `.*/([a-z]+)-[0-9.]+/.*',;
-	    $revision = $1 if !$revision && m,make\[[0-9]+\]: Entering directory `.*/[a-z]+-([0-9.]+)/.*',;
+	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z]+)-[0-9.]+/.*(<[^>]+>)?',;
+	    $revision = $2 if !$revision && m,Entering directory `(<[^>]+>)?.*/[a-z]+-([0-9.]+)/.*(<[^>]+>)?',;
 
 	    # Telnet string.
 	    $hostname = $1 if !$hostname && m,Trying (.*)\.\.\.,;
