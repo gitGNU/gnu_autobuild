@@ -1,5 +1,7 @@
 Makefile
 Makefile.in
+abbuild.1
+abbuild-sourceforge.1
 abput.1
 abput-sourceforge.1
 autobuild.1
