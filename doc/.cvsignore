@@ -25,3 +25,5 @@ autobuild.vr
 autobuild.vrs
 mdate-sh
 stamp-*
+texinfo.tex
+version.texi
