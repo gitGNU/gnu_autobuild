@@ -17,6 +17,8 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 # MA 02111-1307, USA.
 
+ACLOCAL_AMFLAGS = -I .
+
 dist_bin_SCRIPTS = autobuild abindex
 dist_man_MANS = autobuild.1 abindex.1
 MAINTAINERCLEANFILES = autobuild.1 abindex.1
