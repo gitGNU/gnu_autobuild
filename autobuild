@@ -56,6 +56,7 @@ if ($PrintHelp || $#ARGV == -1) {
     print "                          cannot be guessed: project name, revision,\n";
     print "                          host type, and build type.\n";
     print "  -n, --dry-run           Just parse, don't print output.\n";
+    print "  -v, --verbose           Explain what is being done.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "  -p, --project=STRING    Specify project name.\n";
@@ -75,7 +76,6 @@ if ($PrintHelp || $#ARGV == -1) {
     print "\n";
     print "Other options:\n";
     print "\n";
-    print "  -v, --verbose           Explain what is being done.\n";
     print "      --help              Display this help and exit.\n";
     print "      --version           Output version information and exit.\n";
     print "\n";
