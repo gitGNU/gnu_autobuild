@@ -1,34 +1,40 @@
 PREFIX=/usr/local
-NAME=autobuild
-VERSION=`./$(NAME) --version|head -1|cut -d\  -f 3`
+PACKAGE=autobuild
+VERSION=`./autobuild --version|head -1|cut -d\  -f 3`
 
 all:
 	@echo "Use 'make install'."
 
-$(NAME).1: $(NAME)
-	help2man --name="Generate HTML build logs" ./$(NAME) > $(NAME).1
+autobuild.1: autobuild
+	help2man --name="Generate build logs" ./autobuild > autobuild.1
+	cvs commit -m "Generated." autobuild.1
+
+abindex.1: abindex
+	help2man --name="Create HTML index to build logs" ./abindex > abindex.1
+	cvs commit -m "Generated." abindex.1
 
 .PHONY: install
-install: autobuild.1
-	install -D -c $(NAME) $(PREFIX)/sbin/$(NAME)
-	install -D -c -m 644 $(NAME).1 $(PREFIX)/man/man1/$(NAME).1
+install: autobuild.1 abindex.1
+	install -D -c $(PACKAGE) $(PREFIX)/sbin/$(PACKAGE)
+	install -D -c -m 644 autobuild.1 $(PREFIX)/man/man1/autobuild.1
+	install -D -c -m 644 abindex.1 $(PREFIX)/man/man1/abindex.1
 
 clean:
-	rm -f *~ *.bak autobuild-log*.txt
+	rm -f *~ *.bak
 
 # Maintainer targets below.
-
-.PHONY: release
-release: $(NAME).1 ChangeLog
-	rm -rf $(NAME)-$(VERSION){,.tar.gz,.tar.gz.sig}
-	mkdir $(NAME)-$(VERSION)
-	cp $(NAME) $(NAME).1 ChangeLog Makefile COPYING $(NAME)-$(VERSION)
-	tar cfz $(NAME)-$(VERSION).tar.gz $(NAME)-$(VERSION)
-	gpg -b $(NAME)-$(VERSION).tar.gz
-	rm -rf $(NAME)-$(VERSION)
 
 .PHONY: ChangeLog
 ChangeLog:
 	rm -f ChangeLog
 	cvs2cl --FSF --fsf --usermap .cvsusers -I ChangeLog -I .cvs
 	cvs commit -m "Generated." ChangeLog
+
+.PHONY: release
+release: autobuild.1 abindex.1 ChangeLog
+	rm -rf $(PACKAGE)-$(VERSION){,.tar.gz,.tar.gz.sig}
+	mkdir $(PACKAGE)-$(VERSION)
+	cp autobuild autobuild.1 abindex abindex.1 ChangeLog Makefile COPYING $(PACKAGE)-$(VERSION)
+	tar cfz $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION)
+	gpg -b $(PACKAGE)-$(VERSION).tar.gz
+	rm -rf $(PACKAGE)-$(VERSION)
