@@ -24,7 +24,7 @@ ACLOCAL_AMFLAGS = -I .
 m4datadir = $(datadir)/aclocal
 m4data_DATA = autobuild.m4
 
-dist_lisp_DATA = htmlize.el
+dist_lisp_DATA = htmlfontify.el hfy-cmap.el hfy-emacs20.el
 
 dist_bin_SCRIPTS = autobuild htmlize
 
