@@ -30,6 +30,7 @@ my ($OutDir) = ".";
 GetOptions ('help|usage|h' => \$PrintHelp,
 	    'version|V'    => \$PrintVersion,
 	    'verbose|v'    => \$Verbose,
+	    'abort|a'      => \$Abort,
 	    'dry-run|n'    => \$DryRun,
 	    'outdir|o=s'   => \$OutDir);
 
@@ -41,6 +42,7 @@ if ($PrintHelp) {
     print "\n";
     print "Mandatory arguments to long options are mandatory for short options too.\n";
     print "\n";
+    print "      --abort             Abort when encountering bad filenames.\n";
     print "  -n, --dry-run           Just parse, don't write file.\n";
     print "  -o, --outdir=DIR        Create files in specified directory.\n";
     print "\n";
@@ -64,17 +66,7 @@ if ($PrintVersion) {
     exit 0;
 }
 
-my (@Files);
-
-
-my ($Project);
-my ($Revision);
-my ($Mode);
-my ($Hosttype);
-my ($Buildtype);
-my ($Hostname);
-my ($Timestamp);
-my ($Status);
+my (@Files, $file);
 
 my (%Projects);
 my (%Revisions);
@@ -85,34 +77,50 @@ my (%Hostnames);
 my (%Timestamps);
 my (%Statuss);
 
-foreach $_ (@ARGV) {
-    if (!m:autobuild(,.*,)log.[a-z]+:) {
-	warn "Skipping file (unrecognized file name): `$_'";
+foreach $file (@ARGV) {
+    if (!$file =~ m:autobuild(,.*,)log.[a-z]+:) {
+	warn "Skipping file (unrecognized file name): `$file'";
 	next;
     }
 
-    push @Files, $_;
+    my ($Project);
+    my ($Revision);
+    my ($Mode);
+    my ($Hosttype);
+    my ($Buildtype);
+    my ($Hostname);
+    my ($Timestamp);
+    my ($Status);
 
-    $Project = $1 if m:,project=([^,]+),:;
-    $Revision = $1 if m:,revision=([^,]+),:;
-    $Mode = $1 if m:,mode=([^,]+),:;
-    $Hosttype = $1 if m:,hosttype=([^,]+),:;
-    $Buildtype = $1 if m:,buildtype=([^,]+),:;
-    $Hostname = $1 if m:,hostname=([^,]+),:;
-    $Timestamp = $1 if m:,timestamp=([^,]+),:;
-    $Status = $1 if m:,status=([^,]+),:;
+    $Project = $1 if $file =~ m:,project=([^,]+),:;
+    $Revision = $1 if $file =~ m:,revision=([^,]+),:;
+    $Mode = $1 if $file =~ m:,mode=([^,]+),:;
+    $Hosttype = $1 if $file =~ m:,hosttype=([^,]+),:;
+    $Buildtype = $1 if $file =~ m:,buildtype=([^,]+),:;
+    $Hostname = $1 if $file =~ m:,hostname=([^,]+),:;
+    $Timestamp = $1 if $file =~ m:,timestamp=([^,]+),:;
+    $Status = $1 if $file =~ m:,status=([^,]+),:;
 
     if ($Verbose) {
-	print "$_:\n";
-	print " Project: $Project\n" if $Project;
-	print " Revision: $Revision\n" if $Revision;
-	print " Mode: $Mode\n" if $Mode;
-	print " Hosttype: $Hosttype\n" if $Hosttype;
-	print " Buildtype: $Buildtype\n" if $Buildtype;
-	print " Hostname: $Hostname\n" if $Hostname;
-	print " Timestamp: $Timestamp\n" if $Timestamp;
-	print " Status: $Status\n" if $Status;
+	print STDERR "$file:\n";
+	print STDERR " Project: $Project\n";
+	print STDERR " Revision: $Revision\n";
+	print STDERR " Mode: $Mode\n";
+	print STDERR " Hosttype: $Hosttype\n";
+	print STDERR " Buildtype: $Buildtype\n";
+	print STDERR " Hostname: $Hostname\n";
+	print STDERR " Timestamp: $Timestamp\n";
+	print STDERR " Status: $Status\n";
     }
+
+    if (!$Project || $Revision eq "" || !$Mode || !$Hosttype ||
+	!$Buildtype || !$Hostname || !$Timestamp || !$Status) {
+	warn "Skipping file (missing values): `$file'";
+	die if $Abort;
+	next;
+    }
+
+    push @Files, $file;
 
     $Projects{$Project} = 0;
     ${$Revisions{$Project}}{$Revision} = 0;
@@ -120,7 +128,7 @@ foreach $_ (@ARGV) {
     ${$Hostnames{$Project}}{$Hostname} = 0;
 }
 
-my ($project, $revision, $hosttype, $hostname, $file);
+my ($project, $revision, $hosttype, $hostname);
 
 print "<h1>Index to Autobuild logs</h1>\n";
 
@@ -144,18 +152,31 @@ foreach $project (sort keys %Projects) {
     }
 
     foreach $revision (reverse sort keys %{$Revisions{$project}}) {
-	print "<h3>Summary for $project $revision</h3>\n";
+	print "<a name=\"$project-$revision\"><h3>Summary for $project $revision</h3></a>\n";
+	print "\n";
 	print "<table border=1>\n";
 	print "<tr>\n";
 	print "<td>Build host type</td>\n";
 	print "<td>Build host</td>\n";
+	print "<td>Cross compile?</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
 	print "<td>Log</td>\n";
 	print "</tr>\n";
+	print "\n";
 	foreach $file (@Files) {
 	    next unless $file =~ m:,project=$project,:;
 	    next unless $file =~ m:,revision=$revision,:;
+
+
+	    my ($Project);
+	    my ($Revision);
+	    my ($Mode);
+	    my ($Hosttype);
+	    my ($Buildtype);
+	    my ($Hostname);
+	    my ($Timestamp);
+	    my ($Status);
 
 	    $Mode = $1 if $file =~ m:,mode=([^,]+),:;
 	    $Hosttype = $1 if $file =~ m:,hosttype=([^,]+),:;
@@ -165,20 +186,84 @@ foreach $project (sort keys %Projects) {
 	    $Status = $1 if $file =~ m:,status=([^,]+),:;
 
 	    print "<tr>\n";
-	    print "<td>$Hosttype</td>\n";
+	    print "<td>$Buildtype</td>\n";
 	    print "<td>$Hostname</td>\n";
+	    if ($Hosttype eq $Buildtype) {
+		print "<td>no</td>\n";
+	    } else {
+		print "<td>$Hosttype</td>\n";
+	    }
 	    print "<td>$Timestamp</td>\n";
-	    if ($Status = "ok") {
+	    if ($Status eq "ok") {
 		print "<td><font color=green>Success</font></td>\n";
-	    } elsif ($Status = "almost") {
-		print "<td><font color=yellow>Almost</font></td>\n";
+	    } elsif ($Status eq "almost") {
+		print "<td><font color=orange>Almost</font></td>\n";
 	    } else {
 		print "<td><font color=red>Failure</font></td>\n";
 	    }
 	    print "<td><a href=\"$file\">log</a></td>\n";
 	    print "</tr>\n";
+	    print "\n";
 	}
 	print "</table>\n";
+	print "\n";
+    }
+
+    foreach $hosttype (reverse sort keys %{$Hosttypes{$project}}) {
+	print "<a name=\"$project-$revision\"><h3>Summary for $project on $hosttype</h3></a>\n";
+	print "\n";
+	print "<table border=1>\n";
+	print "<tr>\n";
+	print "<td>Revision</td>\n";
+	print "<td>Cross compile?</td>\n";
+	print "<td>Build host</td>\n";
+	print "<td>Build date</td>\n";
+	print "<td>Results</td>\n";
+	print "<td>Log</td>\n";
+	print "</tr>\n";
+	print "\n";
+	foreach $file (@Files) {
+	    next unless $file =~ m:,project=$project,:;
+	    next unless $file =~ m:,hosttype=$hosttype,:;
+
+	    my ($Project);
+	    my ($Revision);
+	    my ($Mode);
+	    my ($Hosttype);
+	    my ($Buildtype);
+	    my ($Hostname);
+	    my ($Timestamp);
+	    my ($Status);
+
+	    $Revision = $1 if $file =~ m:,revision=([^,]+),:;
+	    $Mode = $1 if $file =~ m:,mode=([^,]+),:;
+	    $Buildtype = $1 if $file =~ m:,buildtype=([^,]+),:;
+	    $Hostname = $1 if $file =~ m:,hostname=([^,]+),:;
+	    $Timestamp = $1 if $file =~ m:,timestamp=([^,]+),:;
+	    $Status = $1 if $file =~ m:,status=([^,]+),:;
+
+	    print "<tr>\n";
+	    print "<td>$Revision</td>\n";
+	    if ($Hosttype eq $Buildtype) {
+		print "<td>no</td>\n";
+	    } else {
+		print "<td>$Hosttype</td>\n";
+	    }
+	    print "<td>$Hostname</td>\n";
+	    print "<td>$Timestamp</td>\n";
+	    if ($Status eq "ok") {
+		print "<td><font color=green>Success</font></td>\n";
+	    } elsif ($Status eq "almost") {
+		print "<td><font color=orange>Almost</font></td>\n";
+	    } else {
+		print "<td><font color=red>Failure</font></td>\n";
+	    }
+	    print "<td><a href=\"$file\">log</a></td>\n";
+	    print "</tr>\n";
+	    print "\n";
+	}
+	print "</table>\n";
+	print "\n";
     }
 
 }
