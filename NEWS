@@ -10,6 +10,11 @@ included.  By simply writing a new backend, e.g., "abput-myownserver",
 you can introduce new compile hosts that become available via the
 generic front end.
 
+** New commands used to build files on compile hosts.
+The generic front end "abbuild", and one backend
+"abbuild-sourceforge", is included.  Similar to abput, you can write a
+new backend easily.
+
 * Version 2.2 (released 2004-07-28)
 
 ** Guessing of project name and revision based on *.tar.gz names improved.
