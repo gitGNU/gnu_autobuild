@@ -1,3 +1,50 @@
+2004-08-26  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild: Use perl in path.
+
+2004-08-26  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2004-08-26  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi, NEWS: Add.
+
+2004-08-26  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge, abput-sourceforge: Quote $USER in --help,
+	mostly to fix man page.
+
+2004-08-26  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Don't fail on non-zero tar exits (it return
+	non-zero on some time warnings).
+
+2004-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix regexps.
+
+2004-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix decision logic for when to add quick links.
+
+2004-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4: Bump version.
+
+2004-08-10  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4: Use PACKAGE/VERSION if PACKAGE_NAME/PACKAGE_VERSION
+	is empty.
+
+2004-08-09  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Make sure regexp match non-empty values.
+
 2004-08-08  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 3.2.
