@@ -10,6 +10,7 @@ $(NAME).1: $(NAME)
 
 install:
 	install -D -c $(NAME) $(PREFIX)/sbin/$(NAME)
+	install -D -c -m 644 $(NAME).1 $(PREFIX)/man/man1/$(NAME).1
 
 clean:
 	rm -f *~ *.bak autobuild-log*.txt
