@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.20 2004-09-20 23:10:25 jas Exp $
+@comment $Id: autobuild.texi,v 1.21 2004-09-20 23:15:39 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -74,10 +74,11 @@ Software Foundation raise funds for GNU development.''
 
 Autobuild is a package that process output from building software,
 primarily focused on packages using Autoconf and Automake, and then
-generate a HTML summary file, containing links to each build log.  The
-output include project name, version, build host types (cross compile
-aware), compiler host name, date of build, and indication of success
-or failure.  The output is indexed in many ways to simplify browsing.
+generate an @acronym{HTML} summary file, containing links to each
+build log.  The output include project name, version, build host types
+(cross compile aware), compiler host name, date of build, and
+indication of success or failure.  The output is indexed in many ways
+to simplify browsing.
 
 Autobuild can also help you automate building your project on many
 systems concurrently.  Users with accounts on the SourceForge compile
@@ -143,9 +144,10 @@ jas@@latte:~$
 @end example
 
 Ok, now we have two build logs, and one of them has even been
-converted into HTML format.  Let's generate a summary for them.
-Notice that here Autobuild is actually parsing a HTML page, which can
-be less reliable than parsing a text file.
+converted into @acronym{HTML} format.  Let's generate a summary for
+them.  Notice that here Autobuild is actually parsing an
+@acronym{HTML} page, which can be less reliable than parsing a text
+file.
 
 @example
 jas@@latte:~$ autobuild --verbose libidn.txt libidn2.html  > example.html
@@ -370,7 +372,7 @@ parties.
 
 Once the build processes has been started, you can get an overview of
 the process by invoking @command{autobuild} and viewing the output in
-a @acronym{HTML} browser.
+an @acronym{HTML} browser.
 
 @example
 ~/src/logs$ autobuild yourproject-*-output > yourproject.html
@@ -404,8 +406,8 @@ autobuild [@var{OPTION}]... @var{FILE}...
 
 Read and parse build logs to find project name, revision, build mode,
 build host type, build type (for cross compile builds), hostname, and
-timestamp, then print a HTML page with information and links to the
-logs.
+timestamp, then print an @acronym{HTML} page with information and
+links to the logs.
 
 @xref{Tutorial}, for more discussion.
 
@@ -466,7 +468,7 @@ For use when autobuild fail to guess the values properly:
 @cindex invoking @command{htmlize}
 
 @section Synopsis
-Add markup to file and save as HTML.
+Add markup to file and save as @acronym{HTML}.
 
 @example
 htmlize [@var{OPTION}]... @var{INFILE} [@var{OUTFILE} [@var{EMACS-MODE}]]
@@ -475,8 +477,8 @@ htmlize [@var{OPTION}]... @var{INFILE} [@var{OUTFILE} [@var{EMACS-MODE}]]
 @section Description
 
 Launch Emacs and load @var{INFILE} into a buffer, then invoke a major
-mode for font locking, and render the fontified buffer as HTML, saving
-the result into @var{OUTFILE}.
+mode for font locking, and render the fontified buffer as
+@acronym{HTML}, saving the result into @var{OUTFILE}.
 
 Emacs must have @file{htmlfontify.el} installed in its @code{load-path}.
 
