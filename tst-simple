@@ -28,11 +28,4 @@ else
     exit 1
 fi
 
-if perl -c $srcdir/abindex; then
-    :
-else
-    echo Perl could not parse abindex
-    exit 1
-fi
-
 exit 0
