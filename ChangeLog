@@ -1,4 +1,32 @@
 2004-07-06  Simon Josefsson <simon@josefsson.org>
 
+	* autobuild: Fix --help and --version.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Fix.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Install man page.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Build man page.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix CRLF bug.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Add.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile: Fix.
+
+2004-07-06  Simon Josefsson <simon@josefsson.org>
+
 	* COPYING, autobuild, Makefile: Add.
 
