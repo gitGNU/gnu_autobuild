@@ -145,6 +145,11 @@ foreach $arg (@ARGV) {
 	open FH, $file or die "Cannot open file: $file";
 
 	while (<FH>) {
+	    if (m,\r\n$,) {
+		chop; chop;
+		$_ = $_ . "\n";
+	    }
+
 	    # These override everything (except command line parameters).
 	    $project = $1 if !$Project && m,autobuild project... (.*),;
 	    $revision = $1 if !$Revision && m,autobuild revision... (.*),;
