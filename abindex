@@ -325,3 +325,5 @@ foreach $project (sort keys %Projects) {
 }
 
 print "\n";
+print "<hr>\n";
+print "This page was created on " . (scalar localtime) . " using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
