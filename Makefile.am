@@ -28,7 +28,7 @@ MAINTAINERCLEANFILES = autobuild.1 abindex.1
 
 EXTRA_DIST = logs/autobuild.log
 TESTS = tst-autobuild
-check_SCRIPTS = $(TESTS)
+dist_check_SCRIPTS = $(TESTS)
 
 autobuild.1: autobuild $(top_srcdir)/configure.ac
 	$(HELP2MAN) --no-info \
