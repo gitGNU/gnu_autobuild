@@ -1,3 +1,32 @@
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 1.2.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix last commit.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* tst-simple, tst-autobuild: Fix.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Don't forget command line defaults after first file,
+	when reading multiple filenames on command line.
+
+2004-07-08  Simon Josefsson <simon@josefsson.org>
+
+	* tst-autobuild, tst-simple, Makefile.am: Add.
+
+2004-07-07  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, abindex, autobuild, configure.ac: Bump version.
+
 2004-07-07  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 1.1.
