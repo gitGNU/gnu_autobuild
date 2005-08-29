@@ -1,4 +1,4 @@
-# Copyright (C) 2004 Simon Josefsson.
+# Copyright (C) 2004, 2005 Simon Josefsson.
 #
 # This file is part of Autobuild.
 #
@@ -33,6 +33,9 @@ TESTS = tst-autobuild tst-simple
 dist_check_SCRIPTS = $(TESTS)
 
 # Maintainer targets below.
+
+# update-po:
+# wget --no-verbose --retr-symlinks `curl $(POURL)/ | grep text.gif | sed 's,.*href="\(.*.po\)".*,$(POURL)/\1,g'`
 
 ChangeLog:
 	rm -f ChangeLog
