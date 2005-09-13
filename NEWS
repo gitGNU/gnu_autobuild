@@ -4,7 +4,11 @@ See the end for copying conditions.
 
 * Version 3.4 (unreleased)
 
-** Typos fixed, thanks to Jim Meyering <jim@meyering.net>.
+** abput-sourceforge uses shell.sf.net instead of cf-shell.sf.net.
+
+** abput-sourceforge uses rsync instead of scp.
+
+** Typos fixed.
 
 * Version 3.3 (released 2004-08-26)
 
