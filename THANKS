@@ -1,5 +1,5 @@
 Autobuild THANKS -- Acknowledgements.
-Copyright (C) 2004 Simon Josefsson
+Copyright (C) 2004, 2005 Simon Josefsson
 See the end for copying conditions.
 
 The inspiration for this package was based on earlier ad-hoc shell
@@ -17,6 +17,7 @@ Texinfo, written by Mohit Agarwal, Karl Berry et al.
 Bug reports, patches and/or suggestions were also received from:
 
 Linus Nordberg <linus@nordberg.se>
+Jim Meyering <jim@meyering.net>
 
 ----------------------------------------------------------------------
 Copying and distribution of this file, with or without modification,

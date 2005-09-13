@@ -1,8 +1,10 @@
 Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
-Copyright (C) 2004 Simon Josefsson
+Copyright (C) 2004, 2005 Simon Josefsson
 See the end for copying conditions.
 
 * Version 3.4 (unreleased)
+
+** Typos fixed, thanks to Jim Meyering <jim@meyering.net>.
 
 * Version 3.3 (released 2004-08-26)
 
