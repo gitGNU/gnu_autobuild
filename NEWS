@@ -4,6 +4,11 @@ See the end for copying conditions.
 
 * Version 3.4 (unreleased)
 
+** HTML markup fixes in autobuild.
+
+** Added --skip-unknown parameter to autobuild.
+Make autobuild ignore files it cannot parse.
+
 ** abput-sourceforge uses shell.sf.net instead of cf-shell.sf.net.
 
 ** abput-sourceforge uses rsync instead of scp.
