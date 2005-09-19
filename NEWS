@@ -2,7 +2,7 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004, 2005 Simon Josefsson
 See the end for copying conditions.
 
-* Version 3.5 (unreleased)
+* Version 3.5 (released 2005-09-19)
 
 ** The tools now use cf-shell.sf.net instead of shell.sf.net.
 It seems shell.sf.net does not reach the compile farm at sourceforge,
