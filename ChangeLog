@@ -1,5 +1,50 @@
 2005-09-19  Simon Josefsson <simon@josefsson.org>
 
+	* NEWS: Version 3.5.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild: Fix typo.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abput-sourceforge: Upload to cf-shell.sf.net.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: More specific sf link.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Need to login through cf-shell.sf.net.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Fix typo.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Typo.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Login to hosts directly (firewall on
+	shell.sf.net?).  Canonicalize hostnames.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Add verbose flag to inner ssh too.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
 	* NEWS: Version 3.4.
 
 2005-09-19  Simon Josefsson <simon@josefsson.org>
