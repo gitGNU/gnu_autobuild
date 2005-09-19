@@ -1,3 +1,94 @@
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 3.4.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Revert.
+
+2005-09-19  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: Don't login through shell.cf.net.
+
+2005-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* abput-sourceforge: Use rsync over ssh by default.
+
+2005-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Fix typo, from Jim.
+
+2005-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, THANKS: Add.
+
+2005-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* abput-sourceforge: Use rsync instead of scp.  Use shell.cf.net
+	instead of cf-shell.cf.net.  From Jim Meyering <jim@meyering.net>.
+
+2005-09-13  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Typos, from Jim Meyering <jim@meyering.net>.
+
+2005-08-29  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add.
+
+2004-10-12  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix markup.
+
+2004-10-12  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Make HTML more useful in embedded pages.
+
+2004-10-12  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Improve HTML markup.
+
+2004-10-12  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Improve HTML markup.
+
+2004-10-02  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Typo.
+
+2004-10-02  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac, NEWS: Bump version.
+
+2004-10-02  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild, doc/autobuild.texi: Add --skip-unknown.
+
+2004-09-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: s/a HTML/an HTML/g, suggested by Linus
+	Nordberg <linus@nordberg.se>.  Markup fixes.
+
+2004-09-21  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Fix.
+
+2004-09-21  Simon Josefsson <simon@josefsson.org>
+
+	* THANKS: Add.
+
+2004-09-21  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: (Build Robot): Fix typo.  (Scripting The
+	Build Robot): Fix typo.
+
 2004-08-26  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 3.3.
