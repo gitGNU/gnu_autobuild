@@ -1,4 +1,4 @@
-dnl Copyright (C) 2004 Simon Josefsson.
+dnl Copyright (C) 2004, 2005 Simon Josefsson.
 dnl
 dnl This file is part of Autobuild.
 dnl
@@ -17,7 +17,7 @@ dnl along with Autobuild; see the file COPYING.  If not, write to the
 dnl Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 dnl Boston, MA 02111-1307, USA.
 
-AC_INIT(autobuild, 3.4, bug-autobuild@josefsson.org)
+AC_INIT(autobuild, 3.5, bug-autobuild@josefsson.org)
 
 AM_INIT_AUTOMAKE(gnits)
 
