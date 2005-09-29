@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright (C) 2004 Simon Josefsson.
+# Copyright (C) 2004, 2005 Simon Josefsson.
 #
 # This file is part of Autobuild.
 #
@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.61 $';
+    my ($rev) = '$Revision: 1.62 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -145,7 +145,6 @@ foreach $arg (@ARGV) {
 	$hosttype = $Hosttype;
 	$buildtype = $Buildtype;
 	$timestamp = $Timestamp;
-	$status = $Status;
 
 	open FH, $file or die "Cannot open file: $file";
 
@@ -169,8 +168,8 @@ foreach $arg (@ARGV) {
 	    $buildtype = $3 if !$buildtype && m,build system type(<[^>]+>)?\.\.\. (<[^>]+>)?([a-z0-9_.-]+),;
 
 	    # Automake self test output.
-	    $status = "ok" if !$status && m,All [0-9]+ tests passed,;
-	    $status = "almost" if !$status && m,[0-9]+ of [0-9]+ tests failed,;
+	    $status = "ok" if !$status && m,All \d+ tests passed,;
+	    $status = "almost" if m,\d+ of \d+ tests failed,;
 
 	    # Works for GNU make.
 	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z-]+)-[0-9.a-z-]+/.*(<[^>]+>)?',;
