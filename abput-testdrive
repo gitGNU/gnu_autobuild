@@ -1,0 +1,95 @@
+#!/bin/sh
+
+# Copyright (C) 2004, 2005 Simon Josefsson.
+#
+# This file is part of Autobuild.
+#
+# Autobuild is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# Autobuild is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Autobuild; see the file COPYING.  If not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+# MA 02111-1307, USA.
+
+prog="`basename \"$0\"`"
+rcs_revision='$Revision: 1.1 $'
+rcs_version=`set - $rcs_revision; echo $2`
+program=`echo $0 | sed -e 's!.*/!!'`
+version="abput-testdrive (autobuild) $rcs_version
+
+Copyright (C) 2004, 2005 Simon Josefsson
+There is NO warranty.  You may redistribute this software under the
+terms of the GNU General Public License.  For more information about
+these matters, see the file named COPYING."
+
+usage="Usage: $prog [OPTION]... FILES...
+
+Upload FILES to Compaq Testdrive compile farm, using NcFTP.
+
+Options:
+  -u, --username       Testdrive FTP username.  Defaults to \$USER.
+  -p, --password       Testdrive FTP password.  Prompts for it by default.
+  -h, --help           Display this help and exit successfully.
+      --version        Display version information and exit successfully.
+
+Environment variables:
+  ABTDUSER             Testdrive FTP username.
+  ABTDPASSWORD         Testdrive FTP password.
+
+Files:
+  \$HOME/.ab-td        Shell script sourced, can be used to specify ABTDUSER.
+                       E.g., run 'echo ABTDUSER=joe > \$HOME/.ab-td'.
+
+Simple example:
+  $prog yourproject-4.2.tar.gz
+
+Report bugs to <bug-autobuild@josefsson.org>."
+
+test -f $HOME/.ab-td && . $HOME/.ab-td
+
+while test $# -gt 0; do
+  case $1 in
+    -h) echo "$usage"; exit 0;;
+    -u) shift; ABTDUSER=$1;;
+    --username) shift; ABTDUSER=$1;;
+    -p) shift; ABTDPASSWORD=$1;;
+    --password) shift; ABTDPASSWORD=$1;;
+    --help) echo "$usage"; exit 0;;
+    --version) echo "$version"; exit 0;;
+    -*)
+      echo "$0: Unknown or ambiguous option \`$1'." >&2
+      echo "$0: Try \`--help' for more information." >&2
+      exit 1;;
+    *)
+      break;;
+  esac
+  shift
+done
+
+if test $# -eq 0; then
+    echo "$0: Too few arguments." >&2
+    echo "$0: Try \`--help' for more information." >&2
+    exit 1
+fi
+
+if test -z "$ABTDUSER"; then
+    echo "Testdrive FTP user name not specified, defaulting to $USER."
+    echo "Use 'echo ABTDUSER=joe > $HOME/.ab-td' to change."
+fi
+
+ABTDUSER=${ABTDUSER:-$USER}
+FILES="$@"
+
+if test -n "$ABTDPASSWORD"; then
+  ABTDPASSWORD="-p $ABTDPASSWORD"
+fi
+
+ncftpput -F -u $ABTDUSER $ABTDPASSWORD td163.testdrive.hp.com /house/$ABTDUSER $FILES
