@@ -8,6 +8,11 @@ See the end for copying conditions.
 
 ** New "status" value "built" to indicate that build succeeded.
 
+** autobuild.m4 now use $AB_PACKAGE and $AB_VERSION for package/versions.
+If the variables are not set, the old default of using autoconf
+$PACKAGE_NAME and $PACKAGE_VERSION (or ultimately $PACKAGE and
+$VERSION) is used instead.
+
 * Version 3.5 (released 2005-09-19)
 
 ** The tools now use cf-shell.sf.net instead of shell.sf.net.
