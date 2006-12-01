@@ -25,7 +25,7 @@ AC_DEFUN([AB_INIT],
 	if test -z "$AB_VERSION"; then
 	   AB_VERSION=${PACKAGE_VERSION:-$VERSION}
 	fi
-	AC_MSG_NOTICE([autobuild revision... $AB_PACKAGE_VERSION])
+	AC_MSG_NOTICE([autobuild revision... $AB_VERSION])
 
 	hostname=`hostname`
 	if test "$hostname"; then
