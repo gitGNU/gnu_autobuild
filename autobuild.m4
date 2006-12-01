@@ -1,5 +1,5 @@
-# autobuild.m4 serial 2 (autobuild-3.3)
-# Copyright (C) 2004 Simon Josefsson
+# autobuild.m4 serial 3
+# Copyright (C) 2004, 2006 Simon Josefsson
 #
 # This file is free software, distributed under the terms of the GNU
 # General Public License.  As a special exception to the GNU General
@@ -17,13 +17,23 @@ AC_DEFUN([AB_INIT],
 	AC_REQUIRE([AC_CANONICAL_BUILD])
 	AC_REQUIRE([AC_CANONICAL_HOST])
 
-	AC_MSG_NOTICE([autobuild project... ${PACKAGE_NAME:-$PACKAGE}])
-	AC_MSG_NOTICE([autobuild revision... ${PACKAGE_VERSION:-$VERSION}])
+	if test -z "$AB_PACKAGE"; then
+	   AB_PACKAGE=${PACKAGE_NAME:-$PACKAGE}
+	fi
+	AC_MSG_NOTICE([autobuild project... $AB_PACKAGE])
+
+	if test -z "$AB_VERSION"; then
+	   AB_VERSION=${PACKAGE_VERSION:-$VERSION}
+	fi
+	AC_MSG_NOTICE([autobuild revision... $AB_PACKAGE_VERSION])
+
 	hostname=`hostname`
 	if test "$hostname"; then
 	   AC_MSG_NOTICE([autobuild hostname... $hostname])
 	fi
+
 	ifelse([$1],[],,[AC_MSG_NOTICE([autobuild mode... $1])])
+
 	date=`date +%Y%m%d-%H%M%S`
 	if test "$?" != 0; then
 	   date=`date`
