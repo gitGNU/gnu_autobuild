@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.63 $';
+    my ($rev) = '$Revision: 1.64 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -170,7 +170,7 @@ foreach $arg (@ARGV) {
 	    # Automake self test or distcheck output.
 	    $status = "ok" if !$status && m,All \d+ tests passed,;
 	    $status = "almost" if m,\d+ of \d+ tests failed,;
-	    $status = "built" if m,archives ready for distribution,;
+	    $status = "built" if !$status && m,archives ready for distribution,;
 
 	    # Works for GNU make.
 	    $project = $2 if !$project && m,Entering directory `(<[^>]+>)?.*/([a-z-]+)-[0-9.a-z-]+/.*(<[^>]+>)?',;
