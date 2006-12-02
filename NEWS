@@ -4,6 +4,11 @@ See the end for copying conditions.
 
 * Version 4.0 (unreleased)
 
+** Quick summary enhanced to contain build status too.
+When autobuild build output files for more than one project, the first
+list of projects now contains status for all hosts and the latest
+revision.
+
 ** A new script for uploading files to Compaq Testdrive, abput-testdrive.
 
 ** New "status" value "built" to indicate that build succeeded.
