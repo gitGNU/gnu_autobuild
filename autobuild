@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.65 $';
+    my ($rev) = '$Revision: 1.66 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -267,9 +267,11 @@ if (scalar keys %Projects > 1) {
     print "<td>Revision</td>\n";
     print "<td>Build date</td>\n";
     print "<td>Results</td>\n";
-    print "</tr>\n";
+    print "</tr>\n\n";
     my $bit = 0;
     foreach $project (sort keys %Projects) {
+	my $first = 1;
+
 	if ($bit) {
 	    print "<tr bgcolor=lightgray>\n";
 	} else {
@@ -277,13 +279,24 @@ if (scalar keys %Projects > 1) {
 	}
 	$bit = !$bit;
 
-	print "<td><a href=\"#$project\">$project</a></td>\n";
+	print "<td><a href=\"#$project\">$project</a></td>\n\n";
 
 	foreach $hostname (sort keys %{$Hostnames{$project}}) {
-	    my $bit = 0;
 	    my $latest_revision = (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}})[0];
 
-	    print "<td>$hostname</td>\n";
+	    if ($first) {
+		print "<td>$hostname</td>\n";
+	    } else {
+		if ($bit) {
+		    print "<tr bgcolor=lightgray>\n";
+		} else {
+		    print "<tr>\n";
+		}
+		print "<td></td><td>$hostname</td>\n";
+		$bit = !$bit;
+	    }
+	    $first = 0;
+
 	    foreach $file (@Files) {
 		next unless $Project{$file} eq $project;
 		next unless $Hostname{$file} eq $hostname;
@@ -324,11 +337,11 @@ if (scalar keys %Projects > 1) {
 		    print "<font color=red>Failure</font>\n";
 		}
 		print "</a></td>\n";
+		print "</tr>";
 		print "\n";
 	    }
 	    print "\n";
 	}
-	print "</tr>\n";
     }
     print "</table>\n";
 }
