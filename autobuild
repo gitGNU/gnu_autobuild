@@ -88,7 +88,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.66 $';
+    my ($rev) = '$Revision: 1.67 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -282,7 +282,7 @@ if (scalar keys %Projects > 1) {
 	print "<td><a href=\"#$project\">$project</a></td>\n\n";
 
 	foreach $hostname (sort keys %{$Hostnames{$project}}) {
-	    my $latest_revision = (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}})[0];
+	    my %DoneHost;
 
 	    if ($first) {
 		print "<td>$hostname</td>\n";
@@ -297,10 +297,11 @@ if (scalar keys %Projects > 1) {
 	    }
 	    $first = 0;
 
-	    foreach $file (@Files) {
+	    foreach $file (reverse sort @Files) {
 		next unless $Project{$file} eq $project;
 		next unless $Hostname{$file} eq $hostname;
-		next unless $Revision{$file} eq $latest_revision;
+		next unless !$DoneHost{$hostname};
+		$DoneHost{$hostname} = 1;
 
 		my ($Project);
 		my ($Revision);
