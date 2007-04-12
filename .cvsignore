@@ -15,3 +15,5 @@ install-sh
 Makefile
 Makefile.in
 missing
+gnulib-common.m4
+gnulib-tool.m4
