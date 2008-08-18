@@ -56,7 +56,7 @@ release:
 	cvs rtag $(tag) $(PACKAGE)
 	gpg -b $(distdir).tar.gz
 	gpg --verify $(distdir).tar.gz.sig
-	cd doc && build-aux/gendocs.sh --html "--css-include=texinfo.css" \
+	cd doc && ../build-aux/gendocs.sh --html "--css-include=texinfo.css" \
 		-o ../$(htmldir)/manual/ $(PACKAGE) "Autobuild"
 	cp -v $(distdir).tar.gz{,.sig} $(htmldir)/releases/
 	cd $(htmldir) && cvs add -kb releases/$(distdir).tar.gz{,.sig} && \
