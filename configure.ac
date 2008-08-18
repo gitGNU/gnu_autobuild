@@ -16,7 +16,7 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with Autobuild.  If not, see <http://www.gnu.org/licenses/>.
 
 AC_PREREQ(2.60)
-AC_INIT(autobuild, 4.0, bug-autobuild@josefsson.org)
+AC_INIT(autobuild, 4.1, bug-autobuild@josefsson.org)
 
 AM_INIT_AUTOMAKE(gnits)
 

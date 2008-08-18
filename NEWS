@@ -2,6 +2,10 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004, 2005, 2006, 2008 Simon Josefsson
 See the end for copying conditions.
 
+* Version 4.1 (unreleased)
+
+** autobuild: Print time in UTC time zone.
+
 * Version 4.0 (released 2008-08-18)
 
 ** Quick summary enhanced to contain build status too.
