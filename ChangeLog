@@ -1,3 +1,142 @@
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 4.0.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix paths.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* buildconf.sh: Remove.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, doc/gendocs.sh, doc/gendocs_template,
+	m4/gnulib-cache.m4, m4/gnulib-comp.m4, build-aux/gendocs.sh: Update
+	gendocs.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, gnulib-cache.m4: Fix m4 paths.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Use GFDL 1.2.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* COPYING, Makefile.am, abbuild, abbuild-sourceforge, abput,
+	abput-sourceforge, abput-testdrive, autobuild, configure.ac,
+	htmlize, tst-autobuild, tst-simple, doc/Makefile.am,
+	examples/Makefile.am: Use GPLv3.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4: Rm.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* m4/autobuild.m4, m4/gnulib-cache.m4, m4/gnulib-common.m4,
+	m4/gnulib-comp.m4, m4/gnulib-tool.m4: Update gnulib files.
+
+2008-08-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2007-04-12  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4, gnulib-cache.m4: Use gnulib for autobuild.m4.
+
+2007-04-12  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Require autoconf 2.60, for gnulib-tool.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Handle IRIX make errors, from Love Hörnquist Åstrand
+	<lha@it.su.se>.
+
+2007-01-08  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Handle AIX make errors, from Love Hörnquist Åstrand
+	<lha@it.su.se>.
+
+2006-12-02  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Don't require that all hosts built the same version,
+	for quick summary.
+
+2006-12-02  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix lines for multi-host projects.
+
+2006-12-02  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-12-02  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add build status to quick summary.
+
+2006-12-01  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: fix
+
+2006-12-01  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4: Fix typo.
+
+2006-12-01  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-12-01  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild.m4: Support AB_PACKAGE and AB_VERSION, to hard-code the
+	autobuild package/version name.
+
+2006-12-01  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add built keyword.
+
+2006-12-01  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2006-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: fix
+
+2006-07-14  Simon Josefsson <simon@josefsson.org>
+
+	* abbuild-sourceforge: fix
+
+2005-11-15  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Bump version.
+
+2005-11-15  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2005-11-15  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Add abput-testdrive.
+
+2005-11-15  Simon Josefsson <simon@josefsson.org>
+
+	* abput-testdrive: Add, based on abput-sourceforge.
+
+2005-11-15  Simon Josefsson <simon@josefsson.org>
+
+	* abput-sourceforge: Fix copyright years.
+
+2005-09-29  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Don't report "Success" if tests in a sub-sequence
+	directory fails, tiny patch from Jim Meyering <jim@meyering.net>.
+
 2005-09-19  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 3.5.
