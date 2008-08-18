@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.70 $';
+    my ($rev) = '$Revision: 1.71 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -582,7 +582,7 @@ foreach $project (sort keys %Projects) {
 
 print "\n";
 print "<hr>\n";
-print "<p>This page was created on " . (scalar localtime) . " using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
+print "<p>This page was created on " . (scalar gmtime) . " UTC using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
 print "\n";
 
 print "<br>\n";
