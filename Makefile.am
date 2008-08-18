@@ -17,7 +17,7 @@
 
 SUBDIRS = doc examples
 
-ACLOCAL_AMFLAGS = -I .
+ACLOCAL_AMFLAGS = -I m4
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = autobuild.m4
