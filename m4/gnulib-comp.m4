@@ -175,6 +175,8 @@ AC_DEFUN([gltests_LIBSOURCES], [
 # This macro records the list of files which have been installed by
 # gnulib-tool and may be removed by future gnulib-tool invocations.
 AC_DEFUN([gl_FILE_LIST], [
+  build-aux/gendocs.sh
+  doc/gendocs_template
   m4/autobuild.m4
   m4/gnulib-common.m4
 ])
