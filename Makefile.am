@@ -20,7 +20,7 @@ SUBDIRS = doc examples
 ACLOCAL_AMFLAGS = -I m4
 
 m4datadir = $(datadir)/aclocal
-m4data_DATA = autobuild.m4
+m4data_DATA = m4/autobuild.m4
 
 dist_lisp_DATA = htmlfontify.el hfy-cmap.el hfy-emacs20.el
 
