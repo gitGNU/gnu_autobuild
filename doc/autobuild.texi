@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: autobuild.texi,v 1.25 2005-09-19 12:42:45 jas Exp $
+@comment $Id: autobuild.texi,v 1.26 2008-08-18 18:24:12 jas Exp $
 @comment %**start of header
 @setfilename autobuild.info
 @include version.texi
@@ -10,20 +10,15 @@
 This manual is last updated @value{UPDATED} for version
 @value{VERSION} of Autobuild.
 
-Copyright @copyright{} 2004, 2005 Simon Josefsson.
+Copyright @copyright{} 2004, 2005, 2008 Simon Josefsson.
 
 @quotation
 Permission is granted to copy, distribute and/or modify this document
-under the terms of the GNU Free Documentation License, Version 1.1 or
+under the terms of the GNU Free Documentation License, Version 1.2 or
 any later version published by the Free Software Foundation; with no
-Invariant Sections, with the Front-Cover Texts being ``A GNU Manual,''
-and with the Back-Cover Texts as in (a) below.  A copy of the
-license is included in the section entitled ``GNU Free Documentation
-License.''
-
-(a) The FSF's Back-Cover Text is: ``You have freedom to copy and modify
-this GNU Manual, like GNU software.  Copies published by the Free
-Software Foundation raise funds for GNU development.''
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled ``GNU Free
+Documentation License''.
 @end quotation
 @end copying
 
