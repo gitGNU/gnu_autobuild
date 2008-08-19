@@ -86,7 +86,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
 
 # Handle --verison.
 if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.71 $';
+    my ($rev) = '$Revision: 1.72 $';
     $rev = $1 if $rev =~ m/Revision: (\S+) /;
     print "autobuild (autobuild) $rev\n";
     print "\n";
@@ -168,6 +168,12 @@ foreach $arg (@ARGV) {
 	    # Automake self test or distcheck output.
 	    $status = "ok" if !$status && m,All \d+ tests passed,;
 	    $status = "almost" if m,\d+ of \d+ tests failed,;
+
+	    # Dejagnu self tests.
+	    $status = "ok" if !$status && m,^# of expected ,;
+	    $status = "almost" if m,# of unexpected ,;
+
+	    # Old (?) automake output.
 	    $status = "built" if !$status && m,archives ready for distribution,;
 
 	    # Works for GNU make.
