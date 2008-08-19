@@ -4,6 +4,8 @@ See the end for copying conditions.
 
 * Version 4.1 (unreleased)
 
+** autobuild: Support dejagnu self-test outputs.
+
 ** autobuild: Print time in UTC time zone.
 
 * Version 4.0 (released 2008-08-18)
