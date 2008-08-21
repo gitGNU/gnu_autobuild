@@ -33,31 +33,24 @@ dist_check_SCRIPTS = $(TESTS)
 
 # Maintainer targets below.
 
-# update-po:
-# wget --no-verbose --retr-symlinks `curl $(POURL)/ | grep text.gif | sed 's,.*href="\(.*.po\)".*,$(POURL)/\1,g'`
-
 ChangeLog:
-	rm -f ChangeLog
-	cvs2cl --FSF --fsf --usermap .cvsusers -I ChangeLog -I .cvs
+	git log --pretty --numstat --summary | git2cl > ChangeLog
 	cat .cvscopying >> ChangeLog
-	cvs commit -m "Generated." ChangeLog
 
 tag = $(PACKAGE)-`echo $(VERSION) | sed 's/\./-/g'`
 htmldir = ../www-$(PACKAGE)
 
 release:
-	cvs upd -p -r HEAD NEWS > /dev/null
-	if cvs upd -p -r $(tag) NEWS > /dev/null; then false else true; fi
-	rm -f ChangeLog && cvs upd ChangeLog
-	cvs commit
+	! git-tag -l $(tag) | grep $(PACKAGE) > /dev/null
 	rm -f ChangeLog
 	$(MAKE) ChangeLog distcheck
-	cvs commit -m "" ChangeLog
-	cvs rtag $(tag) $(PACKAGE)
 	gpg -b $(distdir).tar.gz
 	gpg --verify $(distdir).tar.gz.sig
+	git commit -m Generated. ChangeLog
+	git-tag -u b565716f! -m $(VERSION) $(tag)
+	git-push
+	git-push --tags
 	cd doc && ../build-aux/gendocs.sh --html "--css-include=texinfo.css" \
 		-o ../$(htmldir)/manual/ $(PACKAGE) "Autobuild"
-	cp -v $(distdir).tar.gz{,.sig} $(htmldir)/releases/
-	cd $(htmldir) && cvs add -kb releases/$(distdir).tar.gz{,.sig} && \
-		cvs commit -m "Update." manual/ releases/
+	scp $(distdir).tar.gz $(distdir).tar.gz.sig jas@dl.sv.nongnu.org:/releases/autobuild/
+	cd $(htmldir) && cvs commit -m "Update." manual/
