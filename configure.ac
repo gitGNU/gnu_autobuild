@@ -20,6 +20,8 @@ AC_INIT(autobuild, 4.1, bug-autobuild@josefsson.org)
 
 AM_INIT_AUTOMAKE(gnits)
 
+gl_EARLY
+
 AM_MISSING_PROG(HELP2MAN, help2man, $missing_dir)
 
 AC_PATH_PROG(PERL, perl)
@@ -32,7 +34,7 @@ $PERL -e 'require 5.005;' || {
 
 AM_PATH_LISPDIR
 
-AB_INIT
+gl_INIT
 
 AC_CONFIG_FILES(Makefile doc/Makefile examples/Makefile)
 
