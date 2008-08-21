@@ -85,6 +85,8 @@ you, is to look at some example output.  For now, we recommend looking
 at how Autobuild is used in the GNU Libidn project, see
 @url{http://josefsson.org/autobuild-logs/libidn.html}.
 
+Autobuild is licensed under the GNU General Public License v3.0.
+
 @node Tutorial
 @chapter Tutorial
 
