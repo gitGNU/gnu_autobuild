@@ -177,6 +177,7 @@ AC_DEFUN([gltests_LIBSOURCES], [
 AC_DEFUN([gl_FILE_LIST], [
   build-aux/gendocs.sh
   doc/gendocs_template
+  doc/gpl-3.0.texi
   m4/autobuild.m4
   m4/gnulib-common.m4
 ])
