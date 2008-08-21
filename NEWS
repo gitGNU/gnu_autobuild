@@ -8,6 +8,12 @@ See the end for copying conditions.
 
 ** autobuild: Print time in UTC time zone.
 
+** Autobuild is now developed on Savannah.
+The Savannah project page is available from
+<https://savannah.nongnu.org/projects/autobuild/>.  The download area
+has been moved to
+<http://download.savannah.gnu.org/releases/autobuild/>.
+
 * Version 4.0 (released 2008-08-18)
 
 ** Quick summary enhanced to contain build status too.
