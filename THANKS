@@ -1,5 +1,5 @@
 Autobuild THANKS -- Acknowledgements.
-Copyright (C) 2004, 2005 Simon Josefsson
+Copyright (C) 2004, 2005, 2008 Simon Josefsson
 See the end for copying conditions.
 
 The inspiration for this package was based on earlier ad-hoc shell
@@ -18,6 +18,7 @@ Bug reports, patches and/or suggestions were also received from:
 
 Linus Nordberg <linus@nordberg.se>
 Jim Meyering <jim@meyering.net>
+Love Hörnquist Åstrand <lha@it.su.se>
 
 ----------------------------------------------------------------------
 Copying and distribution of this file, with or without modification,
