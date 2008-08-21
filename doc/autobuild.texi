@@ -518,15 +518,19 @@ Simple example:
   htmlize mybuildlog.txt mybuildlog.html
 @end verbatim
 
-@node Copying This Manual
-@appendix Copying This Manual
+@node Copying Information
+@appendix Copying Information
 
 @menu
-* GNU Free Documentation License::  License for copying this manual.
+* GNU Free Documentation License::   License for copying this manual.
 @end menu
 
-@include fdl.texi
+@node GNU Free Documentation License
+@appendixsec GNU Free Documentation License
 
+@cindex FDL, GNU Free Documentation License
+
+@include fdl.texi
 
 @node Index
 @unnumbered Index
