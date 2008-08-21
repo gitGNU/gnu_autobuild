@@ -60,7 +60,7 @@ Documentation License''.
 * Scripting The Build Robot::
 * Invoking autobuild::
 * Invoking htmlize::
-* Copying This Manual::
+* Copying Information::
 * Index::
 @end menu
 
