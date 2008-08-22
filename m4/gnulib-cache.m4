@@ -15,7 +15,7 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --lib=libgnu --source-base=lib --m4-base=m4 --doc-base=doc --aux-dir=. --avoid=dummy --no-libtool --macro-prefix=gl --no-vc-files autobuild fdl gendocs gpl-3.0
+#   gnulib-tool --import --dir=. --lib=libgnu --source-base=lib --m4-base=m4 --doc-base=doc --aux-dir=build-aux --avoid=dummy --no-libtool --macro-prefix=gl --no-vc-files autobuild fdl gendocs gpl-3.0
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
