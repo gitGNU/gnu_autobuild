@@ -18,7 +18,7 @@
 EXTRA_DIST = autobuild.html autobuild.ps autobuild.pdf texinfo.css
 
 info_TEXINFOS = autobuild.texi htmlfontify.texi
-autobuild_TEXINFOS = gpl-3.0.texi fdl.texi
+autobuild_TEXINFOS = gpl-3.0.texi fdl-1.3.texi
 
 AM_MAKEINFOHTMLFLAGS = --no-split --number-sections --css-include=texinfo.css
 
