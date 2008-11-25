@@ -4,6 +4,8 @@ See the end for copying conditions.
 
 * Version 4.2 (unreleased)
 
+** autobuild: Always print summary.
+
 * Version 4.1 (released 2008-08-21)
 
 ** autobuild: Support dejagnu self-test outputs.
