@@ -6,6 +6,8 @@ See the end for copying conditions.
 
 ** autobuild: Always print summary.
 
+** htmlify: Add new parameter --debug.
+
 ** abput, abput-sourceforge, abput-testdrive: Remove.
 ** abbuild, abbuild-sourceforge: Remove.
 Both the SourceForge and TestDrive systems have been shutdown.  The
