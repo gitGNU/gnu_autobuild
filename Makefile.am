@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Autobuild.  If not, see <http://www.gnu.org/licenses/>.
 
-SUBDIRS = doc examples
+SUBDIRS = doc examples tests
 
 ACLOCAL_AMFLAGS = -I m4
 

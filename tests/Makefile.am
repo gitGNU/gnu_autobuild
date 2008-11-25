@@ -1,6 +1,4 @@
-#!/bin/sh
-
-# Copyright (C) 2004, 2008 Simon Josefsson.
+# Copyright (C) 2004, 2005, 2008 Simon Josefsson.
 #
 # This file is part of Autobuild.
 #
@@ -17,25 +15,5 @@
 # You should have received a copy of the GNU General Public License
 # along with Autobuild.  If not, see <http://www.gnu.org/licenses/>.
 
-TMP="tmp.$$"
-srcdir=${srcdir:-.}
-
-filename=`(cd $srcdir; perl $srcdir/autobuild --dry-run --verbose examples/libidn.txt) 2> $TMP`
-err=$?
-
-if test "$err" != "0"; then
-    echo Running autobuild failed: $err
-    rm -f $TMP
-    exit 1
-fi
-
-if cmp $TMP $srcdir/examples/libidn.expect; then
-    :
-else
-    echo File comparison failed
-    rm -f $TMP
-    exit 1
-fi
-
-rm -f $TMP
-exit 0
+TESTS = tst-autobuild tst-simple
+dist_check_SCRIPTS = $(TESTS)
