@@ -55,8 +55,6 @@ Documentation License''.
 * Introduction::
 * Tutorial::
 * Integrating autobuild.m4 In Your Project::
-* Build Robot::
-* Scripting The Build Robot::
 * Invoking autobuild::
 * Invoking htmlize::
 * Copying Information::
