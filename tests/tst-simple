@@ -19,7 +19,7 @@
 
 srcdir=${srcdir:-.}
 
-if perl -c $srcdir/autobuild; then
+if perl -c $srcdir/../autobuild; then
     :
 else
     echo Perl could not parse autobuild
