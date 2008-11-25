@@ -45,5 +45,6 @@ release:
 	git-push --tags
 	cd doc && ../build-aux/gendocs.sh --html "--css-include=texinfo.css" \
 		-o ../$(htmldir)/manual/ $(PACKAGE) "Autobuild"
+	cp $(distdir).tar.gz $(distdir).tar.gz.sig ../releases/autobuild/
 	scp $(distdir).tar.gz $(distdir).tar.gz.sig jas@dl.sv.nongnu.org:/releases/autobuild/
 	cd $(htmldir) && cvs commit -m "Update." manual/
