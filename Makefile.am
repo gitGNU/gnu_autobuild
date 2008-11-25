@@ -22,14 +22,9 @@ ACLOCAL_AMFLAGS = -I m4
 m4datadir = $(datadir)/aclocal
 m4data_DATA = m4/autobuild.m4
 
-dist_lisp_DATA = htmlfontify.el hfy-cmap.el hfy-emacs20.el
-
 dist_bin_SCRIPTS = autobuild htmlize \
 	abput abput-sourceforge abput-testdrive \
 	abbuild abbuild-sourceforge
-
-TESTS = tst-autobuild tst-simple
-dist_check_SCRIPTS = $(TESTS)
 
 # Maintainer targets below.
 
