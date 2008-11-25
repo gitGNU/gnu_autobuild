@@ -1,3 +1,117 @@
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 5.0.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* README: Sync with manual.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Drop more.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/autobuild.texi: Drop abput/abbuild.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* examples/Makefile.am: Fix.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* htmlize: Add --debug.  Fix --version.  Indent.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* examples/Makefile.am: Fix rules.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, autobuild, configure.ac: Bump version.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* doc/Makefile.am: Drop abput* and abbuild*.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, NEWS, abbuild, abbuild-sourceforge, abput,
+	abput-sourceforge, abput-testdrive: Remove abput* and abbuild*.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, doc/Makefile.am, doc/autobuild.texi, doc/fdl-1.3.texi,
+	doc/fdl.texi: Use GFDLv1.3.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* tests/tst-autobuild: Fix new location.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* tests/tst-autobuild: Handle new location.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* tests/tst-simple: Handle new location.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Drop elisp/tests stuff.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, elisp/Makefile.am, elisp/hfy-cmap.el,
+	elisp/hfy-emacs20.el, elisp/htmlfontify.el, hfy-cmap.el,
+	hfy-emacs20.el, htmlfontify.el: Move emacs lisp files to elisp/.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am, configure.ac, tests/Makefile.am,
+	tests/tst-autobuild, tests/tst-simple, tst-autobuild, tst-simple: 
+	Move self-tests to tests/.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix --version.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Niceify.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Always print summary.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, configure.ac: Bump versions.
+
+2008-08-22  Simon Josefsson <simon@josefsson.org>
+
+	* configure.ac: Use build-aux/.
+
+2008-08-22  Simon Josefsson <simon@josefsson.org>
+
+	* m4/gnulib-cache.m4: Fix build-aux path.
+
+2008-08-22  Simon Josefsson <simon@josefsson.org>
+
+	* m4/gnulib-cache.m4: No vc files.
+
+2008-08-21  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
 2008-08-21  Simon Josefsson <simon@josefsson.org>
 
 	* Makefile.am: Fix release target.
