@@ -20,5 +20,5 @@ EXTRA_DIST = libidn.txt libidn2.txt libidn.expect
 example.html: libidn.txt libidn2.html
 	$(top_srcdir)/autobuild libidn.txt libidn2.html > example.html
 
-libidn2.html: libidn.libidn2.txt
+libidn2.html: libidn.txt
 	$(top_srcdir)/htmlize libidn2.txt libidn2.html
