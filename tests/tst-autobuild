@@ -20,7 +20,7 @@
 TMP="tmp.$$"
 srcdir=${srcdir:-.}
 
-filename=`(cd $srcdir; perl $srcdir/autobuild --dry-run --verbose ../examples/libidn.txt) 2> $TMP`
+filename=`(cd $srcdir; perl $srcdir/../autobuild --dry-run --verbose ../examples/libidn.txt) 2> $TMP`
 err=$?
 
 if test "$err" != "0"; then
