@@ -19,7 +19,7 @@
 
 prog="`basename \"$0\"`"
 program=`echo $0 | sed -e 's!.*/!!'`
-version="htmlize (autobuild) 5.0
+version="htmlize (autobuild) 5.1
 Copyright (C) 2004, 2008 Simon Josefsson.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 This is free software: you are free to change and redistribute it.
