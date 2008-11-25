@@ -6,6 +6,11 @@ See the end for copying conditions.
 
 ** autobuild: Always print summary.
 
+** abput, abput-sourceforge, abput-testdrive: Remove.
+** abbuild, abbuild-sourceforge: Remove.
+Both the SourceForge and TestDrive systems have been shutdown.  The
+scripts were of questionable value anyway.
+
 ** doc: Change license on the manual to GFDLv1.3+.
 
 * Version 4.1 (released 2008-08-21)
