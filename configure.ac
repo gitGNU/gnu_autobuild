@@ -37,6 +37,9 @@ AM_PATH_LISPDIR
 
 gl_INIT
 
-AC_CONFIG_FILES(Makefile doc/Makefile examples/Makefile)
-
+AC_CONFIG_FILES([
+  Makefile
+  doc/Makefile
+  examples/Makefile
+])
 AC_OUTPUT
