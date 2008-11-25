@@ -41,6 +41,18 @@ GetOptions ('help|usage|h'   => \$PrintHelp,
 	    'Timestamp=s'    => \$Timestamp,
 	    'Status=s'       => \$Status);
 
+# Handle --verison.
+if ($PrintVersion) {
+    print "autobuild (Autobuild) 4.2\n";
+    print "Copyright (C) 2004, 2005, 2007, 2008 Simon Josefsson\n";
+    print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n";
+    print "This is free software: you are free to change and redistribute it.\n";
+    print "There is NO WARRANTY, to the extent permitted by law.\n";
+    print "\n";
+    print "Written by Simon Josefsson.\n";
+    exit 0;
+}
+
 # Handle --help.
 if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
     print "Usage: $0 [OPTION]... FILE...\n";
@@ -81,18 +93,6 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
     print "      --version           Output version information and exit.\n";
     print "\n";
     print "Report bugs to <bug-autobuild\@josefsson.org>.\n";
-    exit 0;
-}
-
-# Handle --verison.
-if ($PrintVersion) {
-    my ($rev) = '$Revision: 1.72 $';
-    $rev = $1 if $rev =~ m/Revision: (\S+) /;
-    print "autobuild (autobuild) $rev\n";
-    print "\n";
-    print "Copyright (C) 2004 Simon Josefsson\n";
-    print "This is free software; see the source for copying conditions.  There is NO\n";
-    print "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n";
     exit 0;
 }
 
