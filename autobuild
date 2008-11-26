@@ -265,14 +265,14 @@ delete $Projects{"unknown"} if $SkipUnknown;
 
 my ($project, $revision, $hosttype, $hostname);
 
-if (1) {
+{
     print "<h1>Summary</h1>\n";
     print "\n";
     print "<p><table border=0>\n";
     print "<tr bgcolor=lightblue>\n";
     print "<td>Project</td>\n";
+    print "<td>Build type</td>\n";
     print "<td>System</td>\n";
-    print "<td>Host type</td>\n";
     print "<td>Revision</td>\n";
     print "<td>Build date</td>\n";
     print "<td>Results</td>\n";
@@ -290,27 +290,28 @@ if (1) {
 
 	print "<td><a href=\"#$project\">$project</a></td>\n\n";
 
-	foreach $hostname (sort keys %{$Hostnames{$project}}) {
-	    my %DoneHost;
+	foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
+	    my %DoneType;
 
 	    if ($first) {
-		print "<td>$hostname</td>\n";
+		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
 	    } else {
 		if ($bit) {
 		    print "<tr bgcolor=lightgray>\n";
 		} else {
 		    print "<tr>\n";
 		}
-		print "<td></td><td>$hostname</td>\n";
+		print "<td></td>";
+		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
 		$bit = !$bit;
 	    }
 	    $first = 0;
 
 	    foreach $file (reverse sort @Files) {
 		next unless $Project{$file} eq $project;
-		next unless $Hostname{$file} eq $hostname;
-		next unless !$DoneHost{$hostname};
-		$DoneHost{$hostname} = 1;
+		next unless $Hosttype{$file} eq $hosttype;
+		next unless !$DoneType{$hosttype};
+		$DoneType{$hosttype} = 1;
 
 		my ($Project);
 		my ($Revision);
@@ -323,18 +324,18 @@ if (1) {
 
 		$Revision = $Revision{$file};
 		$Mode = $Mode{$file};
-		$Hosttype = $Hosttype{$file};
+		$Hostname = $Hostname{$file};
 		$Buildtype = $Buildtype{$file};
 		$Timestamp = $Timestamp{$file};
 		$Status = $Status{$file};
 
-		print "<td>$Hosttype";
-		if ($Hosttype eq $Buildtype) {
+		if ($hosttype eq $Buildtype) {
 		    print "</td>\n";
 		} else {
 		    print " from $Buildtype</td>\n";
 		}
-		print "<td>$Revision</td>\n";
+		print "<td><a href=\"#$project-$Hostname\">$Hostname</a></td>\n";
+		print "<td><a href=\"#$project-$Revision\">$Revision</a></td>\n";
 		print "<td>$Timestamp</td>\n";
 		print "<td><a href=\"$file\">\n";
 		if ($Status eq "ok") {
