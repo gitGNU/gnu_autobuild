@@ -25,7 +25,7 @@ my $Verbose;
 my ($PrintHelp, $PrintVersion);
 my ($Abort, $DryRun, $SkipUnknown);
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype,
-    $Buildtype, $Timestamp, $Status);
+    $Buildtype, $Timestamp, $Status, $InlineHTML);
 GetOptions ('help|usage|h'   => \$PrintHelp,
 	    'version'        => \$PrintVersion,
 	    'verbose|v'      => \$Verbose,
@@ -39,7 +39,8 @@ GetOptions ('help|usage|h'   => \$PrintHelp,
 	    'Buildtype=s'    => \$Buildtype,
 	    'Hostname=s'     => \$Hostname,
 	    'Timestamp=s'    => \$Timestamp,
-	    'Status=s'       => \$Status);
+	    'Status=s'       => \$Status,
+	    'inline-html=i'  => \$InlineHTML);
 
 # Handle --verison.
 if ($PrintVersion) {
@@ -69,6 +70,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
     print "  -n, --dry-run           Just parse, don't print output.\n";
     print "  -s, --skip-unknown      Skip unparsable files.\n";
     print "  -v, --verbose           Explain what is being done.\n";
+    print "  -i, --inline-html       Skip standard HTML header and footer.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "\n";
@@ -264,6 +266,16 @@ exit 0 if $DryRun;
 delete $Projects{"unknown"} if $SkipUnknown;
 
 my ($project, $revision, $hosttype, $hostname);
+
+if (!$InlineHTML) {
+    print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\"\n";
+    print "          \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n";
+    print "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n";
+    print "<head>\n";
+    print "  <title>Autobuild log summary</title>\n";
+    print "</head>\n";
+    print "<body>\n";
+}
 
 {
     print "<h1>Summary</h1>\n";
@@ -678,3 +690,8 @@ print "<br>\n";
 print "<br>\n";
 print "<br>\n";
 print "<br>\n";
+
+if (!$InlineHTML) {
+    print "</body>\n";
+    print "</html>\n";
+}
