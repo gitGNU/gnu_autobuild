@@ -272,8 +272,8 @@ my ($project, $revision, $hosttype, $hostname);
     print "<tr bgcolor=lightblue>\n";
     print "<td>Project</td>\n";
     print "<td>Build type</td>\n";
-    print "<td>System</td>\n";
     print "<td>Revision</td>\n";
+    print "<td>System</td>\n";
     print "<td>Build date</td>\n";
     print "<td>Results</td>\n";
     print "</tr>\n\n";
@@ -334,8 +334,8 @@ my ($project, $revision, $hosttype, $hostname);
 		} else {
 		    print " from $Buildtype</td>\n";
 		}
-		print "<td><a href=\"#$project-$Hostname\">$Hostname</a></td>\n";
 		print "<td><a href=\"#$project-$Revision\">$Revision</a></td>\n";
+		print "<td><a href=\"#$project-$Hostname\">$Hostname</a></td>\n";
 		print "<td>$Timestamp</td>\n";
 		print "<td><a href=\"$file\">\n";
 		if ($Status eq "ok") {
