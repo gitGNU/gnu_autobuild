@@ -268,8 +268,9 @@ delete $Projects{"unknown"} if $SkipUnknown;
 my ($project, $revision, $hosttype, $hostname);
 
 if (!$InlineHTML) {
-    print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\"\n";
-    print "          \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n";
+    print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n";
+    print "          \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
     print "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n";
     print "<head>\n";
     print "  <title>Autobuild log summary</title>\n";
@@ -280,8 +281,8 @@ if (!$InlineHTML) {
 {
     print "<h1>Summary</h1>\n";
     print "\n";
-    print "<p><table border=0>\n";
-    print "<tr bgcolor=lightblue>\n";
+    print "<table border=\"0\">\n";
+    print "<tr bgcolor=\"lightblue\">\n";
     print "<td>Project</td>\n";
     print "<td>Build type</td>\n";
     print "<td>Revision</td>\n";
@@ -294,7 +295,7 @@ if (!$InlineHTML) {
 	my $first = 1;
 
 	if ($bit) {
-	    print "<tr bgcolor=lightgray>\n";
+	    print "<tr bgcolor=\"lightgray\">\n";
 	} else {
 	    print "<tr>\n";
 	}
@@ -309,7 +310,7 @@ if (!$InlineHTML) {
 		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
 	    } else {
 		if ($bit) {
-		    print "<tr bgcolor=lightgray>\n";
+		    print "<tr bgcolor=\"lightgray\">\n";
 		} else {
 		    print "<tr>\n";
 		}
@@ -351,13 +352,13 @@ if (!$InlineHTML) {
 		print "<td>$Timestamp</td>\n";
 		print "<td><a href=\"$file\">\n";
 		if ($Status eq "ok") {
-		    print "<font color=green>Success</font>\n";
+		    print "<font color=\"green\">Success</font>\n";
 		} elsif ($Status eq "almost") {
-		    print "<font color=orange>Almost</font>\n";
+		    print "<font color=\"orange\">Almost</font>\n";
 		} elsif ($Status eq "built") {
-		    print "<font color=yellow>Built</font>\n";
+		    print "<font color=\"yellow\">Built</font>\n";
 		} else {
-		    print "<font color=red>Failure</font>\n";
+		    print "<font color=\"red\">Failure</font>\n";
 		}
 		print "</a></td>\n";
 		print "</tr>";
@@ -370,34 +371,34 @@ if (!$InlineHTML) {
 }
 
 foreach $project (sort keys %Projects) {
-    print "<hr>\n";
+    print "<hr />\n";
     print "<h2><a name=\"$project\">Project '$project'</a></h2>\n";
     print "\n";
     print "<p>Revisions (" . keys(%{$Revisions{$project}}) . "): ";
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	print "<a href=\"#$project-$revision\">$revision</a>, ";
     }
-    print "\n";
+    print "</p>\n";
     print "<p>Hosttypes (" . keys(%{$Hosttypes{$project}}) . "): ";
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	print "<a href=\"#$project-$hosttype\">$hosttype</a>, \n";
     }
-    print "\n";
+    print "</p>\n";
     print "<p>Build hosts (" . keys(%{$Hostnames{$project}}) . "): ";
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
 	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
     }
-    print "\n";
+    print "</p>\n";
 
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	my $bit = 0;
 
-	print "<hr>\n";
-	print "<a name=\"$project-$revision\">\n";
-	print "<h3>Summary for $project $revision</h3></a>\n";
+	print "<hr />\n";
+	print "<h3><a name=\"$project-$revision\">\n";
+	print "Summary for $project $revision</a></h3>\n";
 	print "\n";
-	print "<table border=0>\n";
-	print "<tr bgcolor=lightblue>\n";
+	print "<table border=\"0\">\n";
+	print "<tr bgcolor=\"lightblue\">\n";
 	print "<td>System</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
@@ -425,7 +426,7 @@ foreach $project (sort keys %Projects) {
 	    $Status = $Status{$file};
 
 	    if ($bit) {
-		print "<tr bgcolor=lightgray>\n";
+		print "<tr bgcolor=\"lightgray\">\n";
 	    } else {
 		print "<tr>\n";
 	    }
@@ -441,13 +442,13 @@ foreach $project (sort keys %Projects) {
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
-		print "<font color=green>Success</font>\n";
+		print "<font color=\"green\">Success</font>\n";
 	    } elsif ($Status eq "almost") {
-		print "<font color=orange>Almost</font>\n";
+		print "<font color=\"orange\">Almost</font>\n";
 	    } elsif ($Status eq "built") {
-		print "<font color=yellow>Built</font>\n";
+		print "<font color=\"yellow\">Built</font>\n";
 	    } else {
-		print "<font color=red>Failure</font>\n";
+		print "<font color=\"red\">Failure</font>\n";
 	    }
 	    print "</a></td>\n";
 	    print "</tr>\n";
@@ -461,12 +462,12 @@ foreach $project (sort keys %Projects) {
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	my $bit = 0;
 
-	print "<hr>\n";
-	print "<a name=\"$project-$hosttype\">\n";
-	print "<h3>Summary for $project on $hosttype</h3></a>\n";
+	print "<hr />\n";
+	print "<h3><a name=\"$project-$hosttype\">\n";
+	print "Summary for $project on $hosttype</a></h3>\n";
 	print "\n";
-	print "<table border=0>\n";
-	print "<tr bgcolor=lightblue>\n";
+	print "<table border=\"0\">\n";
+	print "<tr bgcolor=\"lightblue\">\n";
 	print "<td>Revision</td>\n";
 	print "<td>Cross?</td>\n";
 	print "<td>Build host</td>\n";
@@ -495,7 +496,7 @@ foreach $project (sort keys %Projects) {
 	    $Status = $Status{$file};
 
 	    if ($bit) {
-		print "<tr bgcolor=lightgray>\n";
+		print "<tr bgcolor=\"lightgray\">\n";
 	    } else {
 		print "<tr>\n";
 	    }
@@ -504,7 +505,7 @@ foreach $project (sort keys %Projects) {
 	    print "<td>$Revision</td>\n";
 	    print "<td>";
 	    if ($hosttype eq $Buildtype) {
-		print "no\n";
+		print "no</td>\n";
 	    } else {
 		print "$hosttype from $Buildtype</td>\n";
 	    }
@@ -512,13 +513,13 @@ foreach $project (sort keys %Projects) {
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
-		print "<font color=green>Success</font>\n";
+		print "<font color=\"green\">Success</font>\n";
 	    } elsif ($Status eq "almost") {
-		print "<font color=orange>Almost</font>\n";
+		print "<font color=\"orange\">Almost</font>\n";
 	    } elsif ($Status eq "built") {
-		print "<font color=yellow>Built</font>\n";
+		print "<font color=\"yellow\">Built</font>\n";
 	    } else {
-		print "<font color=red>Failure</font>\n";
+		print "<font color=\"red\">Failure</font>\n";
 	    }
 	    print "</a></td>\n";
 	    print "</tr>\n";
@@ -532,12 +533,12 @@ foreach $project (sort keys %Projects) {
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
 	my $bit = 0;
 
-	print "<hr>\n";
-	print "<a name=\"$project-$hostname\">\n";
-	print "<h3>Summary for $project built on $hostname</h3></a>\n";
+	print "<hr />\n";
+	print "<h3><a name=\"$project-$hostname\">\n";
+	print "Summary for $project built on $hostname</a></h3>\n";
 	print "\n";
-	print "<table border=0>\n";
-	print "<tr bgcolor=lightblue>\n";
+	print "<table border=\"0\">\n";
+	print "<tr bgcolor=\"lightblue\">\n";
 	print "<td>Version</td>\n";
 	print "<td>System</td>\n";
 	print "<td>Build date</td>\n";
@@ -565,7 +566,7 @@ foreach $project (sort keys %Projects) {
 	    $Status = $Status{$file};
 
 	    if ($bit) {
-		print "<tr bgcolor=lightgray>\n";
+		print "<tr bgcolor=\"lightgray\">\n";
 	    } else {
 		print "<tr>\n";
 	    }
@@ -581,13 +582,13 @@ foreach $project (sort keys %Projects) {
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
-		print "<font color=green>Success</font>\n";
+		print "<font color=\"green\">Success</font>\n";
 	    } elsif ($Status eq "almost") {
-		print "<font color=orange>Almost</font>\n";
+		print "<font color=\"orange\">Almost</font>\n";
 	    } elsif ($Status eq "built") {
-		print "<font color=yellow>Built</font>\n";
+		print "<font color=\"yellow\">Built</font>\n";
 	    } else {
-		print "<font color=red>Failure</font>\n";
+		print "<font color=\"red\">Failure</font>\n";
 	    }
 	    print "</a></td>\n";
 	    print "</tr>\n";
@@ -600,96 +601,98 @@ foreach $project (sort keys %Projects) {
 }
 
 print "\n";
-print "<hr>\n";
-print "<p>This page was created on " . (scalar gmtime) . " UTC using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.\n";
+print "<hr />\n";
+print "<p>This page was created on " . (scalar gmtime) . " UTC using <a href=\"http://josefsson.org/autobuild/\">Autobuild</a> written by Simon Josefsson.</p>\n";
 print "\n";
 
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
-print "<br>\n";
+print "<p>\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "<br />\n";
+print "</p>\n";
 
 if (!$InlineHTML) {
     print "</body>\n";
