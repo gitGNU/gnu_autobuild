@@ -6,6 +6,10 @@ See the end for copying conditions.
 
 ** autobuild: Summary is sorted per build type rather than hostname now.
 
+** autobuild: Generates standard HTML footer/header.
+
+** autobuild: Add new parameter --inline-html to avoid HTML footer/header.
+
 * Version 5.0 (released 2008-11-25)
 
 ** autobuild: Always print summary.
