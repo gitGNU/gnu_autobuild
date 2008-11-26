@@ -288,7 +288,7 @@ my ($project, $revision, $hosttype, $hostname);
 	}
 	$bit = !$bit;
 
-	print "<td><a href=\"#$project\">$project</a></td>\n\n";
+	print "<td><a href=\"#$project\">$project</a></td>\n";
 
 	foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
 	    my %DoneType;
@@ -301,7 +301,7 @@ my ($project, $revision, $hosttype, $hostname);
 		} else {
 		    print "<tr>\n";
 		}
-		print "<td></td>";
+		print "<td></td>\n";
 		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
 		$bit = !$bit;
 	    }
