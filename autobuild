@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright (C) 2004, 2005, 2006, 2007, 2008 Simon Josefsson.
+# Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009 Simon Josefsson.
 #
 # This file is part of Autobuild.
 #
@@ -169,6 +169,7 @@ foreach $arg (@ARGV) {
 
 	    # Automake self test or distcheck output.
 	    $status = "ok" if !$status && m,All \d+ tests passed,;
+	    $status = "ok" if !$status && m,1 test passed,;
 	    $status = "almost" if m,\d+ of \d+ tests failed,;
 
 	    # Dejagnu self tests.
