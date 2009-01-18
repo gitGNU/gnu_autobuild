@@ -1,5 +1,5 @@
 Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
-Copyright (C) 2004, 2005, 2006, 2008 Simon Josefsson
+Copyright (C) 2004, 2005, 2006, 2008, 2009 Simon Josefsson
 See the end for copying conditions.
 
 * Version 5.1 (unreleased)
@@ -11,6 +11,8 @@ See the end for copying conditions.
 ** autobuild: Add new parameter --inline-html to avoid HTML footer/header.
 
 ** autobuild: The HTML output is now valid according to XHTML 1.0 standard.
+
+** autobuild: Support automake make check output '1 test passed'.
 
 * Version 5.0 (released 2008-11-25)
 
