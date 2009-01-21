@@ -127,7 +127,8 @@ foreach $arg (@ARGV) {
 	    next;
 	}
 	@files =
-	    grep { !/$IgnoreFiles/ && /^[^.]/ && -f "$arg/$_" } readdir(DIRH);
+	    grep { (!$IgnoreFiles || !/$IgnoreFiles/)
+		       && /^[^.]/ && -f "$arg/$_" } readdir(DIRH);
 	closedir DIRH;
     } elsif (-f $arg) {
 	push @files, $arg;
