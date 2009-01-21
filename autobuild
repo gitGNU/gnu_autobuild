@@ -25,7 +25,7 @@ my $Verbose;
 my ($PrintHelp, $PrintVersion);
 my ($Abort, $DryRun, $SkipUnknown);
 my ($Project, $Revision, $Mode, $Hostname, $Hosttype,
-    $Buildtype, $Timestamp, $Status, $InlineHTML);
+    $Buildtype, $Timestamp, $Status, $IgnoreFiles, $InlineHTML);
 GetOptions ('help|usage|h'   => \$PrintHelp,
 	    'version'        => \$PrintVersion,
 	    'verbose|v'      => \$Verbose,
@@ -40,12 +40,13 @@ GetOptions ('help|usage|h'   => \$PrintHelp,
 	    'Hostname=s'     => \$Hostname,
 	    'Timestamp=s'    => \$Timestamp,
 	    'Status=s'       => \$Status,
+	    'Ignore-files=s' => \$IgnoreFiles,
 	    'inline-html=i'  => \$InlineHTML);
 
 # Handle --verison.
 if ($PrintVersion) {
     print "autobuild (Autobuild) 5.1\n";
-    print "Copyright (C) 2004, 2005, 2007, 2008 Simon Josefsson\n";
+    print "Copyright (C) 2004, 2005, 2007, 2008, 2009 Simon Josefsson\n";
     print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n";
     print "This is free software: you are free to change and redistribute it.\n";
     print "There is NO WARRANTY, to the extent permitted by law.\n";
@@ -71,6 +72,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
     print "  -s, --skip-unknown      Skip unparsable files.\n";
     print "  -v, --verbose           Explain what is being done.\n";
     print "  -i, --inline-html       Skip standard HTML header and footer.\n";
+    print "      --ignore-files=STR  Skip filenames matching regexp STR.\n";
     print "\n";
     print "For use when autobuild fail to guess the values properly:\n";
     print "\n";
@@ -124,7 +126,8 @@ foreach $arg (@ARGV) {
 	    warn "Cannot open directory: $arg";
 	    next;
 	}
-	@files = grep { /^[^.]/ && -f "$arg/$_" } readdir(DIRH);
+	@files =
+	    grep { !/$IgnoreFiles/ && /^[^.]/ && -f "$arg/$_" } readdir(DIRH);
 	closedir DIRH;
     } elsif (-f $arg) {
 	push @files, $arg;
