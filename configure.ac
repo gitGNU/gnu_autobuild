@@ -1,4 +1,4 @@
-dnl Copyright (C) 2004, 2005, 2007, 2008 Simon Josefsson.
+dnl Copyright (C) 2004, 2005, 2007, 2008, 2009 Simon Josefsson.
 dnl
 dnl This file is part of Autobuild.
 dnl
@@ -16,7 +16,7 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with Autobuild.  If not, see <http://www.gnu.org/licenses/>.
 
 AC_PREREQ(2.60)
-AC_INIT(autobuild, 5.1, bug-autobuild@josefsson.org)
+AC_INIT(autobuild, 5.2, bug-autobuild@josefsson.org)
 
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE(gnits)

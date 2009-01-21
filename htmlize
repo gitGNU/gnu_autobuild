@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2004, 2008 Simon Josefsson.
+# Copyright (C) 2004, 2008, 2009 Simon Josefsson.
 #
 # This file is part of Autobuild.
 #
@@ -19,8 +19,8 @@
 
 prog="`basename \"$0\"`"
 program=`echo $0 | sed -e 's!.*/!!'`
-version="htmlize (autobuild) 5.1
-Copyright (C) 2004, 2008 Simon Josefsson.
+version="htmlize (autobuild) 5.2
+Copyright (C) 2004, 2008, 2009 Simon Josefsson.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
