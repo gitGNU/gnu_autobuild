@@ -10,6 +10,10 @@ See the end for copying conditions.
 
 ** autobuild: Add new parameter --inline-html to avoid HTML footer/header.
 
+** autobuild: Add new parameter --ignore-files to ignore some filenames.
+Useful when invoking 'autobuild foo/' for directories which contains
+many log files and some unrelated files, e.g., index.html or similar.
+
 ** autobuild: The HTML output is now valid according to XHTML 1.0 standard.
 
 ** autobuild: Support automake make check output '1 test passed'.
