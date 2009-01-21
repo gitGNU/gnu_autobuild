@@ -1,3 +1,77 @@
+2009-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Version 5.1.
+
+2009-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Fix ignore files logic.
+
+2009-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* build-aux/gendocs.sh, doc/gendocs_template, m4/gnulib-cache.m4,
+	m4/gnulib-common.m4, m4/gnulib-comp.m4: Update gnulib files.
+
+2009-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-01-21  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add --ignore-files parameter.
+
+2009-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2009-01-18  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Support singularis of tests.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: HTML output now validates.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Add.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Add --inline-html parameter.  Default to generate HTML
+	header/footer.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Improve HTML.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Swap columns.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS: Fix.
+
+2008-11-26  Simon Josefsson <simon@josefsson.org>
+
+	* autobuild: Make summary sorted by build type rather than hostname.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* Makefile.am: Fix.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* NEWS, autobuild, configure.ac, htmlize: Bump versions.
+
+2008-11-25  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
 2008-11-25  Simon Josefsson <simon@josefsson.org>
 
 	* NEWS: Version 5.0.
