@@ -1,5 +1,13 @@
 2009-09-18  Simon Josefsson <simon@josefsson.org>
 
+	* Makefile.am: Fix release target.
+
+2009-09-18  Simon Josefsson <simon@josefsson.org>
+
+	* ChangeLog: Generated.
+
+2009-09-18  Simon Josefsson <simon@josefsson.org>
+
 	* NEWS: Version 5.2.
 
 2009-09-18  Simon Josefsson <simon@josefsson.org>
