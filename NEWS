@@ -2,7 +2,7 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004, 2005, 2006, 2008, 2009 Simon Josefsson
 See the end for copying conditions.
 
-* Version 5.2 (unreleased)
+* Version 5.2 (released 2009-09-18)
 
 ** autobuild: Use "lightgrey" instead of "lightgray" on HTML output.
 Reported by Yang Tse <yangsita@gmail.com>.
