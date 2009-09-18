@@ -300,7 +300,7 @@ if (!$InlineHTML) {
 	my $first = 1;
 
 	if ($bit) {
-	    print "<tr bgcolor=\"lightgray\">\n";
+	    print "<tr bgcolor=\"lightgrey\">\n";
 	} else {
 	    print "<tr>\n";
 	}
@@ -315,7 +315,7 @@ if (!$InlineHTML) {
 		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
 	    } else {
 		if ($bit) {
-		    print "<tr bgcolor=\"lightgray\">\n";
+		    print "<tr bgcolor=\"lightgrey\">\n";
 		} else {
 		    print "<tr>\n";
 		}
@@ -431,7 +431,7 @@ foreach $project (sort keys %Projects) {
 	    $Status = $Status{$file};
 
 	    if ($bit) {
-		print "<tr bgcolor=\"lightgray\">\n";
+		print "<tr bgcolor=\"lightgrey\">\n";
 	    } else {
 		print "<tr>\n";
 	    }
@@ -501,7 +501,7 @@ foreach $project (sort keys %Projects) {
 	    $Status = $Status{$file};
 
 	    if ($bit) {
-		print "<tr bgcolor=\"lightgray\">\n";
+		print "<tr bgcolor=\"lightgrey\">\n";
 	    } else {
 		print "<tr>\n";
 	    }
@@ -571,7 +571,7 @@ foreach $project (sort keys %Projects) {
 	    $Status = $Status{$file};
 
 	    if ($bit) {
-		print "<tr bgcolor=\"lightgray\">\n";
+		print "<tr bgcolor=\"lightgrey\">\n";
 	    } else {
 		print "<tr>\n";
 	    }
