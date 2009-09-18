@@ -4,6 +4,9 @@ See the end for copying conditions.
 
 * Version 5.2 (unreleased)
 
+** autobuild: Use "lightgrey" instead of "lightgray" on HTML output.
+Reported by Yang Tse <yangsita@gmail.com>.
+
 * Version 5.1 (released 2009-01-21)
 
 ** autobuild: Summary is sorted per build type rather than hostname now.
