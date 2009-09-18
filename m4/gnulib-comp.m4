@@ -176,9 +176,10 @@ AC_DEFUN([gltests_LIBSOURCES], [
 # gnulib-tool and may be removed by future gnulib-tool invocations.
 AC_DEFUN([gl_FILE_LIST], [
   build-aux/gendocs.sh
-  doc/fdl.texi
+  doc/fdl-1.3.texi
   doc/gendocs_template
   doc/gpl-3.0.texi
+  m4/00gnulib.m4
   m4/autobuild.m4
   m4/gnulib-common.m4
 ])
