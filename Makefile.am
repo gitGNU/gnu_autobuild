@@ -1,4 +1,4 @@
-# Copyright (C) 2004, 2005, 2008 Simon Josefsson.
+# Copyright (C) 2004, 2005, 2008, 2009 Simon Josefsson.
 #
 # This file is part of Autobuild.
 #
@@ -34,15 +34,15 @@ tag = $(PACKAGE)-`echo $(VERSION) | sed 's/\./-/g'`
 htmldir = ../www-$(PACKAGE)
 
 release:
-	! git-tag -l $(tag) | grep $(PACKAGE) > /dev/null
+	! git tag -l $(tag) | grep $(PACKAGE) > /dev/null
 	rm -f ChangeLog
 	$(MAKE) ChangeLog distcheck
 	gpg -b $(distdir).tar.gz
 	gpg --verify $(distdir).tar.gz.sig
 	git commit -m Generated. ChangeLog
-	git-tag -u b565716f! -m $(VERSION) $(tag)
-	git-push
-	git-push --tags
+	git tag -u b565716f! -m $(VERSION) $(tag)
+	git push
+	git push --tags
 	cd doc && ../build-aux/gendocs.sh --html "--css-include=texinfo.css" \
 		-o ../$(htmldir)/manual/ $(PACKAGE) "Autobuild"
 	cp $(distdir).tar.gz $(distdir).tar.gz.sig ../releases/autobuild/
