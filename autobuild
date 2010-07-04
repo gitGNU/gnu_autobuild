@@ -45,8 +45,8 @@ GetOptions ('help|usage|h'   => \$PrintHelp,
 
 # Handle --verison.
 if ($PrintVersion) {
-    print "autobuild (Autobuild) 5.2\n";
-    print "Copyright (C) 2004, 2005, 2007, 2008, 2009 Simon Josefsson\n";
+    print "autobuild (Autobuild) 5.3\n";
+    print "Copyright (C) 2004, 2005, 2007, 2008, 2009, 2010 Simon Josefsson\n";
     print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n";
     print "This is free software: you are free to change and redistribute it.\n";
     print "There is NO WARRANTY, to the extent permitted by law.\n";
