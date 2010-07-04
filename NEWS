@@ -2,7 +2,7 @@ Autobuild NEWS -- History of user-visible changes.              -*- outline -*-
 Copyright (C) 2004, 2005, 2006, 2008, 2009, 2010 Simon Josefsson
 See the end for copying conditions.
 
-* Version 5.3 (unreleased)
+* Version 5.3 (released 2010-07-04)
 
 ** autobuild: Recognize libcheck (http://check.sf.net) output.
 Patch from "Jose E. Marchesi" <jemarch@gnu.org>.
