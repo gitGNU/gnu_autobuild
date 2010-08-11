@@ -15,7 +15,7 @@ dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with Autobuild.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([autobuild], [5.3], [autobuild-discuss@nongnu.org])
+AC_INIT([autobuild], [5.4], [autobuild-discuss@nongnu.org])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([gnits])
 
