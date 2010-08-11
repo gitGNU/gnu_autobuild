@@ -56,7 +56,7 @@ Environment variables:
 Simple example:
   $prog mybuildlog.txt mybuildlog.html
 
-Report bugs to <bug-autobuild@josefsson.org>."
+Report bugs to <autobuild-discuss@nongnu.org>."
 
 while test $# -gt 0; do
     case $1 in

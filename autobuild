@@ -96,7 +96,7 @@ if ($PrintHelp || (!$PrintVersion && $#ARGV == -1)) {
     print "      --help              Display this help and exit.\n";
     print "      --version           Output version information and exit.\n";
     print "\n";
-    print "Report bugs to <bug-autobuild\@josefsson.org>.\n";
+    print "Report bugs to <autobuild-discuss\@nongnu.org>.\n";
     exit 0;
 }
 
