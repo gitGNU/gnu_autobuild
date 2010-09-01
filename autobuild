@@ -171,6 +171,13 @@ foreach $arg (@ARGV) {
 	    $hosttype = $3 if !$hosttype && m,host system type(<[^>]+>)?\.\.\. (<[^>]+>)?([a-z0-9_.-]+),;
 	    $buildtype = $3 if !$buildtype && m,build system type(<[^>]+>)?\.\.\. (<[^>]+>)?([a-z0-9_.-]+),;
 
+	    # Autotest test output.
+	    $status = "almost" if !$status && m,(passed|failed) unexpectedly,;
+	    $status = "almost" if !$status && m,did not behave as expected,;
+	    $status = "almost" if !$status && m,ERROR: [1-9][0-9]+ tests were run,;
+	    $status = "ok" if !$status && m,tests? w(as|ere) successful,;
+	    $status = "ok" if !$status && m,behaved as expected,;
+
 	    # Automake self test or distcheck output.
 	    $status = "ok" if !$status && m,All \d+ tests passed,;
 	    $status = "ok" if !$status && m,1 test passed,;
