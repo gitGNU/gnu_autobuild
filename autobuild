@@ -117,6 +117,8 @@ my (%Projects);
 my (%Revisions);
 my (%Hosttypes);
 my (%Hostnames);
+my (%Hostmodes);
+my (%Modes);
 
 foreach $arg (@ARGV) {
     my (@files);
@@ -273,6 +275,8 @@ foreach $arg (@ARGV) {
 	$Projects{$project} = 0;
 	${$Revisions{$project}}{$revision} = 0;
 	${$Hosttypes{$project}}{$hosttype} = 0;
+	${$Hostmodes{$project}{$hosttype}}{$mode} = 0;
+	${$Modes{$project}}{$mode} = 0;
 	${$Hostnames{$project}}{$hostname} = 0;
     }
 }
@@ -281,7 +285,7 @@ exit 0 if $DryRun;
 
 delete $Projects{"unknown"} if $SkipUnknown;
 
-my ($project, $revision, $hosttype, $hostname);
+my ($project, $revision, $hosttype, $mode, $hostmode, $hostname);
 
 if (!$InlineHTML) {
     print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -301,6 +305,7 @@ if (!$InlineHTML) {
     print "<tr bgcolor=\"lightblue\">\n";
     print "<td>Project</td>\n";
     print "<td>Build type</td>\n";
+    print "<td>Mode</td>\n";
     print "<td>Revision</td>\n";
     print "<td>System</td>\n";
     print "<td>Build date</td>\n";
@@ -320,67 +325,78 @@ if (!$InlineHTML) {
 	print "<td><a href=\"#$project\">$project</a></td>\n";
 
 	foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
-	    my %DoneType;
+	    my $firstmode = 1;
 
-	    if ($first) {
-		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
-	    } else {
-		if ($bit) {
-		    print "<tr bgcolor=\"lightgrey\">\n";
+	    foreach $hostmode (sort keys %{$Hostmodes{$project}{$hosttype}}) {
+		my %DoneType;
+
+		if ($first) {
+		    print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
 		} else {
-		    print "<tr>\n";
+		    if ($bit) {
+			print "<tr bgcolor=\"lightgrey\">\n";
+		    } else {
+			print "<tr>\n";
+		    }
+		    print "<td></td>\n";
+		    if ($firstmode) {
+			print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
+		    } else {
+			print "<td>";
+		    }
+		    $bit = !$bit;
 		}
-		print "<td></td>\n";
-		print "<td><a href=\"#$project-$hosttype\">$hosttype</a>";
-		$bit = !$bit;
-	    }
-	    $first = 0;
+		$first = 0;
+		$firstmode = 0;
 
-	    foreach $file (reverse sort @Files) {
-		next unless $Project{$file} eq $project;
-		next unless $Hosttype{$file} eq $hosttype;
-		next unless !$DoneType{$hosttype};
-		$DoneType{$hosttype} = 1;
+		foreach $file (reverse sort @Files) {
+		    next unless $Project{$file} eq $project;
+		    next unless $Hosttype{$file} eq $hosttype;
+		    next unless $Mode{$file} eq $hostmode;
+		    next unless !$DoneType{$hosttype}{$hostmode};
+		    $DoneType{$hosttype}{$hostmode} = 1;
 
-		my ($Project);
-		my ($Revision);
-		my ($Mode);
-		my ($Hosttype);
-		my ($Buildtype);
-		my ($Hostname);
-		my ($Timestamp);
-		my ($Status);
+		    my ($Project);
+		    my ($Revision);
+		    my ($Mode);
+		    my ($Hosttype);
+		    my ($Buildtype);
+		    my ($Hostname);
+		    my ($Timestamp);
+		    my ($Status);
 
-		$Revision = $Revision{$file};
-		$Mode = $Mode{$file};
-		$Hostname = $Hostname{$file};
-		$Buildtype = $Buildtype{$file};
-		$Timestamp = $Timestamp{$file};
-		$Status = $Status{$file};
+		    $Revision = $Revision{$file};
+		    $Mode = $Mode{$file};
+		    $Hostname = $Hostname{$file};
+		    $Buildtype = $Buildtype{$file};
+		    $Timestamp = $Timestamp{$file};
+		    $Status = $Status{$file};
 
-		if ($hosttype eq $Buildtype) {
-		    print "</td>\n";
-		} else {
-		    print " from $Buildtype</td>\n";
+		    if ($hosttype eq $Buildtype) {
+			print "</td>\n";
+		    } else {
+			print " from $Buildtype</td>\n";
+		    }
+		    print "<td><a href=\"#$project-$Mode\">$Mode</a></td>\n";
+		    print "<td><a href=\"#$project-$Revision\">$Revision</a></td>\n";
+		    print "<td><a href=\"#$project-$Hostname\">$Hostname</a></td>\n";
+		    print "<td>$Timestamp</td>\n";
+		    print "<td><a href=\"$file\">\n";
+		    if ($Status eq "ok") {
+			print "<font color=\"green\">Success</font>\n";
+		    } elsif ($Status eq "almost") {
+			print "<font color=\"orange\">Almost</font>\n";
+		    } elsif ($Status eq "built") {
+			print "<font color=\"yellow\">Built</font>\n";
+		    } else {
+			print "<font color=\"red\">Failure</font>\n";
+		    }
+		    print "</a></td>\n";
+		    print "</tr>";
+		    print "\n";
 		}
-		print "<td><a href=\"#$project-$Revision\">$Revision</a></td>\n";
-		print "<td><a href=\"#$project-$Hostname\">$Hostname</a></td>\n";
-		print "<td>$Timestamp</td>\n";
-		print "<td><a href=\"$file\">\n";
-		if ($Status eq "ok") {
-		    print "<font color=\"green\">Success</font>\n";
-		} elsif ($Status eq "almost") {
-		    print "<font color=\"orange\">Almost</font>\n";
-		} elsif ($Status eq "built") {
-		    print "<font color=\"yellow\">Built</font>\n";
-		} else {
-		    print "<font color=\"red\">Failure</font>\n";
-		}
-		print "</a></td>\n";
-		print "</tr>";
 		print "\n";
 	    }
-	    print "\n";
 	}
     }
     print "</table>\n";
@@ -405,6 +421,11 @@ foreach $project (sort keys %Projects) {
 	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
     }
     print "</p>\n";
+    print "<p>Modes (" . keys(%{$Modes{$project}}) . "): ";
+    foreach $mode (sort keys %{$Modes{$project}}) {
+	print "<a href=\"#$project-$mode\">$mode</a>, \n";
+    }
+    print "</p>\n";
 
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
 	my $bit = 0;
@@ -416,6 +437,7 @@ foreach $project (sort keys %Projects) {
 	print "<table border=\"0\">\n";
 	print "<tr bgcolor=\"lightblue\">\n";
 	print "<td>System</td>\n";
+	print "<td>Mode</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
@@ -454,6 +476,7 @@ foreach $project (sort keys %Projects) {
 	    } else {
 		print " from $Buildtype</td>\n";
 	    }
+	    print "<td>$Mode</td>\n";
 	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
@@ -486,6 +509,7 @@ foreach $project (sort keys %Projects) {
 	print "<tr bgcolor=\"lightblue\">\n";
 	print "<td>Revision</td>\n";
 	print "<td>Cross?</td>\n";
+	print "<td>Mode</td>\n";
 	print "<td>Build host</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
@@ -525,6 +549,7 @@ foreach $project (sort keys %Projects) {
 	    } else {
 		print "$hosttype from $Buildtype</td>\n";
 	    }
+	    print "<td>$Mode</td>\n";
 	    print "<td>$Hostname</td>\n";
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
@@ -557,6 +582,7 @@ foreach $project (sort keys %Projects) {
 	print "<tr bgcolor=\"lightblue\">\n";
 	print "<td>Version</td>\n";
 	print "<td>System</td>\n";
+	print "<td>Mode</td>\n";
 	print "<td>Build date</td>\n";
 	print "<td>Results</td>\n";
 	print "</tr>\n";
@@ -595,6 +621,79 @@ foreach $project (sort keys %Projects) {
 	    } else {
 		print " from $Buildtype</td>\n";
 	    }
+	    print "<td>$Mode</td>\n";
+	    print "<td>$Timestamp</td>\n";
+	    print "<td><a href=\"$file\">\n";
+	    if ($Status eq "ok") {
+		print "<font color=\"green\">Success</font>\n";
+	    } elsif ($Status eq "almost") {
+		print "<font color=\"orange\">Almost</font>\n";
+	    } elsif ($Status eq "built") {
+		print "<font color=\"yellow\">Built</font>\n";
+	    } else {
+		print "<font color=\"red\">Failure</font>\n";
+	    }
+	    print "</a></td>\n";
+	    print "</tr>\n";
+	    print "\n";
+	}
+	print "</table>\n";
+	print "\n";
+    }
+    print "\n";
+
+    foreach $mode (sort keys %{$Modes{$project}}) {
+	my $bit = 0;
+
+	print "<hr />\n";
+	print "<h3><a name=\"$project-$mode\">\n";
+	print "Summary for $project in mode $mode</a></h3>\n";
+	print "\n";
+	print "<table border=\"0\">\n";
+	print "<tr bgcolor=\"lightblue\">\n";
+	print "<td>System</td>\n";
+	print "<td>Build host</td>\n";
+	print "<td>Revision</td>\n";
+	print "<td>Build date</td>\n";
+	print "<td>Results</td>\n";
+	print "</tr>\n";
+	print "\n";
+	foreach $file (@Files) {
+	    next unless $Project{$file} eq $project;
+	    next unless $Mode{$file} eq $mode;
+
+	    my ($Project);
+	    my ($Revision);
+	    my ($Mode);
+	    my ($Hosttype);
+	    my ($Buildtype);
+	    my ($Hostname);
+	    my ($Timestamp);
+	    my ($Status);
+
+	    $Revision = $Revision{$file};
+	    $Mode = $Mode{$file};
+	    $Hosttype = $Hosttype{$file};
+	    $Buildtype = $Buildtype{$file};
+	    $Hostname = $Hostname{$file};
+	    $Timestamp = $Timestamp{$file};
+	    $Status = $Status{$file};
+
+	    if ($bit) {
+		print "<tr bgcolor=\"lightgrey\">\n";
+	    } else {
+		print "<tr>\n";
+	    }
+	    $bit = !$bit;
+
+	    print "<td>$Hosttype";
+	    if ($Hosttype eq $Buildtype) {
+		print "</td>\n";
+	    } else {
+		print " from $Buildtype</td>\n";
+	    }
+	    print "<td>$Hostname</td>\n";
+	    print "<td>$Revision</td>\n";
 	    print "<td>$Timestamp</td>\n";
 	    print "<td><a href=\"$file\">\n";
 	    if ($Status eq "ok") {
