@@ -174,7 +174,7 @@ foreach $arg (@ARGV) {
 	    # Automake self test or distcheck output.
 	    $status = "ok" if !$status && m,All \d+ tests passed,;
 	    $status = "ok" if !$status && m,1 test passed,;
-	    $status = "almost" if m,\d+ of \d+ tests failed,;
+	    $status = "almost" if m,\d+ of \d+ tests? failed,;
 
 	    # libcheck self tests.
 	    $status = "almost" if !$status && m,Errors: [1-9]+,;
