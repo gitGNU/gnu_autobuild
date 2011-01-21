@@ -1,0 +1,117 @@
+This documentation will describe how to setup the mail exploder
+running as 'mail.autobuild.qa.gnu.org' responsible for receiving
+e-mails to PROJECT@autobuild.qa.gnu.org and forwarding them to other
+systems that will compile the build logs into fancy web pages.
+
+This documentation assumes a Debian-like system like gNewSense.
+
+1) Install a mail server:
+
+mail:~# apt-get install exim4-daemon-light
+
+2) Configure it:
+
+mail:~# dpkg-reconfigure exim4-config
+
+Chose:
+
+General type of mail configuration:
+	internet site; mail is sent and received directly using SMTP
+
+System mail name:
+	mail.autobuild.qa.gnu.org
+
+IP-addresses to listen on for incoming SMTP connections:
+	(empty)
+
+Other destinations for which mail is accepted:
+	autobuild.qa.gnu.org
+
+Domains to relay mail for:
+        (empty)
+
+Machines to relay mail for:
+        (empty)
+
+Keep number of DNS-queries minimal (Dial-on-Demand)?
+        No
+
+Delivery method for local mail:
+        mbox format in /var/mail/
+
+Split configuration into small files?
+	Yes
+
+Root and postmaster mail recipient:
+	simon@josefsson.org
+
+3) Finish configuration:
+
+Modify /etc/exim4/conf.d/main/01_exim4-config_listmacrosdefs like this:
+
+OLD:
+domainlist local_domains = MAIN_LOCAL_DOMAINS
+
+NEW:
+domainlist local_domains = MAIN_LOCAL_DOMAINS : dsearch;/etc/exim4/virtual
+
+Create a file like this:
+
+mail:~# cat> /etc/exim4/conf.d/router/250_local_vdom_aliases
+vdom_aliases:
+  debug_print = "R: vdom_aliases for $local_part@$domain"
+  driver = redirect
+  allow_defer
+  allow_fail
+  domains = dsearch;/etc/exim4/virtual
+  data = ${expand:${lookup{$local_part}lsearch*@{/etc/exim4/virtual/$domain}}}
+  retry_use_local_part
+  pipe_transport = address_pipe
+  file_transport = address_file
+  # not no_more - we try again without the suffix
+
+vdom_aliases_suffix:
+  debug_print = "R: vdom_aliases_suffix for $local_part@$domain"
+  driver = redirect
+  local_part_suffix = -*
+  local_part_suffix_optional
+  allow_defer
+  allow_fail
+  domains = dsearch;/etc/exim4/virtual
+  data = ${expand:${lookup{$local_part}lsearch*@{/etc/exim4/virtual/$domain}}}
+  retry_use_local_part
+  pipe_transport = address_pipe
+  file_transport = address_file
+  no_more
+^D
+
+Create /etc/exim4/virtual/autobuild.qa.gnu.org like this:
+
+mail:~# mkdir /etc/exim4/virtual
+mail:~# cat> /etc/exim4/virtual/autobuild.qa.gnu.org
+*: autobuild@mail.autobuild.qa.gnu.org
+mail:~# 
+
+Create a new user like this:
+
+mail:~# adduser --disabled-password autobuild
+Adding user `autobuild' ...
+Adding new group `autobuild' (1000) ...
+Adding new user `autobuild' (1000) with group `autobuild' ...
+Creating home directory `/home/autobuild' ...
+Copying files from `/etc/skel' ...
+Changing the user information for autobuild
+Enter the new value, or press ENTER for the default
+	Full Name []: 
+	Room Number []: 
+	Work Phone []: 
+	Home Phone []: 
+	Other []: 
+Is the information correct? [Y/n] y
+mail:~# 
+
+I needed the following, possibly due to poor installation:
+chown mail.mail /var/mail/
+
+Add to /home/autobuild/.forward e-mail addresses of the final
+recipients of build logs.
