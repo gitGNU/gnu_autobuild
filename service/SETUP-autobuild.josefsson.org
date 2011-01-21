@@ -1,0 +1,89 @@
+This documentation describe how to setup the autobuild log parser and
+web server running at http://autobuild.qa.gnu.org/ receiving e-mails
+via mail.autobuild.qa.gnu.org.
+
+This documentation assumes a Debian-like system like gNewSense.
+
+* Install a webserver:
+
+apt-get install apache2
+
+* Create a user to run the log parser and website generator:
+
+autobuild:~# adduser --disabled-password autobuild
+Adding user `autobuild' ...
+Adding new group `autobuild' (1000) ...
+Adding new user `autobuild' (1000) with group `autobuild' ...
+Creating home directory `/home/autobuild' ...
+Copying files from `/etc/skel' ...
+Changing the user information for autobuild
+Enter the new value, or press ENTER for the default
+	Full Name []: 
+	Room Number []: 
+	Work Phone []: 
+	Home Phone []: 
+	Other []: 
+Is the information correct? [Y/n] y
+autobuild:~# 
+
+* Create website 
+
+autobuild:~# mkdir /home/autobuild/www
+autobuild:~# cat> /home/autobuild/www/README.html
+<p>This server contains build logs for projects that send their build
+logs via e-mail to [PROJECTNAME]@mail.autobuild.qa.gnu.org.
+...
+autobuild:~# 
+
+* Create a configuration:
+
+autobuild:~# cat>/etc/apache2/sites-available/autobuild.qa.gnu.org
+<VirtualHost *:80>
+        ServerName autobuild.qa.gnu.org
+        ServerAdmin simon@josefsson.org
+        
+        DocumentRoot /home/autobuild/www/
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /home/autobuild/www/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ErrorLog /var/log/apache2/autobuild.qa.gnu.org-error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog /var/log/apache2/autobuild.qa.gnu.org-access.log combined
+        ServerSignature On
+
+</VirtualHost>
+^D
+autobuild:~# a2dissite 000-default
+Site default disabled.
+Run '/etc/init.d/apache2 reload' to activate new configuration!
+autobuild:~# a2ensite autobuild.qa.gnu.org
+Enabling site autobuild.qa.gnu.org.
+Run '/etc/init.d/apache2 reload' to activate new configuration!
+autobuild:~# /etc/init.d/apache2 restart
+Restarting web server: apache2 ... waiting .
+autobuild:~# 
+
+* Install a mail server:
+
+autobuild:~# apt-get install exim4-daemon-light
+
+General type of mail configuration:
+	internet site; mail is sent and received directly using SMTP
+
+System mail name:
+       autobuild.qa.gnu.org
+
+IP-addresses to listen on for incoming SMTP connections:
+       (empty)
