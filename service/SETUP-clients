@@ -1,0 +1,22 @@
+An autobuild client typically just have to compile a program and
+e-mail the build log to PROJECT@autobuild.qa.gnu.org.
+
+For example:
+
+(
+    set -e
+    set -x
+    DIR=/var/tmp/libidn
+    rm -rf $DIR
+    mkdir -p $DIR
+    cd $DIR
+    wget http://daily.josefsson.org/libidn/libidn-latest.tar.gz
+    TGZ=`find . -maxdepth 1 -mindepth 1 -type f -name \*.tar.gz`
+    sha1sum $TGZ || md5sum $TGZ || true
+    tar xfz $TGZ
+    SUBDIR=`find . -maxdepth 1 -mindepth 1 -type d`
+    cd $SUBDIR
+    ./configure --prefix=$DIR
+    make
+    make check
+) | mail libidn@autobuild.qa.gnu.org
