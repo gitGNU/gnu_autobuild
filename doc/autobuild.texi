@@ -9,7 +9,7 @@
 This manual is last updated @value{UPDATED} for version
 @value{VERSION} of Autobuild.
 
-Copyright @copyright{} 2004, 2005, 2008, 2010 Simon Josefsson.
+Copyright @copyright{} 2004, 2005, 2008, 2010, 2011 Simon Josefsson.
 
 @quotation
 Permission is granted to copy, distribute and/or modify this document
@@ -280,7 +280,7 @@ For use when autobuild fail to guess the values properly:
 
     --timestamp=STRING
            Specify  when  build  was  made.  Any date format will work, but
-           `YYYY-MM-DD+HH.MM.SS' is recommended.
+           `YYYY-MM-DDTHH.MM.SS' is recommended.
 
     --status=STRING
            Outcome of build.  Any string will work, but "ok" and "fail" are
