@@ -380,22 +380,33 @@ if (!$InlineHTML) {
 }
 
 foreach $project (sort keys %Projects) {
+    my $count;
+
     print "<hr />\n";
     print "<h2><a name=\"$project\">Project '$project'</a></h2>\n";
     print "\n";
     print "<p>Revisions (" . keys(%{$Revisions{$project}}) . "): ";
+    $count = 0;
     foreach $revision (reverse sort { if ($a eq $b) { return 0; } else { my $i = 0; do { my $j = substr ($a, $i, 1); my $k = substr ($b, $i, 1); if ($j != $k) { $j = substr ($a, $i); $k = substr ($b, $i); return $j <=> $k; } $i++; } while ($i < length($a)); } } keys %{$Revisions{$project}}) {
-	print "<a href=\"#$project-$revision\">$revision</a>, ";
+        print ", " if $count;
+	print "<a href=\"#$project-$revision\">$revision</a>";
+        $count++;
     }
     print "</p>\n";
-    print "<p>Hosttypes (" . keys(%{$Hosttypes{$project}}) . "): ";
+    print "<p>Host types (" . keys(%{$Hosttypes{$project}}) . "): ";
+    $count = 0;
     foreach $hosttype (sort keys %{$Hosttypes{$project}}) {
-	print "<a href=\"#$project-$hosttype\">$hosttype</a>, \n";
+        print ", " if $count;
+	print "<a href=\"#$project-$hosttype\">$hosttype</a>\n";
+        $count++;
     }
     print "</p>\n";
     print "<p>Build hosts (" . keys(%{$Hostnames{$project}}) . "): ";
+    $count = 0;
     foreach $hostname (sort keys %{$Hostnames{$project}}) {
-	print "<a href=\"#$project-$hostname\">$hostname</a>, \n";
+        print ", " if $count;
+	print "<a href=\"#$project-$hostname\">$hostname</a>\n";
+        $count++;
     }
     print "</p>\n";
 
